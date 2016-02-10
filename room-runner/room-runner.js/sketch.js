@@ -1,5 +1,7 @@
 function setup() {
-  createCanvas(1200, 1200);
+  var width = 600;
+  var height = 600;
+  createCanvas(width, height);
   background(0);
   noSmooth();
 }
