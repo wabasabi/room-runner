@@ -5,40 +5,68 @@ function setup() {
   var height = 600;
   //var height = 1200;
   createCanvas(width, height);
-  background('#222');  
   
-  //create the "room"
+  // Create objects
+  background = new Background();
+  gameGround = new GameGround();
+  testSphere = new TestSphere();
+  
+  //create the "room"----------------------------------------------
   var c = color('#FFF'); //defines color 'c'
   fill(c); //use color variable 'c' as fill color
   ellipse(width/2, height/2, height, height);
   
-  //declare variables used for circular movement
-  testCircleX = width/2;
-  testCircleY = height/2;
-  angle = 0.05;
-  speed = 0.025;
 }
 
 function draw() {
   // Draw background to avoid shadows
-  var b = color('#000');
-  fill(b);
-  rect(0,0,width,height);
+  background.draw();
   
-  // Recreate the room to hide shadow of test circle
-  var c = color('#FFF'); //defines color 'c'
-  fill(c); //use color variable 'c' as fill color
-  ellipse(width/2, height/2, 600, 600);
+  // Draw the game background
+  gameGround.draw();
   
-  // set up ellipse placement vars for ellipse 1
-  var a = testCircleX + cos(angle) * 250;
-  var b = testCircleY + sin(angle) * 250;
+  // Draw the sphere moving clockwise around the gameground
+  testSphere.draw();
   
-  // create test circle 1
-  var g = color('#0A0');
-  fill(g);
-  ellipse(a, b, 100, 100);
+}
 
+function TestSphere() {
+  this.centerX = width/2;
+  this.centerY = height/2;
+  this.angle = 0.05;
+  this.speed = 0.025;
+  this.sphereColor = color('#0A0');
+  this.dimXY = 100;
   
-  angle = angle + speed;
+  this.draw = function(){
+    var x = this.centerX + cos(this.angle) * 250;
+    var y = this.centerY + sin(this.angle) * 250;
+    fill(this.sphereColor);
+    ellipse(x, y, this.dimXY, this.dimXY);
+    this.angle = this.angle + this.speed;
+  }
+}
+
+// Generate the ellipse that will project onto the dome
+function GameGround() {
+  this.x = 600;
+  this.y = 600;
+  this.gameGroundColor = color('#FFF');
+  
+  this.draw = function(){
+    fill(this.gameGroundColor);
+    ellipse(width/2, height/2, this.x, this.y);
+  }
+}
+
+// Create a background class so it is easy to change color/add images/etc.
+function Background() {
+  this.x = 0;
+  this.y = 0;
+  this.backgroundColor = color('#000');
+  
+  this.draw = function(){
+    fill(this.backgroundColor);
+    rect(0,0,width,height);
+  }
 }
