@@ -9,7 +9,9 @@ function setup() {
   // Create objects
   background = new Background();
   gameGround = new GameGround();
-  testSphere = new TestSphere();
+  testSphere = new TestSphere(0.09);
+  testSphere2 = new TestSphere(0.005);
+  testSphere3 = new TestSphere(0.05);
   
   //create the "room"----------------------------------------------
   var c = color('#FFF'); //defines color 'c'
@@ -27,20 +29,24 @@ function draw() {
   
   // Draw the sphere moving clockwise around the gameground
   testSphere.draw();
+  testSphere2.draw();
+  testSphere3.draw();
+
   
 }
 
-function TestSphere() {
+function TestSphere(sphereSpeed) {
   this.centerX = width/2;
   this.centerY = height/2;
   this.angle = 0.05;
-  this.speed = 0.025;
+  this.speed = sphereSpeed;
   this.sphereColor = color('#0A0');
   this.dimXY = 100;
+  this.scalar = height/2 - (this.dimXY/2);
   
   this.draw = function(){
-    var x = this.centerX + cos(this.angle) * 250;
-    var y = this.centerY + sin(this.angle) * 250;
+    var x = this.centerX + cos(this.angle) * this.scalar;
+    var y = this.centerY + sin(this.angle) * this.scalar;
     fill(this.sphereColor);
     ellipse(x, y, this.dimXY, this.dimXY);
     this.angle = this.angle + this.speed;
