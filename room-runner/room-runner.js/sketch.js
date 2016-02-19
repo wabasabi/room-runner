@@ -29,10 +29,7 @@ function setup() {
   // Create objects
   background = new Background();
   gameGround = new GameGround();
-  testSphere = new TestSphere(0.09, 0.05);
-  testSphere2 = new TestSphere(0.005, 0.05);
-  testSphere3 = new TestSphere(0.05, 0.05);
-  testSphere4 = new TestSphere(0.17, 0);
+  kbTest = new TestKeyboardSphere(0.17, 0);
   
 }
 
@@ -46,11 +43,7 @@ function draw() {
   gameGround.draw();
   
   // Draw the sphere moving clockwise around the gameground
-  testSphere.draw();
-  testSphere2.draw();
-  testSphere3.draw();
-  testSphere4.draw();
-  print(testSphere.angle);
+  kbTest.draw();
 
   
 }
@@ -67,38 +60,12 @@ function keyPressed()
   // RIGHT key
   if(keyCode == RIGHT_ARROW)
   {
-    xpos = xpos + numPixels; 
+    kbTest.moveRight(); 
   }
  
   // LEFT key
   if(keyCode == LEFT_ARROW)
   {
-    xpos = xpos - numPixels; 
-  }
-}
-
-// Test sphere that moves around on its own
-function TestSphere(sphereSpeed, startAngle) {
-  this.centerX = width/2;
-  this.centerY = height/2;
-  this.angle = startAngle;
-  this.speed = sphereSpeed;
-  this.sphereColor = color('#0A0');
-  this.dimXY = height/6;
-  this.scalar = height/2 - (this.dimXY/2);
-  
-  this.draw = function(){
-    var x = this.centerX + cos(this.angle) * this.scalar;
-    var y = this.centerY + sin(this.angle) * this.scalar;
-    fill(this.sphereColor);
-    ellipse(x, y, this.dimXY, this.dimXY);
-    this.angle = this.angle + this.speed;
-  }
-  
-  this.drawStatic = function(){
-    var x = this.centerX + cos(this.angle) * this.scalar;
-    var y = this.centerY + sin(this.angle) * this.scalar;
-    fill(this.sphereColor);
-    ellipse(x, y, this.dimXY, this.dimXY);
+    kbTest.moveLeft();
   }
 }
