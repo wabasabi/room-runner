@@ -18,14 +18,6 @@ function setup() {
   createCanvas(width, height);
   frameRate(120);
   
-  // TESTING KEYBOARD INPUT-----------------------------------
-  // x position variable
-  xpos = 200;
-  // y position variable
-  ypos = 100;
-  // numPixels variable
-   numPixels = 3;
-  
   // Create objects
   background = new Background();
   gameGround = new GameGround();
@@ -48,13 +40,6 @@ function draw() {
   
 }
 
-// This returns a location on the sphere
-// @param location - 0 through 365 position on sphere
-// @return - location on sphere
-function getLocation(location){
-  return 0.017 * location;
-}
-
 function keyPressed()
 {
   // RIGHT key
@@ -68,4 +53,6 @@ function keyPressed()
   {
     kbTest.moveLeft();
   }
+  
+  
 }
