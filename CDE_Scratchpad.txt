@@ -1,0 +1,40 @@
+Juss DiSciullo, Steven Gantz, Ryan Harrington
+
+Writeup 1 due Wed Feb 17 by 11:59pm, saved as PDF in dropbox.
+
+Your writeup needs to cover the following topics. Your entire team needs to be in agreement about the scope and technology before you submit this document:
+
+    - A comprehensive overview of the project, how it will function, how users will interact, etc
+        - The game will be played in a web browser and properly utilized in the dome of the planetarium.
+    - What technology will be required (what do you need to make it, what do you need to show it)
+        - Hosted on the Web.
+        - Powered by p5.js
+    - Where will the piece be installed/demo'ed? As you decide this keep in mind that not every team will be able to use a projector, 
+    and not all projects will fit in the student gallery. If you're making a web app or native app, how would you like it displayed. 
+        - It will be demoed in the planetarium and/or in the student gallery on a normal monitor.
+    - Team member names, and roles. How will the work be divided, who will be the team leader... you need a team leader
+        - Steven Gantz: Developer, 50% Development work, 33% team leader
+        - Ryan Harrington: Developer, 50% Development work, 33% team leader
+        - Juss DiSciullo: Creative Lead, 100% Creative control, 33% team leader
+    - You need to create a name for your project, and sketch 5 concepts for logos (rough, they do not need to be finalized yet)
+        - 
+    - Personas, you'll need to create 5 personas for fictional users of your app/tool/installation. The goal of a persona is
+    to put yourself in a typical user's shoes and figure out how/why they would use your project. 
+    An overview: http://www.romanpichler.com/blog/persona-template-for-agile-product-management/
+        - Guy/Girl at work killing time
+        - Student trying to keep themselves occupied during class
+        - Planetarium Director testing the projector
+        - Anyone had home looking to play a game
+        - Web game enthusiasts
+        - Processing/p5 students
+    - Competative analysis. Find at 10 competing projects (either similar concepts, similar technologies, 
+    inspiration, etc). Include a screen shot a few sentence descriptions for each. List what's good 
+    (what inspires you) and what you can improve on.
+        - 
+    - Mood board. This should include at least 15 images (and links for where you got the images) for
+    visual concepts that will inspire your design in the next phase. If you're making an app, this should 
+    be images of interfaces that are relevant to your design, if you're making an installation this is 
+    images of projection/environments, etc. The images do not need to be on the same topic as your 
+    project, they are just inspiration.
+    - A rough wireframe/schematic of either the interface or environment for presentation of the project
+

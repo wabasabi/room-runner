@@ -1,0 +1,5 @@
+p5.js library for games with examples:
+	http://p5play.molleindustria.org/examples/index.html
+	
+Example for moving something in a circle:
+	https://processing.org/discourse/beta/num_1264000877.html
