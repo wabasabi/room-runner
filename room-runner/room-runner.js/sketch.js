@@ -52,7 +52,5 @@ function keyPressed()
   if(keyCode == LEFT_ARROW)
   {
     kbTest.moveLeft();
-  }
-  
-  
+  }  
 }
