@@ -9,12 +9,28 @@ function TestKeyboardSphere() {
   this.scalar = height/2 - (this.dimXY/2);
   
   this.isJumping = false;
+  this.isFalling = false;
   
   this.draw = function(){
     var x = this.centerX + cos(this.angle) * this.scalar;
     var y = this.centerY + sin(this.angle) * this.scalar;
     fill(this.sphereColor);
     ellipse(x, y, this.dimXY, this.dimXY);
+	
+	  if(this.isJumping){
+	    this.scalar = this.scalar - 1;
+	    if(this.scalar < height/3){
+	      this.isJumping = false;
+	      this.isFalling = true;
+	    }
+	  }
+	
+	  if(this.isFalling){
+	    this.scalar = this.scalar + 1;
+	    if(this.scalar > height/2 - (this.dimXY/2)){
+	      this.isFalling = false;
+	    }
+	  }
   }
   
   this.moveRight = function(){
@@ -23,5 +39,9 @@ function TestKeyboardSphere() {
   
   this.moveLeft = function(){
     this.angle = this.angle + this.speed;
+  }
+  
+  this.jump = function(){
+	  this.isJumping = true;
   }
 }

@@ -36,21 +36,26 @@ function draw() {
   
   // Draw the sphere moving clockwise around the gameground
   kbTest.draw();
-
   
 }
 
 function keyPressed()
 {
   // RIGHT key
-  if(keyCode == RIGHT_ARROW)
-  {
+  if(keyCode == RIGHT_ARROW){
     kbTest.moveRight(); 
   }
  
   // LEFT key
-  if(keyCode == LEFT_ARROW)
-  {
+  if(keyCode == LEFT_ARROW) {
     kbTest.moveLeft();
   }  
+  
+  // UP key
+  if(keyCode == UP_ARROW){
+	  if(!kbTest.isJumping){
+	    kbTest.jump();
+	  }
+  }
+
 }
