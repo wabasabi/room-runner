@@ -16,15 +16,7 @@ function setup() {
   
   // General attributes
   createCanvas(width, height);
-  frameRate(120);
-  
-  // TESTING KEYBOARD INPUT-----------------------------------
-  // x position variable
-  xpos = 200;
-  // y position variable
-  ypos = 100;
-  // numPixels variable
-   numPixels = 3;
+  frameRate(60);
   
   // Create objects
   background = new Background();
@@ -44,28 +36,20 @@ function draw() {
   
   // Draw the sphere moving clockwise around the gameground
   kbTest.draw();
-
   
-}
-
-// This returns a location on the sphere
-// @param location - 0 through 365 position on sphere
-// @return - location on sphere
-function getLocation(location){
-  return 0.017 * location;
-}
-
-function keyPressed()
-{
-  // RIGHT key
-  if(keyCode == RIGHT_ARROW)
-  {
-    kbTest.moveRight(); 
+  // Write keyboardhandler object to abstract and simplify this
+  if(keyWentDown(UP_ARROW)){
+    if(!kbTest.isJumping){
+      kbTest.jump();
+    }
   }
- 
-  // LEFT key
-  if(keyCode == LEFT_ARROW)
-  {
+  
+  if(keyDown(RIGHT_ARROW)){
+    kbTest.moveRight();
+  }
+  
+  if(keyDown(LEFT_ARROW)){
     kbTest.moveLeft();
   }
+  
 }
