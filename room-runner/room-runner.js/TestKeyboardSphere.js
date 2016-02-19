@@ -18,7 +18,7 @@ function TestKeyboardSphere() {
     ellipse(x, y, this.dimXY, this.dimXY);
 	
 	  if(this.isJumping){
-	    this.scalar = this.scalar - 1;
+	    this.scalar = this.scalar - 7;
 	    if(this.scalar < height/3){
 	      this.isJumping = false;
 	      this.isFalling = true;
@@ -26,7 +26,8 @@ function TestKeyboardSphere() {
 	  }
 	
 	  if(this.isFalling){
-	    this.scalar = this.scalar + 1;
+	    this.scalar = this.scalar + 7;
+	    this.isJumping = false;
 	    if(this.scalar > height/2 - (this.dimXY/2)){
 	      this.isFalling = false;
 	    }
