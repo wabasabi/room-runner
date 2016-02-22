@@ -3,9 +3,9 @@ function Background() {
   this.x = 0;
   this.y = 0;
   this.backgroundColor = color('#000');
-  
-  this.draw = function(){
+
+  this.draw = function() {
     fill(this.backgroundColor);
-    rect(this.x,this.y,width,height);
+    rect(this.x, this.y, width, height);
   }
 }
