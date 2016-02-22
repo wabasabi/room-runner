@@ -1,8 +1,6 @@
-/*
 function preload() {
   mushroomIMG = loadImage('assets/mushroom.png');
 }
-*/
 
 function setup() {
 
@@ -30,8 +28,8 @@ function setup() {
   kbTest = new TestKeyboardSphere(0.17, 0);
 
   // Sprite Creation Test
-  //mushroom = createSprite(width / 2, 20, 64, 64);
-  //mushroom.addImage(mushroomIMG);
+  mushroom = createSprite(width / 2, 20, 64, 64);
+  mushroom.addImage(mushroomIMG);
 }
 
 // Looping draw method, main runner for game
