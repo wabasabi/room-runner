@@ -1,4 +1,5 @@
 function preload() {
+  domeDemoImage = loadImage('assets/DemoSizeBg.png');
   mushroomIMG = loadImage('assets/mushroom.png');
 }
 
@@ -40,6 +41,10 @@ function draw() {
 
   // Draw the game background
   gameGround.draw();
+  
+  // Display the dome demo test image-------------------------------
+  image(domeDemoImage, (width/2) - (height/2), 0, height, height);
+  // End demo test--------------------------------------------------
 
   // Draw the sphere moving clockwise around the gameground
   kbTest.draw();
