@@ -1,5 +1,11 @@
 function preload() {
+  // Debug assets
+  domeDemoImage = loadImage('assets/DemoSizeBg.png');
+  
+  // Test assets
   mushroomIMG = loadImage('assets/mushroom.png');
+  
+  // Game assets
 }
 
 function setup() {
@@ -8,8 +14,11 @@ function setup() {
   var width = 0;
   var height = 0;
 
-  // Set whether or desktop or dome
-  var dome = false;
+  // Boolean flags for setup
+  var dome = false; // Set whether or desktop or dome
+  debug = false; // Set whether to show debug features(FPS, background, etc.)
+  
+  // Display for dome or PC
   if (dome) {
     width = 1920;
     height = 1200;
