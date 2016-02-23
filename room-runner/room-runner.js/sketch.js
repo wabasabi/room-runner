@@ -39,6 +39,7 @@ function setup() {
   // Sprite Creation Test
   mushroom = createSprite(width / 2, 20, 64, 64);
   mushroom.addImage(mushroomIMG);
+
 }
 
 // Looping draw method, main runner for game
@@ -69,5 +70,15 @@ function draw() {
   }
 
   drawSprites();
+
+    //DEBUG-----------------------------------------------------------
+  translate(width/2, height/2);
+  rotate(.25);
+  rect((height/2) * cos(0),(height/2) * sin(0), -200, 20);
+  
+  //translate((height/2) * cos(0),(height/2) * sin(0));
+  rotate(.25);
+  rect((height/2) * cos(0) - height/5, (height/2) * sin(0), 1000, 75);
+  //End DEBUG ------------------------------------------------------
 
 }
