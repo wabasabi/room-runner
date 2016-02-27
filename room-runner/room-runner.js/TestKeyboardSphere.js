@@ -2,6 +2,8 @@
 function TestKeyboardSphere() {
   this.centerX = width / 2;
   this.centerY = height / 2;
+  this.x = 0;
+  this.y = 0;
   this.angle = 0;
   this.speed = 0.017;
   this.sphereColor = color('#0A0');
@@ -12,10 +14,12 @@ function TestKeyboardSphere() {
   this.isFalling = false;
 
   this.draw = function() {
-    var x = this.centerX + cos(this.angle) * this.scalar;
-    var y = this.centerY + sin(this.angle) * this.scalar;
+    this.x = this.centerX + cos(this.angle) * this.scalar;
+    this.y = this.centerY + sin(this.angle) * this.scalar;
     fill(this.sphereColor);
-    ellipse(x, y, this.dimXY, this.dimXY);
+    ellipse(this.x, this.y, this.dimXY, this.dimXY);
+    
+    image(TT_Idle, this.x - 35, this.y - 45);
 
     if (this.isJumping) {
       this.scalar = this.scalar - 7;
@@ -36,10 +40,13 @@ function TestKeyboardSphere() {
 
   this.moveRight = function() {
     this.angle = this.angle - this.speed;
+    // Added to test animation
+    animation(walkingAnimation, this.x, this.y);
   }
 
   this.moveLeft = function() {
     this.angle = this.angle + this.speed;
+    animation(walkingAnimation, this.x, this.y);
   }
 
   this.jump = function() {

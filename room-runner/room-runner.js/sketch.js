@@ -6,6 +6,15 @@ function preload() {
   mushroomIMG = loadImage('assets/mushroom.png');
   
   // Game assets
+  TT_Idle = loadImage('assets/TT_idle-01.png');
+  walkingAnimation = loadAnimation(
+    "assets/TT_Walk-01.png", 
+    "assets/TT_Walk-02.png",
+    "assets/TT_Walk-03.png",
+    "assets/TT_Walk-04.png",
+    "assets/TT_Walk-05.png",
+    "assets/TT_Walk-06.png"
+    );
 }
 
 function setup() {
@@ -35,6 +44,11 @@ function setup() {
   background = new Background();
   gameGround = new GameGround();
   kbTest = new TestKeyboardSphere(0.17, 0);
+  
+  // Trashcan Tony test NO OO
+  tony = createSprite(width/2, height/2, 100, 100);
+  tony.addImage(TT_Idle);
+  tony.addAnimation(walkingAnimation);
 
   // Sprite Creation Test
   mushroom = createSprite(width / 2, 20, 64, 64);
