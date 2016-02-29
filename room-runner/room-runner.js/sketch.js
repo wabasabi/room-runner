@@ -1,14 +1,14 @@
 function preload() {
   // Debug assets
   domeDemoImage = loadImage('assets/DemoSizeBg.png');
-  
+
   // Test assets
   mushroomIMG = loadImage('assets/mushroom.png');
-  
+
   // Game assets
   TT_Idle = loadImage('assets/TT_idle-01.png');
   walkingAnimation = loadAnimation(
-    "assets/TT_Walk-01.png", 
+    "assets/TT_Walk-01.png",
     "assets/TT_Walk-02.png",
     "assets/TT_Walk-03.png",
     "assets/TT_Walk-04.png",
@@ -26,7 +26,7 @@ function setup() {
   // Boolean flags for setup
   var dome = false; // Set whether or desktop or dome
   debug = true; // Set whether to show debug features(FPS, background, etc.)
-  
+
   // Display for dome or PC
   if (dome) {
     width = 1920;
@@ -44,7 +44,7 @@ function setup() {
   background = new Background();
   gameGround = new GameGround();
   kbTest = new TestKeyboardSphere(0.17, 0);
-  
+
   // Trashcan Tony test NO OO
   tony = createSprite(width/2, height/2, 100, 100);
   tony.addImage(TT_Idle);
@@ -85,24 +85,24 @@ function draw() {
 
   drawSprites();
 
-    //DEBUG-----------------------------------------------------------
+  //DEBUG-----------------------------------------------------------
   translate(width/2, height/2);
   rotate(-.25);
   rect((height/2) * cos(0),(height/2) * sin(0), -200, 20);
-  
+
   //translate((height/2) * cos(0),(height/2) * sin(0));
   rotate(-.25);
   rect((height/2) * cos(0), (height/2) * sin(0), -100, 20);
-  
+
   rotate(-.25);
   rect((height/2) * cos(0), (height/2) * sin(0), -500, 20);
-  
+
   rotate(-.25);
   rect((height/2) * cos(0), (height/2) * sin(0), -250, 20);
-  
+
   rotate(-.25);
   rect((height/2) * cos(0), (height/2) * sin(0), -120, 20);
-  
+
   rotate(-.75);
   rect((height/2) * cos(0), (height/2) * sin(0), -2800, 20);
   //End DEBUG ------------------------------------------------------
