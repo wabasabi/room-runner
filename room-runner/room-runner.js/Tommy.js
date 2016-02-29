@@ -1,50 +1,21 @@
 // Test sphere that moves around on its own
 function Tommy() {
-  this.centerX = width / 2;
-  this.centerY = height / 2;
-  this.x = 0;
-  this.y = 0;
-  this.angle = 0;
-  this.speed = 0.017;
-  this.dimXY = height / 6;
-  this.scalar = height / 2 - (this.dimXY / 2);
-
-  this.isJumping = false;
-  this.isFalling = false;
-
-  this.draw = function() {
-
-    image(TT_Idle, this.x - 35, this.y - 45);
-
-    if (this.isJumping) {
-      this.scalar = this.scalar - 7;
-      if (this.scalar < height / 3) {
-        this.isJumping = false;
-        this.isFalling = true;
-      }
-    }
-
-    if (this.isFalling) {
-      this.scalar = this.scalar + 7;
-      this.isJumping = false;
-      if (this.scalar > height / 2 - (this.dimXY / 2)) {
-        this.isFalling = false;
-      }
-    }
+  
+  // Sprite attribute generation
+  this.tommy = createSprite(0, 0, 100, 100);
+  this.tommy.velocity.x = .5;
+  
+  this.onMouseClick = function(mouseX, mouseY){
+	this.tommy.position.x = mouseX;
+	this.tommy.position.y = mouseY;
   }
-
-  this.moveRight = function() {
-    this.angle = this.angle - this.speed;
-    // Added to test animation
-    animation(walkingAnimation, this.x, this.y);
+ 
+  this.collideWithMushroom = function(mushroom){
+	  this.tommy.collide(mushroom);
   }
-
-  this.moveLeft = function() {
-    this.angle = this.angle + this.speed;
-    animation(walkingAnimation, this.x, this.y);
-  }
-
-  this.jump = function() {
-    this.isJumping = true;
+  
+  this.test = function(){
+	  this.tommy.position.x = width/2;
+	  this.tommy.position.y = height/2;
   }
 }
