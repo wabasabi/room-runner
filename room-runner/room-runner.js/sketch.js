@@ -46,12 +46,13 @@ function setup() {
 
   // Trashcan Tony test NO OO
   tommy = new Tommy();
-  //tony = createSprite(width/2, height/2, 100, 100);
-  //tony.addImage(TT_Idle);
-  //tony.addAnimation(walkingAnimation);
+  tommy.setWalkingRightAnimation(walkingAnimation);
+  tommy.setIdle(TT_Idle);
 
   mushroom = createSprite(width/2, 20, 64, 64);
   mushroom.addImage(mushroomIMG);
+
+  listOfColliders = [mushroom];
 }
 
 // Looping draw method, main runner for game
@@ -62,9 +63,10 @@ function draw() {
 
   // Draw the game background
   gameGround.draw();
-  
-  tommy.collideWithMushroom(mushroom);
-  
+
+  // Check against collisions
+  tommy.checkCollisions(listOfColliders);
+
   drawSprites();
 
   // Write keyboardhandler object to abstract and simplify this
@@ -72,9 +74,11 @@ function draw() {
   }
 
   if (keyDown(RIGHT_ARROW)) {
+    tommy.moveRight();
   }
 
   if (keyDown(LEFT_ARROW)) {
+    tommy.moveLeft();
   }
 
 }
