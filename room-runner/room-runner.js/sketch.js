@@ -14,7 +14,7 @@ function preload() {
     "assets/TT_Walk-04.png",
     "assets/TT_Walk-05.png",
     "assets/TT_Walk-06.png"
-    );
+  );
 }
 
 function setup() {
@@ -49,7 +49,7 @@ function setup() {
   tommy.setWalkingRightAnimation(walkingAnimation);
   tommy.setIdle(TT_Idle);
 
-  mushroom = createSprite(width/2, 20, 64, 64);
+  mushroom = createSprite(width / 2, 20, 64, 64);
   mushroom.addImage(mushroomIMG);
 
   listOfColliders = [mushroom];
@@ -67,11 +67,12 @@ function draw() {
   // Check against collisions
   tommy.checkCollisions(listOfColliders);
 
+  // Draw all sprites at once
+  tommy.drawTommyPosition();
   drawSprites();
 
   // Write keyboardhandler object to abstract and simplify this
-  if (keyWentDown(UP_ARROW)) {
-  }
+  if (keyWentDown(UP_ARROW)) {}
 
   if (keyDown(RIGHT_ARROW)) {
     tommy.moveRight();
@@ -84,5 +85,5 @@ function draw() {
 }
 
 function mousePressed() {
-	//tommy.onMouseClick(mouseX, mouseY);
+  //tommy.onMouseClick(mouseX, mouseY);
 }
