@@ -1,5 +1,5 @@
 // Test sphere that moves around on its own
-function Tommy() {
+function Tommy(x, y) {
 
   // WORK THROUGH WITH THIS EXAMPLE:
   // http://p5play.molleindustria.org/examples/index.html?fileName=sprite4.js#
@@ -7,26 +7,28 @@ function Tommy() {
   // Tommy's other attributes
   this.tommyXYDIM = 100;
   this.angle = 0;
-  this.speed = 0.017;
+  //TODO this.speed = 0.017
   this.scalar = height / 2 - (this.tommyXYDIM / 2);
 
   //TMP
-  this.direction = 0;
-
-  // x and y coordinates of Tommy
-  this.centerX = width / 2;
-  this.centerY = height / 2;
-  this.x = this.centerX + cos(this.angle) * this.scalar;
-  this.y = this.centerY + sin(this.angle) * this.scalar;
+  this.direction = 90;
+  this.speed = 1;
+  this.turnRate = 0.4;
 
   // Sprite attribute generation
-  this.tommy = createSprite(this.x, this.y,
+  this.tommy = createSprite(x, y,
     this.tommyXYDIM, this.tommyXYDIM);
+
+  // TMP auto-movement
+  // TODO
 
   // Sprite animations, initialized in method
   this.tommy.walkingRight = 0;
   this.tommy.idle = 0;
   this.tommy.rotation = 0;
+  //this.tommy.rotateToDirection = true;
+  //this.tommy.mirrorY(-1);
+  //this.tommy.mirrorX(-1);
 
   this.checkCollisions = function(colliders) {
     for (var i = 0; i < colliders.length; i++) {
@@ -38,7 +40,18 @@ function Tommy() {
   this.drawTommyPosition = function() {
     //this.tommy.position.x = this.centerX + cos(this.angle) * this.scalar;
     //this.tommy.position.y = this.centerY + sin(this.angle) * this.scalar;
+    //this.tommy.setSpeed(this.speed, this.direction);
+  }
+
+  this.debugMoveRight = function() {
     this.tommy.setSpeed(this.speed, this.direction);
+    this.direction += this.turnRate;
+    print(this.tommy.position.x);
+    print(this.tommy.position.y);
+  }
+
+  this.debugMoveLeft = function() {
+    this.tommy.setSpeed(0, this.direction);
   }
 
   // Assign animation functions

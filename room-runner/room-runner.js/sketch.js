@@ -44,15 +44,18 @@ function setup() {
   background = new Background();
   gameGround = new GameGround();
 
-  // Trashcan Tony test NO OO
-  tommy = new Tommy();
+  // Trashcan Tony
+  var StartingX = width/2 + height/2;
+  var StartingY = height/2;
+  tommy = new Tommy(StartingX, StartingY);
   tommy.setWalkingRightAnimation(walkingAnimation);
   tommy.setIdle(TT_Idle);
 
-  mushroom = createSprite(width / 2, 20, 64, 64);
-  mushroom.addImage(mushroomIMG);
+  //mushroom = createSprite(width / 2, 20, 64, 64);
+  //mushroom.addImage(mushroomIMG);
 
-  listOfColliders = [mushroom];
+  //listOfColliders = [mushroom];
+  listOfColliders = [];
 }
 
 // Looping draw method, main runner for game
@@ -75,11 +78,11 @@ function draw() {
   if (keyWentDown(UP_ARROW)) {}
 
   if (keyDown(RIGHT_ARROW)) {
-    tommy.moveRight();
+    tommy.debugMoveRight();
   }
 
   if (keyDown(LEFT_ARROW)) {
-    tommy.moveLeft();
+    tommy.debugMoveLeft();
   }
 
 }
