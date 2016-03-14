@@ -2,12 +2,12 @@
 A class project to create a game to be played on the dome of a planetarium.
 
 March: Functionality
---------------------
+
   1. March 14-18
-    {Ryan}{Steve}
-      -Complete Circle movement for Tommy and Litterbugs.
-      -Create test level with objects placed.
-      -Solidify Tommy/Litterbug class
+      1. Ryan & Steve
+      2. Complete Circle movement for Tommy and Litterbugs.
+      3. Create test level with objects placed.
+      4. Solidify Tommy/Litterbug class
   2. March 21-25
     {Ryan}{Steve}
       -Tommy and Litterbug Interaction.
