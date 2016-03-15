@@ -8,26 +8,25 @@ function Tommy(x, y) {
 
   // Tommy's other attributes
   this.tommyXYDIM = 100;
+  this.centerX = width / 2;
+  this.centerY = height / 2;
   this.angle = 0;
-  this.startSpeed = 1;
-  //TODO this.speed = 0.017
   this.scalar = height / 2 - (this.tommyXYDIM / 2);
-
-  this.direction = 90;
-  this.speed = 1;
-  this.turnRate = 0.4;
+  this.speed = 1/90;
+  this.spin = 0.6;
 
   // Sprite attribute generation
   this.tommy = createSprite(x, y,
     this.tommyXYDIM, this.tommyXYDIM);
 
-  // TMP auto-movement
-  // TODO
-
   // Sprite animations, initialized in method
   this.tommy.walkingRight = 0;
   this.tommy.idle = 0;
-  this.tommy.rotation = 0;
+
+  // Initial Position
+  this.tommy.position.x = this.centerX + cos(this.angle) * this.scalar;
+  this.tommy.position.y = this.centerY + sin(this.angle) * this.scalar;
+  this.tommy.rotation = 270;
 
   this.checkCollisions = function(colliders) {
     for (var i = 0; i < colliders.length; i++) {
@@ -36,15 +35,18 @@ function Tommy(x, y) {
   }
 
   this.MoveRight = function() {
-    this.speed = this.startSpeed;
-    this.tommy.setSpeed(this.speed, this.direction);
-    this.direction += this.turnRate;
+    this.angle += this.speed;
+    this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
+    this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
+    this.tommy.rotation += this.spin;
+    print(this.tommy.position.x);
   }
 
   this.MoveLeft = function() {
-    this.speed = this.startSpeed;
-    this.tommy.setSpeed(-this.speed, this.direction);
-    this.direction -= this.turnRate;
+    this.angle -= this.speed;
+    this.tommy.position.x = this.centerX + cos(this.angle) * this.scalar;
+    this.tommy.position.y = this.centerY + sin(this.angle) * this.scalar;
+    this.tommy.rotation -= this.spin;
   }
 
   // Assign animation functions
@@ -54,6 +56,10 @@ function Tommy(x, y) {
   }
 
   this.stopMoving = function(idle) {
-      this.tommy.setSpeed(0, 0);
+    this.tommy.setSpeed(0, 0);
+  }
+
+  this.resetRotation = function(){
+
   }
 }
