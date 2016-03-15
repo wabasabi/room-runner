@@ -6,14 +6,23 @@ function preload() {
   mushroomIMG = loadImage('assets/mushroom.png');
 
   // Game assets
-  TT_Idle = loadImage('assets/TT_idle-01.png');
-  walkingAnimation = loadAnimation(
+  TT_IdleRight = loadImage('assets/TT_idle-01.png');
+  TT_IdleLeft = loadImage('assets/TT_idle-02.png');
+  RwalkingAnimation = loadAnimation(
     "assets/TT_Walk-01.png",
     "assets/TT_Walk-02.png",
     "assets/TT_Walk-03.png",
     "assets/TT_Walk-04.png",
     "assets/TT_Walk-05.png",
     "assets/TT_Walk-06.png"
+  );
+  LwalkingAnimation = loadAnimation(
+    "assets/TT_Walk-07.png",
+    "assets/TT_Walk-08.png",
+    "assets/TT_Walk-09.png",
+    "assets/TT_Walk-10.png",
+    "assets/TT_Walk-11.png",
+    "assets/TT_Walk-12.png"
   );
 }
 
@@ -51,7 +60,8 @@ function setup() {
   var StartingX = width / 2 + height / 2;
   var StartingY = height / 2;
   tommy = new Tommy(StartingX, StartingY);
-  tommy.setWalkingRightAnimation(walkingAnimation);
+  tommy.setIdleImages(TT_IdleRight, TT_IdleLeft);
+  tommy.setWalkingAnimations(RwalkingAnimation, LwalkingAnimation);
 
   //mushroom = createSprite(width / 2, 20, 64, 64);
   //mushroom.addImage(mushroomIMG);

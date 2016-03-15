@@ -20,8 +20,9 @@ function Tommy(x, y) {
     this.tommyXYDIM, this.tommyXYDIM);
 
   // Sprite animations, initialized in method
-  this.tommy.walkingRight = 0;
-  this.tommy.idle = 0;
+  this.tommy.walkingRight = false;
+  this.tommy.walkingLeft = false;
+  this.tommy.idle = true;
 
   // Initial Position
   this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
@@ -35,6 +36,8 @@ function Tommy(x, y) {
   }
 
   this.MoveRight = function() {
+    this.walkingRight = true;
+    this.tommy.changeAnimation("WalkingLeft");
     this.angle += this.speed;
     this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
     this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
@@ -43,6 +46,8 @@ function Tommy(x, y) {
   }
 
   this.MoveLeft = function() {
+    this.walkingLeft = true;
+    this.tommy.changeAnimation("WalkingRight");
     this.angle -= this.speed;
     this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
     this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
@@ -51,13 +56,25 @@ function Tommy(x, y) {
   }
 
   // Assign animation functions
-  this.setWalkingRightAnimation = function(WRAnimation) {
-    this.tommy.walkingRight =
-      this.tommy.addAnimation("WalkingRight", WRAnimation);
+  this.setWalkingAnimations = function(WRAnimation, LRAnimation) {
+    this.tommy.addAnimation("WalkingRight", WRAnimation);
+    this.tommy.addAnimation("WalkingLeft", LRAnimation);
+  }
+
+  this.setIdleImages = function(image1, image2) {
+    this.tommy.addImage("IdleRight", image1);
+    this.tommy.addImage("IdleLeft", image2);
   }
 
   this.stopMoving = function(idle) {
     this.tommy.setSpeed(0, 0);
+    if (this.walkingLeft == true) {
+      this.tommy.changeImage("IdleRight");
+      this.walkingLeft = false;
+    } else {
+      this.tommy.changeImage("IdleLeft");
+      this.walkingRight = false;
+    }
   }
 
   this.resetRotation = function() {
@@ -67,7 +84,6 @@ function Tommy(x, y) {
     // Reset angle
     if (x == 290 && y == 463) {
       this.tommy.rotation = 45;
-      print(this.angle);
     }
 
     if (x == 230 && y == 297) {
