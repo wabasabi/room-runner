@@ -45,8 +45,8 @@ function setup() {
   gameGround = new GameGround();
 
   // Trashcan Tony
-  var StartingX = width/2 + height/2;
-  var StartingY = height/2;
+  var StartingX = width / 2 + height / 2;
+  var StartingY = height / 2;
   tommy = new Tommy(StartingX, StartingY);
   tommy.setWalkingRightAnimation(walkingAnimation);
   tommy.setIdle(TT_Idle);
@@ -54,7 +54,7 @@ function setup() {
   //mushroom = createSprite(width / 2, 20, 64, 64);
   //mushroom.addImage(mushroomIMG);
 
-  //listOfColliders = [mushroom];
+  //listOfColliders = [sprite];
   listOfColliders = [];
 }
 
