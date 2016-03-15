@@ -1,4 +1,6 @@
-// Test sphere that moves around on its own
+// Tommy the trashman
+// This is the main sprite class that the player
+// controls during normal gameplay.
 function Tommy(x, y) {
 
   // WORK THROUGH WITH THIS EXAMPLE:
@@ -7,10 +9,10 @@ function Tommy(x, y) {
   // Tommy's other attributes
   this.tommyXYDIM = 100;
   this.angle = 0;
+  this.startSpeed = 1;
   //TODO this.speed = 0.017
   this.scalar = height / 2 - (this.tommyXYDIM / 2);
 
-  //TMP
   this.direction = 90;
   this.speed = 1;
   this.turnRate = 0.4;
@@ -26,9 +28,6 @@ function Tommy(x, y) {
   this.tommy.walkingRight = 0;
   this.tommy.idle = 0;
   this.tommy.rotation = 0;
-  //this.tommy.rotateToDirection = true;
-  //this.tommy.mirrorY(-1);
-  //this.tommy.mirrorX(-1);
 
   this.checkCollisions = function(colliders) {
     for (var i = 0; i < colliders.length; i++) {
@@ -36,22 +35,16 @@ function Tommy(x, y) {
     }
   }
 
-  // Class-specific/Non-Sprite draw function
-  this.drawTommyPosition = function() {
-    //this.tommy.position.x = this.centerX + cos(this.angle) * this.scalar;
-    //this.tommy.position.y = this.centerY + sin(this.angle) * this.scalar;
-    //this.tommy.setSpeed(this.speed, this.direction);
-  }
-
-  this.debugMoveRight = function() {
+  this.MoveRight = function() {
+    this.speed = this.startSpeed;
     this.tommy.setSpeed(this.speed, this.direction);
     this.direction += this.turnRate;
-    print(this.tommy.position.x);
-    print(this.tommy.position.y);
   }
 
-  this.debugMoveLeft = function() {
-    this.tommy.setSpeed(0, this.direction);
+  this.MoveLeft = function() {
+    this.speed = this.startSpeed;
+    this.tommy.setSpeed(-this.speed, this.direction);
+    this.direction -= this.turnRate;
   }
 
   // Assign animation functions
@@ -60,27 +53,7 @@ function Tommy(x, y) {
       this.tommy.addAnimation("WalkingRight", WRAnimation);
   }
 
-  this.setIdle = function(idle) {
-    this.tommy.idle =
-      this.tommy.addImage(idle);
-  }
-
-  // Keypress functions
-  this.moveRight = function() {
-    //this.angle = this.angle - this.speed; // Assign right-way movement.
-    this.tommy.changeAnimation("WalkingRight"); // Assign walkingAnimation
-    this.tommy.mirrorX(1); // Face standard direction
-    //this.tommy.rotation -= this.speed;
-    this.direction -= 1;
-    this.speed = 1;
-  }
-
-  this.moveLeft = function() {
-    //this.angle = this.angle + this.speed; // Assign right-way movement
-    this.tommy.changeAnimation("WalkingRight"); // Assign walkingAnimation
-    this.tommy.mirrorX(-1); // Face standard direction
-    this.direction += 1;
-    this.speed = 1;
-    //this.tommy.rotation += this.speed;
+  this.stopMoving = function(idle) {
+      this.tommy.setSpeed(0, 0);
   }
 }

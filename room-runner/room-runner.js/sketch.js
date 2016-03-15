@@ -44,12 +44,14 @@ function setup() {
   background = new Background();
   gameGround = new GameGround();
 
+  // Create structural components
+  keyHandler = new KeyHandler();
+
   // Trashcan Tony
   var StartingX = width / 2 + height / 2;
   var StartingY = height / 2;
   tommy = new Tommy(StartingX, StartingY);
   tommy.setWalkingRightAnimation(walkingAnimation);
-  tommy.setIdle(TT_Idle);
 
   //mushroom = createSprite(width / 2, 20, 64, 64);
   //mushroom.addImage(mushroomIMG);
@@ -70,23 +72,10 @@ function draw() {
   // Check against collisions
   tommy.checkCollisions(listOfColliders);
 
-  // Draw all sprites at once
-  tommy.drawTommyPosition();
+  // Handle keys
+  keyHandler.handleKeyPress();
+
+  // Draw all sprites
   drawSprites();
 
-  // Write keyboardhandler object to abstract and simplify this
-  if (keyWentDown(UP_ARROW)) {}
-
-  if (keyDown(RIGHT_ARROW)) {
-    tommy.debugMoveRight();
-  }
-
-  if (keyDown(LEFT_ARROW)) {
-    tommy.debugMoveLeft();
-  }
-
-}
-
-function mousePressed() {
-  //tommy.onMouseClick(mouseX, mouseY);
 }
