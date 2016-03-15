@@ -12,35 +12,25 @@ function KeyHandler() {
   this.handleKeyPress = function() {
 
     // Leftward movement
-    if(keyWentDown("LEFT_ARROW")){
-      print("Left arrow pressed");
-    }
-    if(keyWentUp("LEFT_ARROW")){
-      print("Lifted left arrow key");
+    if (keyWentDown("LEFT_ARROW")) {}
+    if (keyWentUp("LEFT_ARROW")) {
       tommy.stopMoving();
     }
-    if(keyDown("LEFT_ARROW")){
-      print("Holding left arrow key");
+    if (keyDown("LEFT_ARROW")) {
       tommy.MoveLeft();
     }
 
     // Rightward movement
-    if(keyWentDown("RIGHT_ARROW")){
-      print("Right arrow pressed");
-    }
-    if(keyWentUp("RIGHT_ARROW")){
-      print("Lifted right arrow key");
+    if (keyWentDown("RIGHT_ARROW")) {}
+    if (keyWentUp("RIGHT_ARROW")) {
       tommy.stopMoving();
     }
-    if(keyDown("RIGHT_ARROW")){
-      print("Holding right arrow key");
+    if (keyDown("RIGHT_ARROW")) {
       tommy.MoveRight();
     }
 
     // Jump movement
-    if(keyWentDown("UP_ARROW")){
-      print("Player want's to jump");
-    }
+    if (keyWentDown("UP_ARROW")) {}
 
     // Melee movement
 
