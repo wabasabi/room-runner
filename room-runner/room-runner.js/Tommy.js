@@ -146,7 +146,7 @@ function Tommy(x, y) {
       }
 
       if (x == 1510 && y == 594) {
-        this.angle = 0;
+        this.angle = 0.01;
         this.tommy.rotation = 270;
         this.tommy.position.x = x + 1;
         this.tommy.position.y = y + 1;
