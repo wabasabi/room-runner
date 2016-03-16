@@ -118,7 +118,41 @@ function Tommy(x, y) {
       }
 
       //runs if testing on dome.
-      else if (dome) {}
+      else if (dome) {
+        // Reset angle
+        if (x == 0 && y == 0) {
+          this.tommy.rotation = 45;
+        }
+
+        if (x == 0 && y == 0) {
+          this.tommy.rotation = 90;
+        }
+
+        if (x == 0 && y == 0) {
+          this.tommy.rotation = 135;
+        }
+
+        if (x == 0 && y == 0) {
+          this.tommy.rotation = 180;
+        }
+
+        if (x == 0 && y == 0) {
+          this.tommy.rotation = 235;
+        }
+
+        if (x == 0 && y == 0) {
+          this.angle = 0;
+          this.tommy.rotation = 270;
+        }
+
+        if (x == 0 && y == 0) {
+          this.tommy.rotation = 315;
+        }
+
+        if (x == 0 && y == 0) {
+          this.tommy.rotation = 360;
+        }
+      }
     }
   }
 }
