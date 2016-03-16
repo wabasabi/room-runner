@@ -12,6 +12,7 @@ function Tommy(x, y) {
   this.centerY = height / 2;
   this.angle = 0;
   this.scalar = height / 2 - (this.tommyXYDIM / 2);
+  this.jumpHeight = 0;
   this.speed = 1 / (57.2958 * 1.5);
   this.spin = 0.6;
 
@@ -23,6 +24,8 @@ function Tommy(x, y) {
   this.tommy.walkingRight = false;
   this.tommy.walkingLeft = false;
   this.tommy.idle = true;
+  this.jumping = false;
+  this.falling = false;
 
   // Initial Position
   this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
@@ -43,9 +46,6 @@ function Tommy(x, y) {
     this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
     this.tommy.rotation += this.spin;
     this.resetRotation();
-
-    print(this.tommy.position.x);
-    print(this.tommy.position.y);
   }
 
   this.MoveLeft = function() {
@@ -56,6 +56,44 @@ function Tommy(x, y) {
     this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
     this.tommy.rotation -= this.spin;
     this.resetRotation();
+  }
+
+  this.jump = function() {
+    if (this.jumping == true || this.falling == true) {
+      // Do nothing
+    } else {
+      this.jumping = true;
+    }
+  }
+
+  this.handleJumping = function() {
+    // If tommy is jumping, jump and set jumpHeight each time
+    if (this.jumping) {
+      this.scalar -= 10;
+      this.jumpHeight += 10;
+      this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
+      this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
+      if (this.jumpHeight == 200) {
+        this.jumping = false;
+        this.falling = true;
+      }
+    }
+
+    // When max jumpheight is reached, start falling
+    if (this.falling) {
+      this.scalar += 10;
+      this.jumpHeight -= 10;
+      this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
+      this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
+      if (this.jumpHeight == 0) {
+        this.falling = false;
+      }
+    }
+
+    // Stop moving when jumpheight is 0
+    if (this.jumpHeight == 0) {
+      // this.falling = false
+    }
   }
 
   // Assign animation functions
@@ -83,9 +121,6 @@ function Tommy(x, y) {
   this.resetRotation = function() {
     var x = this.tommy.position.x;
     var y = this.tommy.position.y;
-
-    print(x);
-    print(y);
 
     //runs if testing in browser, not on dome.
     if (!dome) {

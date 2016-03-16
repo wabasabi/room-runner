@@ -106,8 +106,9 @@ function draw() {
   // Draw the game background
   gameGround.draw();
 
-  // Check against collisions
+  // Check against collisions and draw times
   tommy.checkCollisions(listOfColliders);
+  tommy.handleJumping();
 
   // Check against collisions
   litterbug.checkCollisions(listOfColliders);
