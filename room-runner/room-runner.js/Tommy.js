@@ -43,6 +43,9 @@ function Tommy(x, y) {
     this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
     this.tommy.rotation += this.spin;
     this.resetRotation();
+
+    print(this.tommy.position.x);
+    print(this.tommy.position.y);
   }
 
   this.MoveLeft = function() {
@@ -81,6 +84,9 @@ function Tommy(x, y) {
     var x = this.tommy.position.x;
     var y = this.tommy.position.y;
 
+    print(x);
+    print(y);
+
     //runs if testing in browser, not on dome.
     if (!dome) {
       // Reset angle
@@ -116,43 +122,44 @@ function Tommy(x, y) {
       if (x == 489 && y == 550) {
         this.tommy.rotation = 360;
       }
-
+    } else {
       //runs if testing on dome.
-      else if (dome) {
-        // Reset angle
-        if (x == 0 && y == 0) {
-          this.tommy.rotation = 45;
-        }
-
-        if (x == 0 && y == 0) {
-          this.tommy.rotation = 90;
-        }
-
-        if (x == 0 && y == 0) {
-          this.tommy.rotation = 135;
-        }
-
-        if (x == 0 && y == 0) {
-          this.tommy.rotation = 180;
-        }
-
-        if (x == 0 && y == 0) {
-          this.tommy.rotation = 235;
-        }
-
-        if (x == 0 && y == 0) {
-          this.angle = 0;
-          this.tommy.rotation = 270;
-        }
-
-        if (x == 0 && y == 0) {
-          this.tommy.rotation = 315;
-        }
-
-        if (x == 0 && y == 0) {
-          this.tommy.rotation = 360;
-        }
+      // Reset angle
+      if (x == 543 && y == 958) {
+        this.tommy.rotation = 45;
       }
+
+      if (x == 410 && y == 600) {
+        this.tommy.rotation = 90;
+      }
+
+      if (x == 556 && y == 227) {
+        this.tommy.rotation = 135;
+      }
+
+      if (x == 966 && y == 50) {
+        this.tommy.rotation = 180;
+      }
+
+      if (x == 1364 && y == 227) {
+        this.tommy.rotation = 235;
+      }
+
+      if (x == 1510 && y == 594) {
+        this.angle = 0;
+        this.tommy.rotation = 270;
+        this.tommy.position.x = x + 1;
+        this.tommy.position.y = y + 1;
+      }
+
+      if (x == 1393 && y == 939) {
+        this.tommy.rotation = 315;
+      }
+
+      if (x == 954 && y == 1150) {
+        this.tommy.rotation = 360;
+      }
+
     }
   }
 }
