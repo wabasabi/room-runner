@@ -81,38 +81,44 @@ function Tommy(x, y) {
     var x = this.tommy.position.x;
     var y = this.tommy.position.y;
 
-    // Reset angle
-    if (x == 290 && y == 463) {
-      this.tommy.rotation = 45;
-    }
+    //runs if testing in browser, not on dome.
+    if (!dome) {
+      // Reset angle
+      if (x == 290 && y == 463) {
+        this.tommy.rotation = 45;
+      }
 
-    if (x == 230 && y == 297) {
-      this.tommy.rotation = 90;
-    }
+      if (x == 230 && y == 297) {
+        this.tommy.rotation = 90;
+      }
 
-    if (x == 324 && y == 105) {
-      this.tommy.rotation = 135;
-    }
+      if (x == 324 && y == 105) {
+        this.tommy.rotation = 135;
+      }
 
-    if (x == 480 && y == 50) {
-      this.tommy.rotation = 180;
-    }
+      if (x == 480 && y == 50) {
+        this.tommy.rotation = 180;
+      }
 
-    if (x == 645 && y == 112) {
-      this.tommy.rotation = 235;
-    }
+      if (x == 645 && y == 112) {
+        this.tommy.rotation = 235;
+      }
 
-    if (x == 730 && y == 300) {
-      this.angle = 0;
-      this.tommy.rotation = 270;
-    }
+      if (x == 730 && y == 300) {
+        this.angle = 0;
+        this.tommy.rotation = 270;
+      }
 
-    if (x == 675 && y == 456) {
-      this.tommy.rotation = 315;
-    }
+      if (x == 675 && y == 456) {
+        this.tommy.rotation = 315;
+      }
 
-    if (x == 489 && y == 550) {
-      this.tommy.rotation = 360;
+      if (x == 489 && y == 550) {
+        this.tommy.rotation = 360;
+      }
+
+      //runs if testing on dome.
+      else if (dome) {}
     }
   }
 }
