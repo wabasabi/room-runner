@@ -130,35 +130,59 @@ function Tommy(x, y) {
     // Reset Tommy's angle for viewing in 360 degrees
     if (this.angle > -0.10 && this.angle < 0.05) {
       this.tommy.rotation = 270;
-      print("270");
     }
-    if (this.angle > 0.61 && this.angle < 0.72) {
+
+    // Face tommy 315 + and -
+    if ((this.angle > 0.61 && this.angle < 0.72) ||
+      (this.angle > -5.55 && this.angle < -5.48)
+    ) {
       this.tommy.rotation = 315;
-      print("315");
     }
-    if (this.angle > 1.54 && this.angle < 1.59) {
+
+    // Face tommy 360 + and -
+    if ((this.angle > 1.54 && this.angle < 1.59) ||
+      (this.angle > -4.73 && this.angle < -4.67)
+    ) {
       this.tommy.rotation = 360;
-      print("360");
     }
-    if (this.angle > 2.44 && this.angle < 2.47) {
+
+    // Face tommy 45 + and -
+    if ((this.angle > 2.44 && this.angle < 2.47) ||
+      (this.angle > -3.98 && this.angle < -3.92)
+    ) {
       this.tommy.rotation = 45;
-      print("45");
     }
-    if (this.angle > 3.12 && this.angle < 3.17) {
+
+    // Face tommy 90 + and -
+    if (
+      (this.angle > 3.12 && this.angle < 3.17) ||
+      (this.angle > -3.17 && this.angle < -3.12)
+    ) {
       this.tommy.rotation = 90;
-      print("90");
     }
-    if (this.angle > 3.92 && this.angle < 3.98) {
+
+    // Face tommy 135 + and -
+    if (
+      (this.angle > 3.92 && this.angle < 3.98) ||
+      (this.angle > -2.47 && this.angle < -2.44)
+    ) {
       this.tommy.rotation = 135;
-      print("135");
     }
-    if (this.angle > 4.67 && this.angle < 4.73) {
+
+    // Face tommy 180 + and -
+    if (
+      (this.angle > 4.67 && this.angle < 4.73) ||
+      (this.angle > -1.59 && this.angle < -1.54)
+    ) {
       this.tommy.rotation - 180;
-      print("180");
     }
-    if (this.angle > 5.48 && this.angle < 5.55) {
+
+    // Face tommy 235 + and -
+    if (
+      (this.angle > 5.48 && this.angle < 5.55) ||
+      (this.angle > -0.72 && this.angle < -0.61)
+    ) {
       this.tommy.rotation = 235;
-      print("235");
     }
   }
 }
