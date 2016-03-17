@@ -5,7 +5,7 @@ function preload() {
   // Test assets
   mushroomIMG = loadImage('assets/mushroom.png');
 
-  // Game assets
+  // Tommy assets
   TT_IdleRight = loadImage('assets/TT_idle-01.png');
   TT_IdleLeft = loadImage('assets/TT_idle-02.png');
   RwalkingAnimation = loadAnimation(
@@ -23,6 +23,26 @@ function preload() {
     "assets/TT_Walk-10.png",
     "assets/TT_Walk-11.png",
     "assets/TT_Walk-12.png"
+  );
+
+  // Litterbug assets
+  LB_IdleRight = loadImage('assets/LB_idle-01.png');
+  LB_IdleLeft = loadImage('assets/LB_idle-02.png');
+  LB_RwalkingAnimation = loadAnimation(
+    "assets/LB_Walk-01.png",
+    "assets/LB_Walk-02.png",
+    "assets/LB_Walk-03.png",
+    "assets/LB_Walk-04.png",
+    "assets/LB_Walk-05.png",
+    "assets/LB_Walk-06.png"
+  );
+  LB_LwalkingAnimation = loadAnimation(
+    "assets/LB_Walk-07.png",
+    "assets/LB_Walk-08.png",
+    "assets/LB_Walk-09.png",
+    "assets/LB_Walk-10.png",
+    "assets/LB_Walk-11.png",
+    "assets/LB_Walk-12.png"
   );
 }
 
@@ -63,6 +83,13 @@ function setup() {
   tommy.setIdleImages(TT_IdleRight, TT_IdleLeft);
   tommy.setWalkingAnimations(RwalkingAnimation, LwalkingAnimation);
 
+  // Litterbug
+  var startX = 480;
+  var startY = 50;
+  litterbug = new Litterbug(startX, startY);
+  litterbug.setIdleImages(LB_IdleRight, LB_IdleLeft);
+  litterbug.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
+
   //mushroom = createSprite(width / 2, 20, 64, 64);
   //mushroom.addImage(mushroomIMG);
 
@@ -82,6 +109,9 @@ function draw() {
   // Check against collisions and draw times
   tommy.checkCollisions(listOfColliders);
   tommy.handleJumping();
+
+  // Check against collisions
+  litterbug.checkCollisions(listOfColliders);
 
   // Handle keys
   keyHandler.handleKeyPress();
