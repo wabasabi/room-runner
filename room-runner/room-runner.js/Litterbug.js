@@ -120,8 +120,7 @@ function Litterbug(x, y) {
   this.patrol = function() {
     if (this.angle >= -0.1) {
       this.MoveRight();
-    }
-    else if (this.angle <= 0.05) {
+    } else if (this.angle <= 0.05) {
       this.MoveLeft();
     }
   }
@@ -130,78 +129,43 @@ function Litterbug(x, y) {
     var x = this.litterbug.position.x;
     var y = this.litterbug.position.y;
 
-    //runs if testing in browser, not on dome.
-    if (!dome) {
-      // Reset angle
-      if (x == 290 && y == 463) {
-        this.litterbug.rotation = 45;
-      }
+    // Reset circle at 2PIr and -2PIr
+    if (this.angle > 6.28 || this.angle < -6.28) {
+      this.angle = 0;
+    }
 
-      if (x == 230 && y == 297) {
-        this.litterbug.rotation = 90;
-      }
-
-      if (x == 324 && y == 105) {
-        this.litterbug.rotation = 135;
-      }
-
-      if (x == 480 && y == 50) {
-        this.litterbug.rotation = 180;
-      }
-
-      if (x == 645 && y == 112) {
-        this.litterbug.rotation = 235;
-      }
-
-      if (x == 730 && y == 300) {
-        this.angle = 0;
-        this.litterbug.rotation = 270;
-      }
-
-      if (x == 675 && y == 456) {
-        this.litterbug.rotation = 315;
-      }
-
-      if (x == 489 && y == 550) {
-        this.litterbug.rotation = 360;
-      }
-    } else {
-      //runs if testing on dome.
-      // Reset angle
-      if (x == 543 && y == 958) {
-        this.litterbug.rotation = 45;
-      }
-
-      if (x == 410 && y == 600) {
-        this.litterbug.rotation = 90;
-      }
-
-      if (x == 556 && y == 227) {
-        this.litterbug.rotation = 135;
-      }
-
-      if (x == 966 && y == 50) {
-        this.litterbug.rotation = 180;
-      }
-
-      if (x == 1364 && y == 227) {
-        this.litterbug.rotation = 235;
-      }
-
-      if (x == 1510 && y == 594) {
-        this.angle = 0.01;
-        this.litterbug.rotation = 270;
-        this.litterbug.position.x = x + 1;
-        this.litterbug.position.y = y + 1;
-      }
-
-      if (x == 1393 && y == 939) {
-        this.litterbug.rotation = 315;
-      }
-
-      if (x == 954 && y == 1150) {
-        this.litterbug.rotation = 360;
-      }
+    // Reset litterbug's angle for viewing in 360 degrees
+    if (this.angle > -0.10 && this.angle < 0.05) {
+      this.litterbug.rotation = 270;
+      print("270");
+    }
+    if (this.angle > 0.61 && this.angle < 0.72) {
+      this.litterbug.rotation = 315;
+      print("315");
+    }
+    if (this.angle > 1.54 && this.angle < 1.59) {
+      this.litterbug.rotation = 360;
+      print("360");
+    }
+    if (this.angle > 2.44 && this.angle < 2.47) {
+      this.litterbug.rotation = 45;
+      print("45");
+    }
+    if (this.angle > 3.12 && this.angle < 3.17) {
+      this.litterbug.rotation = 90;
+      print("90");
+    }
+    if (this.angle > 3.92 && this.angle < 3.98) {
+      this.litterbug.rotation = 135;
+      print("135");
+    }
+    if (this.angle > 4.67 && this.angle < 4.73) {
+      this.litterbug.rotation - 180;
+      print("180");
+    }
+    if (this.angle > 5.48 && this.angle < 5.55) {
+      this.litterbug.rotation = 235;
+      print("235");
     }
   }
 }
