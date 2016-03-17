@@ -122,79 +122,43 @@ function Tommy(x, y) {
     var x = this.tommy.position.x;
     var y = this.tommy.position.y;
 
-    //runs if testing in browser, not on dome.
-    if (!dome) {
-      // Reset angle
-      if (x == 290 && y == 463) {
-        this.tommy.rotation = 45;
-      }
+    // Reset circle at 2PIr and -2PIr
+    if (this.angle > 6.28 || this.angle < -6.28) {
+      this.angle = 0;
+    }
 
-      if (x == 230 && y == 297) {
-        this.tommy.rotation = 90;
-      }
-
-      if (x == 324 && y == 105) {
-        this.tommy.rotation = 135;
-      }
-
-      if (x == 480 && y == 50) {
-        this.tommy.rotation = 180;
-      }
-
-      if (x == 645 && y == 112) {
-        this.tommy.rotation = 235;
-      }
-
-      if (x == 730 && y == 300) {
-        this.angle = 0;
-        this.tommy.rotation = 270;
-      }
-
-      if (x == 675 && y == 456) {
-        this.tommy.rotation = 315;
-      }
-
-      if (x == 489 && y == 550) {
-        this.tommy.rotation = 360;
-      }
-    } else {
-      //runs if testing on dome.
-      // Reset angle
-      if (x == 543 && y == 958) {
-        this.tommy.rotation = 45;
-      }
-
-      if (x == 410 && y == 600) {
-        this.tommy.rotation = 90;
-      }
-
-      if (x == 556 && y == 227) {
-        this.tommy.rotation = 135;
-      }
-
-      if (x == 966 && y == 50) {
-        this.tommy.rotation = 180;
-      }
-
-      if (x == 1364 && y == 227) {
-        this.tommy.rotation = 235;
-      }
-
-      if (x == 1510 && y == 594) {
-        this.angle = 0.01;
-        this.tommy.rotation = 270;
-        this.tommy.position.x = x + 1;
-        this.tommy.position.y = y + 1;
-      }
-
-      if (x == 1393 && y == 939) {
-        this.tommy.rotation = 315;
-      }
-
-      if (x == 954 && y == 1150) {
-        this.tommy.rotation = 360;
-      }
-
+    // Reset Tommy's angle for viewing in 360 degrees
+    if (this.angle > -0.10 && this.angle < 0.05) {
+      this.tommy.rotation = 270;
+      print("270");
+    }
+    if (this.angle > 0.61 && this.angle < 0.72) {
+      this.tommy.rotation = 315;
+      print("315");
+    }
+    if (this.angle > 1.54 && this.angle < 1.59) {
+      this.tommy.rotation = 360;
+      print("360");
+    }
+    if (this.angle > 2.44 && this.angle < 2.47) {
+      this.tommy.rotation = 45;
+      print("45");
+    }
+    if (this.angle > 3.12 && this.angle < 3.17) {
+      this.tommy.rotation = 90;
+      print("90");
+    }
+    if (this.angle > 3.92 && this.angle < 3.98) {
+      this.tommy.rotation = 135;
+      print("135");
+    }
+    if (this.angle > 4.67 && this.angle < 4.73) {
+      this.tommy.rotation - 180;
+      print("180");
+    }
+    if (this.angle > 5.48 && this.angle < 5.55) {
+      this.tommy.rotation = 235;
+      print("235");
     }
   }
 }
