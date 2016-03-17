@@ -10,8 +10,9 @@ function Litterbug(x, y) {
   this.centerY = height / 2;
   this.angle = 0;
   this.scalar = height / 2 - (this.litterbugXYDIM / 2);
-  this.speed = 1 / (57.2958 * 1.5);
-  this.spin = 0.6;
+  this.jumpHeight = 0;
+  this.speed = 1 / (57.2958 * 2.75);
+  this.spin = 0.4;
 
   // Sprite attribute generation
   this.litterbug = createSprite(x, y,
@@ -56,6 +57,44 @@ function Litterbug(x, y) {
     this.resetRotation();
   }
 
+  this.jump = function() {
+    if (this.jumping == true || this.falling == true) {
+      // Do nothing
+    } else {
+      this.jumping = true;
+    }
+  }
+
+  this.handleJumping = function() {
+    // If litterbug is jumping, jump and set jumpHeight each time
+    if (this.jumping) {
+      this.scalar -= 10;
+      this.jumpHeight += 10;
+      this.litterbug.position.x = round(this.centerX + cos(this.angle) * this.scalar);
+      this.litterbug.position.y = round(this.centerY + sin(this.angle) * this.scalar);
+      if (this.jumpHeight == 200) {
+        this.jumping = false;
+        this.falling = true;
+      }
+    }
+
+    // When max jumpheight is reached, start falling
+    if (this.falling) {
+      this.scalar += 10;
+      this.jumpHeight -= 10;
+      this.litterbug.position.x = round(this.centerX + cos(this.angle) * this.scalar);
+      this.litterbug.position.y = round(this.centerY + sin(this.angle) * this.scalar);
+      if (this.jumpHeight == 0) {
+        this.falling = false;
+      }
+    }
+
+    // Stop moving when jumpheight is 0
+    if (this.jumpHeight == 0) {
+      // this.falling = false
+    }
+  }
+
   // Assign animation functions
   this.setWalkingAnimations = function(WRAnimation, LRAnimation) {
     this.litterbug.addAnimation("WalkingRight", WRAnimation);
@@ -75,6 +114,15 @@ function Litterbug(x, y) {
     } else {
       this.litterbug.changeImage("IdleLeft");
       this.walkingRight = false;
+    }
+  }
+
+  this.patrol = function() {
+    if (this.angle >= -0.1) {
+      this.MoveRight();
+    }
+    else if (this.angle <= 0.05) {
+      this.MoveLeft();
     }
   }
 

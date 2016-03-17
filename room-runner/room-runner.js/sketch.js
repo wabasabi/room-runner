@@ -26,10 +26,9 @@ function preload() {
   );
 
   // Litterbug assets
-  LB_IdleRight = loadImage('assets/LB_idle-01.png');
-  LB_IdleLeft = loadImage('assets/LB_idle-02.png');
+  LB_IdleRight = loadImage('assets/LB_Idle.png');
+  LB_IdleLeft = loadImage('assets/LB_Idle.png');
   LB_RwalkingAnimation = loadAnimation(
-    "assets/LB_Walk-01.png",
     "assets/LB_Walk-02.png",
     "assets/LB_Walk-03.png",
     "assets/LB_Walk-04.png",
@@ -37,12 +36,11 @@ function preload() {
     "assets/LB_Walk-06.png"
   );
   LB_LwalkingAnimation = loadAnimation(
-    "assets/LB_Walk-07.png",
-    "assets/LB_Walk-08.png",
-    "assets/LB_Walk-09.png",
-    "assets/LB_Walk-10.png",
-    "assets/LB_Walk-11.png",
-    "assets/LB_Walk-12.png"
+    "assets/LB_Walk-02.png",
+    "assets/LB_Walk-03.png",
+    "assets/LB_Walk-04.png",
+    "assets/LB_Walk-05.png",
+    "assets/LB_Walk-06.png"
   );
 }
 
@@ -112,6 +110,8 @@ function draw() {
 
   // Check against collisions
   litterbug.checkCollisions(listOfColliders);
+  litterbug.handleJumping();
+  litterbug.patrol();
 
   // Handle keys
   keyHandler.handleKeyPress();

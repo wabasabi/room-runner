@@ -34,6 +34,29 @@ function KeyHandler() {
       tommy.jump();
     }
 
+    // Leftward movement
+    if (keyWentDown("a")) {}
+    if (keyWentUp("a")) {
+      litterbug.stopMoving();
+    }
+    if (keyDown("a")) {
+      litterbug.MoveLeft();
+    }
+
+    // Rightward movement
+    if (keyWentDown("d")) {}
+    if (keyWentUp("d")) {
+      litterbug.stopMoving();
+    }
+    if (keyDown("d")) {
+      litterbug.MoveRight();
+    }
+
+    // Jump movement
+    if (keyWentDown("w")) {
+      litterbug.jump();
+    }
+
     // Melee movement
 
   }
