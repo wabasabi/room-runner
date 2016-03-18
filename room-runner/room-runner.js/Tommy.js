@@ -50,23 +50,24 @@ function Tommy(x, y, health) {
 
   // Move rightward
   this.MoveRight = function() {
-    this.walkingRight = true;
-    this.tommy.changeAnimation("WalkingLeft");
-    this.angle += this.speed;
-    this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
-    this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
-    this.tommy.rotation += this.spin;
-    this.resetRotation();
-  }
-
-  // Move leftward
-  this.MoveLeft = function() {
     this.walkingLeft = true;
     this.tommy.changeAnimation("WalkingRight");
     this.angle -= this.speed;
     this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
     this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
     this.tommy.rotation -= this.spin;
+    this.resetRotation();
+
+  }
+
+  // Move leftward
+  this.MoveLeft = function() {
+    this.walkingRight = true;
+    this.tommy.changeAnimation("WalkingLeft");
+    this.angle += this.speed;
+    this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
+    this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
+    this.tommy.rotation += this.spin;
     this.resetRotation();
   }
 
