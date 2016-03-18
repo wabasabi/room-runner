@@ -79,7 +79,7 @@ function setup() {
   // Trashcan Tony
   var StartingX = width / 2 + height / 2;
   var StartingY = height / 2;
-  tommy = new Tommy(StartingX, StartingY);
+  tommy = new Tommy(StartingX, StartingY, 3);
   tommy.setIdleImages(TT_IdleRight, TT_IdleLeft);
   tommy.setWalkingAnimations(RwalkingAnimation, LwalkingAnimation);
 
