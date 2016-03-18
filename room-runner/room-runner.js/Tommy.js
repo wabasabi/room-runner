@@ -1,43 +1,54 @@
 // Tommy the trashman
 // This is the main sprite class that the player
 // controls during normal gameplay.
-function Tommy(x, y) {
+function Tommy(x, y, health) {
 
-  // WORK THROUGH WITH THIS EXAMPLE:
-  // http://p5play.molleindustria.org/examples/index.html?fileName=sprite4.js#
+  // Constructor
+  {
+    // Tommy's other attributes
+    this.tommyXYDIM = 100;
+    this.centerX = width / 2;
+    this.centerY = height / 2;
+    this.angle = 0;
+    this.scalar = height / 2 - (this.tommyXYDIM / 2);
+    this.jumpHeight = 0;
+    this.speed = 1 / (57.2958 * 1.5);
+    this.spin = 0.6;
 
-  // Tommy's other attributes
-  this.tommyXYDIM = 100;
-  this.centerX = width / 2;
-  this.centerY = height / 2;
-  this.angle = 0;
-  this.scalar = height / 2 - (this.tommyXYDIM / 2);
-  this.jumpHeight = 0;
-  this.speed = 1 / (57.2958 * 1.5);
-  this.spin = 0.6;
+    // Sprite attribute generation
+    this.tommy = createSprite(x, y,
+      this.tommyXYDIM, this.tommyXYDIM);
 
-  // Sprite attribute generation
-  this.tommy = createSprite(x, y,
-    this.tommyXYDIM, this.tommyXYDIM);
+    // Sprite animations, initialized in method
+    this.tommy.walkingRight = false;
+    this.tommy.walkingLeft = false;
+    this.tommy.idle = true;
+    this.jumping = false;
+    this.falling = false;
 
-  // Sprite animations, initialized in method
-  this.tommy.walkingRight = false;
-  this.tommy.walkingLeft = false;
-  this.tommy.idle = true;
-  this.jumping = false;
-  this.falling = false;
+    // Set tommy's point attributes for score
+    this.totalPickups = 0;
+    this.totalRecyclables = 0;
+    this.totalTrash = 0;
+    this.currentScore = 0;
+    this.health = health;
+  }
 
   // Initial Position
-  this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
-  this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
-  this.tommy.rotation = 270;
+  {
+    this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
+    this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
+    this.tommy.rotation = 270;
+  }
 
+  // Check for collisions against sprites
   this.checkCollisions = function(colliders) {
     for (var i = 0; i < colliders.length; i++) {
       this.tommy.collide(colliders[i]);
     }
   }
 
+  // Move rightward
   this.MoveRight = function() {
     this.walkingRight = true;
     this.tommy.changeAnimation("WalkingLeft");
@@ -48,6 +59,7 @@ function Tommy(x, y) {
     this.resetRotation();
   }
 
+  // Move leftward
   this.MoveLeft = function() {
     this.walkingLeft = true;
     this.tommy.changeAnimation("WalkingRight");
@@ -58,6 +70,7 @@ function Tommy(x, y) {
     this.resetRotation();
   }
 
+  // Start jump state
   this.jump = function() {
     if (this.jumping == true || this.falling == true) {
       // Do nothing
@@ -66,6 +79,7 @@ function Tommy(x, y) {
     }
   }
 
+  // Handle tommys vertical state each frame
   this.handleJumping = function() {
     // If tommy is jumping, jump and set jumpHeight each time
     if (this.jumping) {
@@ -102,11 +116,13 @@ function Tommy(x, y) {
     this.tommy.addAnimation("WalkingLeft", LRAnimation);
   }
 
+  // Assign idle animation images
   this.setIdleImages = function(image1, image2) {
     this.tommy.addImage("IdleRight", image1);
     this.tommy.addImage("IdleLeft", image2);
   }
 
+  // Stop tommy from moving
   this.stopMoving = function(idle) {
     this.tommy.setSpeed(0, 0);
     if (this.walkingLeft == true) {
@@ -118,6 +134,7 @@ function Tommy(x, y) {
     }
   }
 
+  // Set tommy's correct orientation
   this.resetRotation = function() {
     var x = this.tommy.position.x;
     var y = this.tommy.position.y;
