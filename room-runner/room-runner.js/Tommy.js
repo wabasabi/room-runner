@@ -42,10 +42,8 @@ function Tommy(x, y, health) {
   }
 
   // Check for collisions against sprites
-  this.checkCollisions = function(colliders) {
-    for (var i = 0; i < colliders.length; i++) {
-      this.tommy.collide(colliders[i]);
-    }
+  this.checkCollisions = function(collider) {
+    this.tommy.collide(collider.litterbug);
   }
 
   // Move rightward

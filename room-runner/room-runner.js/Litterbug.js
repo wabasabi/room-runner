@@ -31,10 +31,8 @@ function Litterbug(angle) {
   this.litterbug.position.y = round(this.centerY + sin(this.angle) * this.scalar);
   this.litterbug.rotation = 90;
 
-  this.checkCollisions = function(colliders) {
-    for (var i = 0; i < colliders.length; i++) {
-      this.litterbug.collide(colliders[i]);
-    }
+  this.checkCollisions = function(collider) {
+    this.litterbug.collide(collider);
   }
 
   this.MoveRight = function() {
