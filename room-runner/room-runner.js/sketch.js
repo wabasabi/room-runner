@@ -82,11 +82,16 @@ function setup() {
   tommy.setWalkingAnimations(RwalkingAnimation, LwalkingAnimation);
 
   // Litterbug
-  var startX = 480;
-  var startY = 50;
-  litterbug = new Litterbug(startX, startY);
+  var angle = 3.12;
+  litterbug = new Litterbug(angle);
   litterbug.setIdleImages(LB_IdleRight, LB_IdleLeft);
   litterbug.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
+
+  // Litterbug2 Test
+  var angle2 = 4.67;
+  Litterbug2 = new Litterbug(angle2);
+  Litterbug2.setIdleImages(LB_IdleRight, LB_IdleLeft);
+  Litterbug2.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
 
   //mushroom = createSprite(width / 2, 20, 64, 64);
   //mushroom.addImage(mushroomIMG);
@@ -108,10 +113,16 @@ function draw() {
   tommy.checkCollisions(listOfColliders);
   tommy.handleJumping();
 
-  // Check against collisions
+  // Litterbug function calls
   litterbug.checkCollisions(listOfColliders);
   litterbug.handleJumping();
-  litterbug.patrol();
+  litterbug.patrolTopLeft();
+
+  // Litterbug2 function calls
+  Litterbug2.checkCollisions(listOfColliders);
+  Litterbug2.handleJumping();
+  Litterbug2.patrolTopRight();
+
 
   // Handle keys
   keyHandler.handleKeyPress();

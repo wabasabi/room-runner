@@ -1,32 +1,35 @@
 // Litterbug AI
-function Litterbug(x, y) {
+function Litterbug(angle) {
 
   // WORK THROUGH WITH THIS EXAMPLE:
   // http://p5play.molleindustria.org/examples/index.html?fileName=sprite4.js#
 
   // litterbug's other attributes
-  this.litterbugXYDIM = 100;
+  this.litterbugXYDIM = 150;
   this.centerX = width / 2;
   this.centerY = height / 2;
-  this.angle = 0;
+  this.angle = angle;
   this.scalar = height / 2 - (this.litterbugXYDIM / 2);
   this.jumpHeight = 0;
   this.speed = 1 / (57.2958 * 2.75);
   this.spin = 0.4;
 
+
   // Sprite attribute generation
-  this.litterbug = createSprite(x, y,
+  this.litterbug = createSprite(angle,
     this.litterbugXYDIM, this.litterbugXYDIM);
 
   // Sprite animations, initialized in method
   this.litterbug.walkingRight = false;
   this.litterbug.walkingLeft = false;
   this.litterbug.idle = true;
+  this.isPatrolingLeft = false;
+  this.isPatrolingRight = true;
 
   // Initial Position
   this.litterbug.position.x = round(this.centerX + cos(this.angle) * this.scalar);
   this.litterbug.position.y = round(this.centerY + sin(this.angle) * this.scalar);
-  this.litterbug.rotation = 270;
+  this.litterbug.rotation = 90;
 
   this.checkCollisions = function(colliders) {
     for (var i = 0; i < colliders.length; i++) {
@@ -42,9 +45,6 @@ function Litterbug(x, y) {
     this.litterbug.position.y = round(this.centerY + sin(this.angle) * this.scalar);
     this.litterbug.rotation += this.spin;
     this.resetRotation();
-
-    print(this.litterbug.position.x);
-    print(this.litterbug.position.y);
   }
 
   this.MoveLeft = function() {
@@ -117,11 +117,58 @@ function Litterbug(x, y) {
     }
   }
 
-  this.patrol = function() {
-    if (this.angle >= -0.1) {
-      this.MoveRight();
-    } else if (this.angle <= 0.05) {
+  this.patrolTopLeft = function() {
+    if (this.isPatrolingLeft) {
       this.MoveLeft();
+    }
+    if (this.isPatrolingRight) {
+      this.MoveRight();
+    }
+
+    // Patrol boundaries.
+    if (
+      (this.angle > 3.12 && this.angle < 3.17) ||
+      (this.angle > -3.17 && this.angle < -3.12)
+    ) {
+      this.litterbug.rotation = 90;
+      this.isPatrolingLeft = false;
+      this.isPatrolingRight = true;
+    }
+
+    if (
+      (this.angle > 4.67 && this.angle < 4.73) ||
+      (this.angle > -1.59 && this.angle < -1.54)
+    ) {
+      this.litterbug.rotation - 180;
+      this.isPatrolingRight = false;
+      this.isPatrolingLeft = true;
+    }
+  }
+
+  this.patrolTopRight = function() {
+    if (this.isPatrolingLeft) {
+      this.MoveLeft();
+    }
+    if (this.isPatrolingRight) {
+      this.MoveRight();
+    }
+
+    // Patrol boundaries.
+    if (
+      (this.angle > 4.67 && this.angle < 4.73) ||
+      (this.angle > -1.59 && this.angle < -1.54)
+    ) {
+      this.litterbug.rotation = 180;
+      this.isPatrolingLeft = false;
+      this.isPatrolingRight = true;
+    }
+
+    if (
+      (this.angle > -0.10 && this.angle < 0.05)
+    ) {
+      this.litterbug.rotation = 270;
+      this.isPatrolingRight = false;
+      this.isPatrolingLeft = true;
     }
   }
 
@@ -137,35 +184,59 @@ function Litterbug(x, y) {
     // Reset litterbug's angle for viewing in 360 degrees
     if (this.angle > -0.10 && this.angle < 0.05) {
       this.litterbug.rotation = 270;
-      print("270");
     }
-    if (this.angle > 0.61 && this.angle < 0.72) {
+
+    // Face litterbug 315 + and -
+    if ((this.angle > 0.61 && this.angle < 0.72) ||
+      (this.angle > -5.55 && this.angle < -5.48)
+    ) {
       this.litterbug.rotation = 315;
-      print("315");
     }
-    if (this.angle > 1.54 && this.angle < 1.59) {
+
+    // Face litterbug 360 + and -
+    if ((this.angle > 1.54 && this.angle < 1.59) ||
+      (this.angle > -4.73 && this.angle < -4.67)
+    ) {
       this.litterbug.rotation = 360;
-      print("360");
     }
-    if (this.angle > 2.44 && this.angle < 2.47) {
+
+    // Face litterbug 45 + and -
+    if ((this.angle > 2.44 && this.angle < 2.47) ||
+      (this.angle > -3.98 && this.angle < -3.92)
+    ) {
       this.litterbug.rotation = 45;
-      print("45");
     }
-    if (this.angle > 3.12 && this.angle < 3.17) {
+
+    // Face litterbug 90 + and -
+    if (
+      (this.angle > 3.12 && this.angle < 3.17) ||
+      (this.angle > -3.17 && this.angle < -3.12)
+    ) {
       this.litterbug.rotation = 90;
-      print("90");
     }
-    if (this.angle > 3.92 && this.angle < 3.98) {
+
+    // Face litterbug 135 + and -
+    if (
+      (this.angle > 3.92 && this.angle < 3.98) ||
+      (this.angle > -2.47 && this.angle < -2.44)
+    ) {
       this.litterbug.rotation = 135;
-      print("135");
     }
-    if (this.angle > 4.67 && this.angle < 4.73) {
-      this.litterbug.rotation - 180;
-      print("180");
+
+    // Face litterbug 180 + and -
+    if (
+      (this.angle > 4.67 && this.angle < 4.73) ||
+      (this.angle > -1.59 && this.angle < -1.54)
+    ) {
+      this.litterbug.rotation = 180;
     }
-    if (this.angle > 5.48 && this.angle < 5.55) {
+
+    // Face litterbug 235 + and -
+    if (
+      (this.angle > 5.48 && this.angle < 5.55) ||
+      (this.angle > -0.72 && this.angle < -0.61)
+    ) {
       this.litterbug.rotation = 235;
-      print("235");
     }
   }
 }

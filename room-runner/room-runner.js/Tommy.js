@@ -174,7 +174,7 @@ function Tommy(x, y) {
       (this.angle > 4.67 && this.angle < 4.73) ||
       (this.angle > -1.59 && this.angle < -1.54)
     ) {
-      this.tommy.rotation - 180;
+      this.tommy.rotation = 180;
     }
 
     // Face tommy 235 + and -
