@@ -4,7 +4,8 @@
 function DebugBackground() {
   this.draw = function(){
     if(debug == true){
-      image(domeDemoImage, (width/2) - (height/2), 0, height, height);
+      image(levelOne, (width/2) - (height/2), 0, height, height);
+      //image(domeDemoImage, (width/2) - (height/2), 0, height, height);
     } else {
       // Do nothing
     }
