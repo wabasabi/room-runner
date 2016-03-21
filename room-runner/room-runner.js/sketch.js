@@ -96,8 +96,6 @@ function setup() {
   //mushroom = createSprite(width / 2, 20, 64, 64);
   //mushroom.addImage(mushroomIMG);
 
-  //listOfColliders = [sprite];
-  listOfColliders = [];
 }
 
 // Looping draw method, main runner for game
@@ -110,16 +108,15 @@ function draw() {
   gameGround.draw();
 
   // Check against collisions and draw times
-  tommy.checkCollisions(listOfColliders);
   tommy.handleJumping();
+  tommy.checkCollisions(litterbug);
+  tommy.checkCollisions(Litterbug2);
 
   // Litterbug function calls
-  litterbug.checkCollisions(listOfColliders);
   litterbug.handleJumping();
   litterbug.patrolTopLeft();
 
   // Litterbug2 function calls
-  Litterbug2.checkCollisions(listOfColliders);
   Litterbug2.handleJumping();
   Litterbug2.patrolTopRight();
 
