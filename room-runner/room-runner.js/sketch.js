@@ -2,6 +2,8 @@ function preload() {
   // Debug assets
   domeDemoImage = loadImage('assets/DemoSizeBg.png');
   levelOne = loadImage('assets/Enironment1-01.png');
+  levelOneSmall = loadImage('assets/Environment1_small.png');
+  levelOneSmaller = loadImage('assets/Environment1_smaller.png')
 
   // Test assets
   mushroomIMG = loadImage('assets/mushroom.png');
