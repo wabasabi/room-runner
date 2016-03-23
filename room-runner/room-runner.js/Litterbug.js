@@ -1,5 +1,5 @@
 // Litterbug AI
-function Litterbug(angle) {
+function Litterbug(patrolStart, patrolEnd) {
 
   // WORK THROUGH WITH THIS EXAMPLE:
   // http://p5play.molleindustria.org/examples/index.html?fileName=sprite4.js#
@@ -8,15 +8,17 @@ function Litterbug(angle) {
   this.litterbugXYDIM = 150;
   this.centerX = width / 2;
   this.centerY = height / 2;
-  this.angle = angle;
+  this.angle = patrolStart;
   this.scalar = height / 2 - (this.litterbugXYDIM / 2);
-  this.jumpHeight = 0;
   this.speed = 1 / (57.2958 * 2.75);
   this.spin = 0.4;
 
+  // patrolling properties
+  this.patrolStart = patrolStart;
+  this.patrolEnd = patrolEnd;
 
   // Sprite attribute generation
-  this.litterbug = createSprite(angle,
+  this.litterbug = createSprite(this.angle,
     this.litterbugXYDIM, this.litterbugXYDIM);
 
   // Sprite animations, initialized in method
@@ -37,6 +39,7 @@ function Litterbug(angle) {
 
   this.MoveRight = function() {
     this.walkingRight = true;
+    this.walkingLeft = false;
     this.litterbug.changeAnimation("WalkingLeft");
     this.angle += this.speed;
     this.litterbug.position.x = round(this.centerX + cos(this.angle) * this.scalar);
@@ -47,50 +50,13 @@ function Litterbug(angle) {
 
   this.MoveLeft = function() {
     this.walkingLeft = true;
+    this.walkingRight = false;
     this.litterbug.changeAnimation("WalkingRight");
     this.angle -= this.speed;
     this.litterbug.position.x = round(this.centerX + cos(this.angle) * this.scalar);
     this.litterbug.position.y = round(this.centerY + sin(this.angle) * this.scalar);
     this.litterbug.rotation -= this.spin;
     this.resetRotation();
-  }
-
-  this.jump = function() {
-    if (this.jumping == true || this.falling == true) {
-      // Do nothing
-    } else {
-      this.jumping = true;
-    }
-  }
-
-  this.handleJumping = function() {
-    // If litterbug is jumping, jump and set jumpHeight each time
-    if (this.jumping) {
-      this.scalar -= 10;
-      this.jumpHeight += 10;
-      this.litterbug.position.x = round(this.centerX + cos(this.angle) * this.scalar);
-      this.litterbug.position.y = round(this.centerY + sin(this.angle) * this.scalar);
-      if (this.jumpHeight == 200) {
-        this.jumping = false;
-        this.falling = true;
-      }
-    }
-
-    // When max jumpheight is reached, start falling
-    if (this.falling) {
-      this.scalar += 10;
-      this.jumpHeight -= 10;
-      this.litterbug.position.x = round(this.centerX + cos(this.angle) * this.scalar);
-      this.litterbug.position.y = round(this.centerY + sin(this.angle) * this.scalar);
-      if (this.jumpHeight == 0) {
-        this.falling = false;
-      }
-    }
-
-    // Stop moving when jumpheight is 0
-    if (this.jumpHeight == 0) {
-      // this.falling = false
-    }
   }
 
   // Assign animation functions
@@ -115,58 +81,25 @@ function Litterbug(angle) {
     }
   }
 
-  this.patrolTopLeft = function() {
-    if (this.isPatrolingLeft) {
-      this.MoveLeft();
-    }
-    if (this.isPatrolingRight) {
+  // Patrol - 0 is 6.27
+  this.patrol = function() {
+
+    if(this.angle <= this.patrolStart){
       this.MoveRight();
     }
 
-    // Patrol boundaries.
-    if (
-      (this.angle > 3.12 && this.angle < 3.17) ||
-      (this.angle > -3.17 && this.angle < -3.12)
-    ) {
-      this.litterbug.rotation = 90;
-      this.isPatrolingLeft = false;
-      this.isPatrolingRight = true;
+    if(this.angle > this.patrolStart && this.angle < this.patrolEnd){
+      // Keep moving
+      if(this.walkingLeft){
+        this.MoveLeft();
+      } else {
+        this.MoveRight();
+      }
     }
 
-    if (
-      (this.angle > 4.67 && this.angle < 4.73) ||
-      (this.angle > -1.59 && this.angle < -1.54)
-    ) {
-      this.litterbug.rotation - 180;
-      this.isPatrolingRight = false;
-      this.isPatrolingLeft = true;
-    }
-  }
-
-  this.patrolTopRight = function() {
-    if (this.isPatrolingLeft) {
+    // Switch to walking toward start
+    if(this.angle >= this.patrolEnd){
       this.MoveLeft();
-    }
-    if (this.isPatrolingRight) {
-      this.MoveRight();
-    }
-
-    // Patrol boundaries.
-    if (
-      (this.angle > 4.67 && this.angle < 4.73) ||
-      (this.angle > -1.59 && this.angle < -1.54)
-    ) {
-      this.litterbug.rotation = 180;
-      this.isPatrolingLeft = false;
-      this.isPatrolingRight = true;
-    }
-
-    if (
-      (this.angle > -0.10 && this.angle < 0.05)
-    ) {
-      this.litterbug.rotation = 270;
-      this.isPatrolingRight = false;
-      this.isPatrolingLeft = true;
     }
   }
 

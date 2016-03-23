@@ -55,7 +55,7 @@ function setup() {
 
   // Boolean flags for setup
   dome = true; // Set whether or desktop or dome
-  debug = true; // Set whether to show debug features(FPS, background, etc.)
+  debug = false; // Set whether to show debug features(FPS, background, etc.)
 
   // Display for dome or PC
   if (dome) {
@@ -85,16 +85,19 @@ function setup() {
   tommy.setWalkingAnimations(RwalkingAnimation, LwalkingAnimation);
 
   // Litterbug
-  var angle = 3.12;
-  litterbug = new Litterbug(angle);
+  litterbug = new Litterbug(3.12, 4.67);
   litterbug.setIdleImages(LB_IdleRight, LB_IdleLeft);
   litterbug.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
 
   // Litterbug2 Test
-  var angle2 = 4.67;
-  Litterbug2 = new Litterbug(angle2);
+  Litterbug2 = new Litterbug(4.67, 6);
   Litterbug2.setIdleImages(LB_IdleRight, LB_IdleLeft);
   Litterbug2.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
+
+  // Ubiquitous litterbug Test
+  testbug = new Litterbug(1, 2);
+  testbug.setIdleImages(LB_IdleRight, LB_IdleLeft);
+  testbug.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
 
   //mushroom = createSprite(width / 2, 20, 64, 64);
   //mushroom.addImage(mushroomIMG);
@@ -116,13 +119,12 @@ function draw() {
   tommy.checkCollisions(Litterbug2);
 
   // Litterbug function calls
-  litterbug.handleJumping();
-  litterbug.patrolTopLeft();
+  litterbug.patrol();
 
   // Litterbug2 function calls
-  Litterbug2.handleJumping();
-  Litterbug2.patrolTopRight();
+  Litterbug2.patrol();
 
+  testbug.patrol();
 
   // Handle keys
   keyHandler.handleKeyPress();
