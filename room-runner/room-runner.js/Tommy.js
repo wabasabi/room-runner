@@ -96,24 +96,28 @@ function Tommy(x, y, health) {
   // Check for collisions against sprites
   this.checkCollisions = function(collider) {
 
-    // Default collision
-    //this.tommy.collide(collider.litterbug);
-
-    if(this.tommy.overlap(collider.litterbug)){
-
+    if (this.tommy.overlap(collider.litterbug) ||
+      collider.litterbug.overlap(this.tommy)) {
+      if (this.walkingLeft) {
+        this.angle += 0.35;
+      } else if (this.walkingRight) {
+        this.angle -= 0.35;
+      }
     }
-
-    // IDEA
-    /**
-     * Have tommy get knocked backward a small amount
-     * when he collides with a bug. We also need to address
-     * his jumping so that he can actually jump over bugs.
-     *
-     * Punching will extend his hitbox, so no need for that here.
-     *
-     * If tommy collides, have him lose a heart.
-     **/
+    this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
+    this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
   }
+
+  // IDEA
+  /**
+   * Have tommy get knocked backward a small amount
+   * when he collides with a bug. We also need to address
+   * his jumping so that he can actually jump over bugs.
+   *
+   * Punching will extend his hitbox, so no need for that here.
+   *
+   * If tommy collides, have him lose a heart.
+   **/
 
   // Move rightward
   this.MoveRight = function() {
@@ -130,6 +134,7 @@ function Tommy(x, y, health) {
   // Move leftward
   this.MoveLeft = function() {
     this.walkingRight = true;
+
     this.tommy.changeAnimation("WalkingLeft");
     this.angle += this.speed;
     this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
@@ -203,6 +208,8 @@ function Tommy(x, y, health) {
       this.tommy.changeImage("IdleLeft");
       this.walkingRight = false;
     }
+    this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
+    this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
     this.updateHearts();
   }
 
