@@ -46,6 +46,15 @@ function preload() {
     "assets/LB_Walk-05.png",
     "assets/LB_Walk-06.png"
   );
+
+  // Trash Assets
+  appleCore = loadImage('assets/AppleCore-01.png');
+  bananaPeel = loadImage('assets/BananaPeel-01.png');
+  can = loadImage('assets/Can-01.png');
+  fishBones = loadImage('assets/FishBones-01.png');
+  glassBottle = loadImage('assets/GlassBottle-01.png');
+  lightBulb = loadImage('assets/LightBulb-01.png');
+  trashBag = loadImage('assets/TrashBag-01.png');
 }
 
 function setup() {
@@ -90,6 +99,15 @@ function setup() {
   tommy.setIdleImages(TT_IdleRight, TT_IdleLeft);
   tommy.setWalkingAnimations(RwalkingAnimation, LwalkingAnimation);
 
+  // Trash Test
+  var angle3 = 2.25;
+  trash = new Trash(angle3);
+  trash.setImage(appleCore);
+
+  var angle4 = 2.98;
+  trash2 = new Trash(angle4);
+  trash2.setImage(bananaPeel);
+  
 }
 
 // Looping draw method, main runner for game
@@ -106,7 +124,20 @@ function draw() {
   tommy.checkCollisions(litterbug);
 
   // Litterbug function calls
+<<<<<<< HEAD
+  litterbug.handleJumping();
+  litterbug.patrolTopLeft();
+
+  // Litterbug2 function calls
+  Litterbug2.handleJumping();
+  Litterbug2.patrolTopRight();
+
+  //Trash function calls
+  trash.checkCollisions(tommy);
+  trash2.checkCollisions(tommy);
+=======
   litterbug.patrol();
+>>>>>>> c212b29d50830f76cf985fe5be66766f3a3b7034
 
   // Handle keys
   keyHandler.handleKeyPress();
