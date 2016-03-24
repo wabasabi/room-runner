@@ -98,6 +98,15 @@ function setup() {
   testbug = new Litterbug(1, 2);
   testbug.setIdleImages(LB_IdleRight, LB_IdleLeft);
   testbug.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
+  testbug1 = new Litterbug(2, 3);
+  testbug1.setIdleImages(LB_IdleRight, LB_IdleLeft);
+  testbug1.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
+  testbug2 = new Litterbug(3, 4);
+  testbug2.setIdleImages(LB_IdleRight, LB_IdleLeft);
+  testbug2.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
+  testbug3 = new Litterbug(4, 5);
+  testbug3.setIdleImages(LB_IdleRight, LB_IdleLeft);
+  testbug3.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
 
   //mushroom = createSprite(width / 2, 20, 64, 64);
   //mushroom.addImage(mushroomIMG);
@@ -120,11 +129,11 @@ function draw() {
 
   // Litterbug function calls
   litterbug.patrol();
-
-  // Litterbug2 function calls
   Litterbug2.patrol();
-
   testbug.patrol();
+  testbug1.patrol();
+  testbug2.patrol();
+  testbug3.patrol();
 
   // Handle keys
   keyHandler.handleKeyPress();
