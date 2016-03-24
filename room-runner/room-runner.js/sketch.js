@@ -27,6 +27,7 @@ function preload() {
     "assets/TT_Walk-11.png",
     "assets/TT_Walk-12.png"
   );
+  healthImage = loadImage('assets/Lives-small.png');
 
   // Litterbug assets
   LB_IdleRight = loadImage('assets/LB_Idle.png');
@@ -77,17 +78,17 @@ function setup() {
   // Create structural components
   keyHandler = new KeyHandler();
 
-  // Trashcan Tony
+  // Litterbug
+  litterbug = new Litterbug(3.12, 4.67);
+  litterbug.setIdleImages(LB_IdleRight, LB_IdleLeft);
+  litterbug.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
+
+  // Trashcan Tommy
   var StartingX = width / 2 + height / 2;
   var StartingY = height / 2;
   tommy = new Tommy(StartingX, StartingY, 3);
   tommy.setIdleImages(TT_IdleRight, TT_IdleLeft);
   tommy.setWalkingAnimations(RwalkingAnimation, LwalkingAnimation);
-
-  // Litterbug
-  litterbug = new Litterbug(3.12, 4.67);
-  litterbug.setIdleImages(LB_IdleRight, LB_IdleLeft);
-  litterbug.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
 
 }
 
@@ -103,7 +104,7 @@ function draw() {
   // Check against collisions and draw times
   tommy.handleJumping();
   tommy.checkCollisions(litterbug);
-  
+
   // Litterbug function calls
   litterbug.patrol();
 

@@ -19,6 +19,12 @@ function Tommy(x, y, health) {
     this.tommy = createSprite(x, y,
       this.tommyXYDIM, this.tommyXYDIM);
 
+    this.healthList = [];
+
+    this.hp1 = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
+    this.hp2 = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
+    this.hp3 = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
+
     // Sprite animations, initialized in method
     this.tommy.walkingRight = false;
     this.tommy.walkingLeft = false;
@@ -41,8 +47,52 @@ function Tommy(x, y, health) {
     this.tommy.rotation = 270;
   }
 
+  // Initial Heart positions
+  {
+    var angle1 = this.angle + 0.12;
+    var scalar1 = this.scalar - 100;
+    var angle2 = this.angle - 0;
+    var scalar2 = this.scalar - 100;
+    var angle3 = this.angle - 0.12;
+    var scalar3 = this.scalar - 100;
+    this.hp1.addImage("Heart1", healthImage);
+    this.hp1.position.x = round(this.centerX + cos(angle1) * scalar1);
+    this.hp1.position.y = round(this.centerY + sin(angle1) * scalar1);
+    this.hp1.rotation = 270;
+    this.hp2.addImage("Heart2", healthImage);
+    this.hp2.position.x = round(this.centerX + cos(angle2) * scalar2);
+    this.hp2.position.y = round(this.centerY + sin(angle2) * scalar2);
+    this.hp2.rotation = 270;
+    this.hp3.addImage("Heart3", healthImage);
+    this.hp3.position.x = round(this.centerX + cos(angle3) * scalar3);
+    this.hp3.position.y = round(this.centerY + sin(angle3) * scalar3);
+    this.hp3.rotation = 270;
+  }
+
+  /**
+   * Update heart locations
+   **/
+  this.updateHearts = function() {
+    var angle1 = this.angle + 0.12;
+    var scalar1 = this.scalar - 100;
+    var angle2 = this.angle - 0;
+    var scalar2 = this.scalar - 100;
+    var angle3 = this.angle - 0.12;
+    var scalar3 = this.scalar - 100;
+    this.hp1.position.x = round(this.centerX + cos(angle1) * scalar1);
+    this.hp1.position.y = round(this.centerY + sin(angle1) * scalar1);
+    this.hp1.rotation = this.tommy.rotation;
+    this.hp2.position.x = round(this.centerX + cos(angle2) * scalar2);
+    this.hp2.position.y = round(this.centerY + sin(angle2) * scalar2);
+    this.hp2.rotation = this.tommy.rotation;
+    this.hp3.position.x = round(this.centerX + cos(angle3) * scalar3);
+    this.hp3.position.y = round(this.centerY + sin(angle3) * scalar3);
+    this.hp3.rotation = this.tommy.rotation;
+  }
+
   // Check for collisions against sprites
   this.checkCollisions = function(collider) {
+
     // Default collision
     this.tommy.collide(collider.litterbug);
 
@@ -67,7 +117,7 @@ function Tommy(x, y, health) {
     this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
     this.tommy.rotation -= this.spin;
     this.resetRotation();
-
+    this.updateHearts();
   }
 
   // Move leftward
@@ -79,6 +129,7 @@ function Tommy(x, y, health) {
     this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
     this.tommy.rotation += this.spin;
     this.resetRotation();
+    this.updateHearts();
   }
 
   // Start jump state
@@ -102,6 +153,7 @@ function Tommy(x, y, health) {
         this.jumping = false;
         this.falling = true;
       }
+      this.updateHearts();
     }
 
     // When max jumpheight is reached, start falling
@@ -113,6 +165,7 @@ function Tommy(x, y, health) {
       if (this.jumpHeight == 0) {
         this.falling = false;
       }
+      this.updateHearts();
     }
 
     // Stop moving when jumpheight is 0
@@ -143,6 +196,7 @@ function Tommy(x, y, health) {
       this.tommy.changeImage("IdleLeft");
       this.walkingRight = false;
     }
+    this.updateHearts();
   }
 
   // Set tommy's correct orientation
