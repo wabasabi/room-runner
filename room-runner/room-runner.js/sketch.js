@@ -27,7 +27,7 @@ function preload() {
     "assets/TT_Walk-11.png",
     "assets/TT_Walk-12.png"
   );
-  healthImage = loadImage('assets/Lives-small.png');
+  healthImage = loadImage('assets/Lives-01.png');
 
   // Litterbug assets
   LB_IdleRight = loadImage('assets/LB_Idle.png');

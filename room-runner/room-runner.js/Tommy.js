@@ -10,7 +10,7 @@ function Tommy(x, y, health) {
     this.centerX = width / 2;
     this.centerY = height / 2;
     this.angle = 0;
-    this.scalar = height / 2 - (this.tommyXYDIM / 2);
+    this.scalar = height / 2 - (this.tommyXYDIM / 2) - 10;
     this.jumpHeight = 0;
     this.speed = 1 / (57.2958 * 1.5);
     this.spin = 0.6;
@@ -49,21 +49,24 @@ function Tommy(x, y, health) {
 
   // Initial Heart positions
   {
-    var angle1 = this.angle + 0.12;
+    var angle1 = this.angle + 0.15;
     var scalar1 = this.scalar - 100;
     var angle2 = this.angle - 0;
     var scalar2 = this.scalar - 100;
-    var angle3 = this.angle - 0.12;
+    var angle3 = this.angle - 0.15;
     var scalar3 = this.scalar - 100;
     this.hp1.addImage("Heart1", healthImage);
+    this.hp1.scale = (0.180);
     this.hp1.position.x = round(this.centerX + cos(angle1) * scalar1);
     this.hp1.position.y = round(this.centerY + sin(angle1) * scalar1);
     this.hp1.rotation = 270;
     this.hp2.addImage("Heart2", healthImage);
+    this.hp2.scale = (0.180);
     this.hp2.position.x = round(this.centerX + cos(angle2) * scalar2);
     this.hp2.position.y = round(this.centerY + sin(angle2) * scalar2);
     this.hp2.rotation = 270;
     this.hp3.addImage("Heart3", healthImage);
+    this.hp3.scale = (0.180);
     this.hp3.position.x = round(this.centerX + cos(angle3) * scalar3);
     this.hp3.position.y = round(this.centerY + sin(angle3) * scalar3);
     this.hp3.rotation = 270;
@@ -73,11 +76,11 @@ function Tommy(x, y, health) {
    * Update heart locations
    **/
   this.updateHearts = function() {
-    var angle1 = this.angle + 0.12;
+    var angle1 = this.angle + 0.15;
     var scalar1 = this.scalar - 100;
     var angle2 = this.angle - 0;
     var scalar2 = this.scalar - 100;
-    var angle3 = this.angle - 0.12;
+    var angle3 = this.angle - 0.15;
     var scalar3 = this.scalar - 100;
     this.hp1.position.x = round(this.centerX + cos(angle1) * scalar1);
     this.hp1.position.y = round(this.centerY + sin(angle1) * scalar1);
@@ -94,7 +97,11 @@ function Tommy(x, y, health) {
   this.checkCollisions = function(collider) {
 
     // Default collision
-    this.tommy.collide(collider.litterbug);
+    //this.tommy.collide(collider.litterbug);
+
+    if(this.tommy.overlap(collider.litterbug)){
+
+    }
 
     // IDEA
     /**

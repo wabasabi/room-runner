@@ -9,7 +9,7 @@ function Litterbug(patrolStart, patrolEnd) {
   this.centerX = width / 2;
   this.centerY = height / 2;
   this.angle = patrolStart;
-  this.scalar = height / 2 - (this.litterbugXYDIM / 2);
+  this.scalar = height / 2 - (this.litterbugXYDIM / 2) - 10;
   this.speed = 1 / (57.2958 * 2.75);
   this.spin = 0.4;
 
