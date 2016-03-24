@@ -89,28 +89,6 @@ function setup() {
   litterbug.setIdleImages(LB_IdleRight, LB_IdleLeft);
   litterbug.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
 
-  // Litterbug2 Test
-  Litterbug2 = new Litterbug(4.67, 6);
-  Litterbug2.setIdleImages(LB_IdleRight, LB_IdleLeft);
-  Litterbug2.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
-
-  // Ubiquitous litterbug Test
-  testbug = new Litterbug(1, 2);
-  testbug.setIdleImages(LB_IdleRight, LB_IdleLeft);
-  testbug.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
-  testbug1 = new Litterbug(2, 3);
-  testbug1.setIdleImages(LB_IdleRight, LB_IdleLeft);
-  testbug1.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
-  testbug2 = new Litterbug(3, 4);
-  testbug2.setIdleImages(LB_IdleRight, LB_IdleLeft);
-  testbug2.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
-  testbug3 = new Litterbug(4, 5);
-  testbug3.setIdleImages(LB_IdleRight, LB_IdleLeft);
-  testbug3.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
-
-  //mushroom = createSprite(width / 2, 20, 64, 64);
-  //mushroom.addImage(mushroomIMG);
-
 }
 
 // Looping draw method, main runner for game
@@ -125,15 +103,9 @@ function draw() {
   // Check against collisions and draw times
   tommy.handleJumping();
   tommy.checkCollisions(litterbug);
-  tommy.checkCollisions(Litterbug2);
-
+  
   // Litterbug function calls
   litterbug.patrol();
-  Litterbug2.patrol();
-  testbug.patrol();
-  testbug1.patrol();
-  testbug2.patrol();
-  testbug3.patrol();
 
   // Handle keys
   keyHandler.handleKeyPress();

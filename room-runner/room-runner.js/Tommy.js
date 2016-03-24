@@ -43,7 +43,19 @@ function Tommy(x, y, health) {
 
   // Check for collisions against sprites
   this.checkCollisions = function(collider) {
+    // Default collision
     this.tommy.collide(collider.litterbug);
+
+    // IDEA
+    /**
+     * Have tommy get knocked backward a small amount
+     * when he collides with a bug. We also need to address
+     * his jumping so that he can actually jump over bugs.
+     *
+     * Punching will extend his hitbox, so no need for that here.
+     *
+     * If tommy collides, have him lose a heart.
+     **/
   }
 
   // Move rightward
