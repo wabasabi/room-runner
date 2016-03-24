@@ -107,7 +107,7 @@ function setup() {
   var angle4 = 2.98;
   trash2 = new Trash(angle4);
   trash2.setImage(bananaPeel);
-  
+
 }
 
 // Looping draw method, main runner for game
@@ -123,21 +123,13 @@ function draw() {
   tommy.handleJumping();
   tommy.checkCollisions(litterbug);
 
-  // Litterbug function calls
-<<<<<<< HEAD
-  litterbug.handleJumping();
-  litterbug.patrolTopLeft();
-
-  // Litterbug2 function calls
-  Litterbug2.handleJumping();
-  Litterbug2.patrolTopRight();
-
   //Trash function calls
   trash.checkCollisions(tommy);
   trash2.checkCollisions(tommy);
-=======
+
+  //Litterbug function calls
   litterbug.patrol();
->>>>>>> c212b29d50830f76cf985fe5be66766f3a3b7034
+
 
   // Handle keys
   keyHandler.handleKeyPress();
