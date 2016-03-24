@@ -45,6 +45,15 @@ function preload() {
     "assets/LB_Walk-05.png",
     "assets/LB_Walk-06.png"
   );
+
+  // Trash Assets
+  appleCore = loadImage('assets/AppleCore-01.png');
+  bananaPeel = loadImage('assets/BananaPeel-01.png');
+  can = loadImage('assets/Can-01.png');
+  fishBones = loadImage('assets/FishBones-01.png');
+  glassBottle = loadImage('assets/GlassBottle-01.png');
+  lightBulb = loadImage('assets/LightBulb-01.png');
+  trashBag = loadImage('assets/TrashBag-01.png');
 }
 
 function setup() {
@@ -96,6 +105,15 @@ function setup() {
   Litterbug2.setIdleImages(LB_IdleRight, LB_IdleLeft);
   Litterbug2.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
 
+  // Trash Test
+  var angle3 = 2.25;
+  trash = new Trash(angle3);
+  trash.setImage(appleCore);
+
+  var angle4 = 2.98;
+  trash2 = new Trash(angle4);
+  trash2.setImage(bananaPeel);
+
   //mushroom = createSprite(width / 2, 20, 64, 64);
   //mushroom.addImage(mushroomIMG);
 
@@ -123,6 +141,9 @@ function draw() {
   Litterbug2.handleJumping();
   Litterbug2.patrolTopRight();
 
+  //Trash function calls
+  trash.checkCollisions(tommy);
+  trash2.checkCollisions(tommy);
 
   // Handle keys
   keyHandler.handleKeyPress();
