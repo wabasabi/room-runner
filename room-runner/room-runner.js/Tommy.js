@@ -112,6 +112,7 @@ function Tommy(x, y, health) {
         this.health -= 1;
         // Play death stuff and remove movement
         this.tommy.dead = true;
+        this.tommy.changeAnimation("Death");
       }
 
       // Set knock-back
@@ -146,39 +147,41 @@ function Tommy(x, y, health) {
 
   // Move rightward
   this.MoveRight = function() {
-    if(this.tommy.dead){
+    if (this.tommy.dead) {
       return;
+    } else {
+      this.walkingLeft = true;
+      this.tommy.idle = false;
+      this.tommy.changeAnimation("WalkingRight");
+      this.angle -= this.speed;
+      this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
+      this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
+      this.tommy.rotation -= this.spin;
+      this.resetRotation();
+      this.updateHearts();
     }
-    this.walkingLeft = true;
-    this.tommy.idle = false;
-    this.tommy.changeAnimation("WalkingRight");
-    this.angle -= this.speed;
-    this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
-    this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
-    this.tommy.rotation -= this.spin;
-    this.resetRotation();
-    this.updateHearts();
   }
 
   // Move leftward
   this.MoveLeft = function() {
-    if(this.tommy.dead){
+    if (this.tommy.dead) {
       return;
+    } else {
+      this.walkingRight = true;
+      this.tommy.idle = false;
+      this.tommy.changeAnimation("WalkingLeft");
+      this.angle += this.speed;
+      this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
+      this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
+      this.tommy.rotation += this.spin;
+      this.resetRotation();
+      this.updateHearts();
     }
-    this.walkingRight = true;
-    this.tommy.idle = false;
-    this.tommy.changeAnimation("WalkingLeft");
-    this.angle += this.speed;
-    this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
-    this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
-    this.tommy.rotation += this.spin;
-    this.resetRotation();
-    this.updateHearts();
   }
 
   // Start jump state
   this.jump = function() {
-    if(this.tommy.dead){
+    if (this.tommy.dead) {
       return;
     }
     if (this.jumping == true || this.falling == true) {
@@ -227,6 +230,11 @@ function Tommy(x, y, health) {
     this.tommy.addAnimation("WalkingLeft", LRAnimation);
   }
 
+  // Assign death animation function
+  this.setDeathAnimation = function(deathAnim) {
+    this.tommy.addAnimation("Death", deathAnim);
+  }
+
   // Assign idle animation images
   this.setIdleImages = function(image1, image2) {
     this.tommy.addImage("IdleRight", image1);
@@ -235,18 +243,22 @@ function Tommy(x, y, health) {
 
   // Stop tommy from moving
   this.stopMoving = function(idle) {
-    this.tommy.setSpeed(0, 0);
-    this.tommy.idle = true;
-    if (this.walkingLeft == true) {
-      this.tommy.changeImage("IdleRight");
-      this.walkingLeft = false;
+    if (this.tommy.dead) {
+      return;
     } else {
-      this.tommy.changeImage("IdleLeft");
-      this.walkingRight = false;
+      this.tommy.setSpeed(0, 0);
+      this.tommy.idle = true;
+      if (this.walkingLeft == true) {
+        this.tommy.changeImage("IdleRight");
+        this.walkingLeft = false;
+      } else {
+        this.tommy.changeImage("IdleLeft");
+        this.walkingRight = false;
+      }
+      this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
+      this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
+      this.updateHearts();
     }
-    this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
-    this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
-    this.updateHearts();
   }
 
   // Set tommy's correct orientation
