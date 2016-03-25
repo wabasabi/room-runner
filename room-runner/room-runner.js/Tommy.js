@@ -25,6 +25,10 @@ function Tommy(x, y, health) {
     this.hp2 = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
     this.hp3 = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
 
+    this.scoreboardSymbol = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
+    this.scoreSymbol = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
+    this.equalsSymbol = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
+
     // Sprite animations, initialized in method
     this.tommy.walkingRight = false;
     this.tommy.walkingLeft = false;
@@ -45,6 +49,63 @@ function Tommy(x, y, health) {
     this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
     this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
     this.tommy.rotation = 270;
+  }
+
+  // Initial Score position
+  {
+    var angleScore = this.angle + 0.15;
+    var scalarScore = this.scalar - 175;
+    var angleScore2 = this.angle + 0;
+    var scalarScore2 = this.scalar - 175;
+    var angleScore3 = this.angle - 0.15;
+    var scalarScore3 = this.scalar - 175;
+
+    //Scoreboard positioning
+    this.scoreboardSymbol.addImage("Scoreboard", scoreboardImage);
+    this.scoreboardSymbol.scale = (0.80);
+    this.scoreboardSymbol.position.x = round(this.centerX + cos(angleScore) * scalarScore);
+    this.scoreboardSymbol.position.y = round(this.centerY + sin(angleScore) * scalarScore);
+    this.scoreboardSymbol.rotation = 270;
+
+    //Recycle symbol positioning
+    this.scoreSymbol.addImage("Recycle", recycleImage);
+    this.scoreSymbol.scale = (0.180);
+    this.scoreSymbol.position.x = round(this.centerX + cos(angleScore) * scalarScore);
+    this.scoreSymbol.position.y = round(this.centerY + sin(angleScore) * scalarScore);
+    this.scoreSymbol.rotation = 270;
+
+    //Equals sign positioning
+    this.equalsSymbol.addImage("Equals", equalsImage);
+    this.equalsSymbol.scale = (0.180);
+    this.equalsSymbol.position.x = round(this.centerX + cos(angleScore2) * scalarScore2);
+    this.equalsSymbol.position.y = round(this.centerY + sin(angleScore2) * scalarScore2);
+    this.equalsSymbol.rotation = 270;
+  }
+
+  /**
+   * Update score location
+   **/
+  this.updateScore = function() {
+    var angle1 = this.angle + 0.15;
+    var scalar1 = this.scalar - 175;
+    var angle2 = this.angle + 0;
+    var scalar2 = this.scalar - 175;
+    var angle3 = this.angle - 0.15;
+    var scalar3 = this.scalar - 175;
+
+    var scoreboardAngle = this.angle;
+    var scoreboardScalar = this.scalar - 135;
+
+    this.scoreboardSymbol.position.x = round(this.centerX + cos(scoreboardAngle) * scoreboardScalar);
+    this.scoreboardSymbol.position.y = round(this.centerY + sin(scoreboardAngle) * scoreboardScalar);
+    this.scoreboardSymbol.rotation = this.tommy.rotation;
+
+    this.scoreSymbol.position.x = round(this.centerX + cos(angle1) * scalar1);
+    this.scoreSymbol.position.y = round(this.centerY + sin(angle1) * scalar1);
+    this.scoreSymbol.rotation = this.tommy.rotation;
+    this.equalsSymbol.position.x = round(this.centerX + cos(angle2) * scalar2);
+    this.equalsSymbol.position.y = round(this.centerY + sin(angle2) * scalar2);
+    this.equalsSymbol.rotation = this.tommy.rotation;
   }
 
   // Initial Heart positions
@@ -82,17 +143,22 @@ function Tommy(x, y, health) {
     var scalar2 = this.scalar - 100;
     var angle3 = this.angle - 0.15;
     var scalar3 = this.scalar - 100;
+
+    //Heart #1
     this.hp1.position.x = round(this.centerX + cos(angle1) * scalar1);
     this.hp1.position.y = round(this.centerY + sin(angle1) * scalar1);
     this.hp1.rotation = this.tommy.rotation;
+
+    //Heart #2
     this.hp2.position.x = round(this.centerX + cos(angle2) * scalar2);
     this.hp2.position.y = round(this.centerY + sin(angle2) * scalar2);
     this.hp2.rotation = this.tommy.rotation;
+
+    //Heart #3
     this.hp3.position.x = round(this.centerX + cos(angle3) * scalar3);
     this.hp3.position.y = round(this.centerY + sin(angle3) * scalar3);
     this.hp3.rotation = this.tommy.rotation;
   }
-
   // Check for collisions against sprites
   this.checkCollisions = function(collider) {
 
@@ -128,6 +194,7 @@ function Tommy(x, y, health) {
     this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
     this.tommy.rotation -= this.spin;
     this.resetRotation();
+    this.updateScore();
     this.updateHearts();
   }
 
@@ -141,6 +208,7 @@ function Tommy(x, y, health) {
     this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
     this.tommy.rotation += this.spin;
     this.resetRotation();
+    this.updateScore();
     this.updateHearts();
   }
 
@@ -165,6 +233,7 @@ function Tommy(x, y, health) {
         this.jumping = false;
         this.falling = true;
       }
+      this.updateScore();
       this.updateHearts();
     }
 
@@ -177,6 +246,7 @@ function Tommy(x, y, health) {
       if (this.jumpHeight == 0) {
         this.falling = false;
       }
+      this.updateScore();
       this.updateHearts();
     }
 
@@ -210,6 +280,7 @@ function Tommy(x, y, health) {
     }
     this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
     this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
+    this.updateScore();
     this.updateHearts();
   }
 
