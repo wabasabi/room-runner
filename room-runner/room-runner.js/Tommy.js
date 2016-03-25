@@ -200,19 +200,8 @@ function Tommy(x, y, health) {
     this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
     this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
     this.updateHearts();
-
+    this.updateScore();
   }
-
-  // IDEA
-  /**
-   * Have tommy get knocked backward a small amount
-   * when he collides with a bug. We also need to address
-   * his jumping so that he can actually jump over bugs.
-   *
-   * Punching will extend his hitbox, so no need for that here.
-   *
-   * If tommy collides, have him lose a heart.
-   **/
 
   // Move rightward
   this.MoveRight = function() {
@@ -229,15 +218,6 @@ function Tommy(x, y, health) {
       this.resetRotation();
       this.updateHearts();
     }
-    this.walkingLeft = true;
-    this.tommy.changeAnimation("WalkingRight");
-    this.angle -= this.speed;
-    this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
-    this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
-    this.tommy.rotation -= this.spin;
-    this.resetRotation();
-    this.updateScore();
-    this.updateHearts();
   }
 
   // Move leftward
@@ -254,16 +234,8 @@ function Tommy(x, y, health) {
       this.tommy.rotation += this.spin;
       this.resetRotation();
       this.updateHearts();
+      this.updateScore();
     }
-    this.walkingRight = true;
-    this.tommy.changeAnimation("WalkingLeft");
-    this.angle += this.speed;
-    this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
-    this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
-    this.tommy.rotation += this.spin;
-    this.resetRotation();
-    this.updateScore();
-    this.updateHearts();
   }
 
   // Start jump state
