@@ -21,13 +21,13 @@ function Tommy(x, y, health) {
 
     this.healthList = [];
 
-    this.hp1 = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
-    this.hp2 = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
-    this.hp3 = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
-
+    // Sprite generation for scoreboard.
     this.scoreboardSymbol = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
     this.scoreSymbol = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
     this.equalsSymbol = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
+    this.hp1 = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
+    this.hp2 = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
+    this.hp3 = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
 
     // Sprite animations, initialized in method
     this.tommy.walkingRight = false;
