@@ -27,12 +27,19 @@ function preload() {
     "assets/TT_Walk-11.png",
     "assets/TT_Walk-12.png"
   );
-  healthImage = loadImage('assets/Lives-01.png');
   deathAnimation = loadAnimation(
     "assets/TommyDie-03.png",
     "assets/TommyDie-02.png",
     "assets/TommyDie-01.png"
   );
+
+
+  //Scoreboard assets
+  scoreboardImage = loadImage('assets/scoreboard.png');
+  healthImage = loadImage('assets/Lives-01.png');
+  recycleImage = loadImage('assets/RecycleCollects-01.png');
+  equalsImage = loadImage('assets/equals.png');
+
 
   // Litterbug assets
   LB_IdleRight = loadImage('assets/LB_Idle.png');
