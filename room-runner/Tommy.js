@@ -37,9 +37,14 @@ function Tommy(x, y, health) {
     // Sprite animations, initialized in method
     this.tommy.walkingRight = false;
     this.tommy.walkingLeft = false;
+    this.tommy.facingRight = false;
+    this.tommy.facingLeft = false;
     this.tommy.idle = true;
     this.jumping = false;
     this.falling = false;
+    this.punching = false;
+    this.unpunching = false;
+    this.punchDistance = 0;
 
     // Set tommy's point attributes for score
     this.totalPickups = 0;
@@ -167,15 +172,46 @@ function Tommy(x, y, health) {
     // Check for collisions against sprites
   this.checkCollisions = function(collider) {
 
-    // If debug is on, show the hitboxes
-    if (debug) {
+    // If attacking, don't damage tommy
+    if (this.punching || this.unpunching) {
 
+      // Try to reach litterbug programatically
+      if (this.angle >= 0) {
+        // Positive
+        if (this.angle + 0.4 > collider.angle) {
+          // Knock litterbug back
+          if (collider.walkingRight) {
+            collider.angle -= 0.20;
+            collider.health -= 1;
+          } else if (collider.walkingLeft) {
+            collider.angle += 0.20;
+            collider.health -= 1;
+            // draw blam image
+          }
+        }
+      } else if (this.angle < 0) {
+        // Negative
+        var localAngle = this.angle + 6.28;
+        if (localAngle - 0.4 < collider.angle) {
+          // Knock litterbug back
+          if (collider.walkingRight) {
+            collider.angle -= 0.20;
+            collider.health -= 1;
+            // draw blam image
+          } else if (collider.walkingLeft) {
+            collider.angle += 0.20;
+            collider.health -= 1;
+            // draw blam image
+          }
+        }
+      }
     }
 
     if (this.tommy.overlap(collider.litterbug) ||
       collider.litterbug.overlap(this.tommy)) {
-      if (!this.jumping && !this.falling) {
 
+      if (!this.jumping && !this.falling && collider.health > 0) {
+        // If attempting to jump over, don't injure tommy
         // Remove health
         if (this.health == 3) {
           this.hp3.remove();
@@ -207,6 +243,8 @@ function Tommy(x, y, health) {
       this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
       this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
     }
+
+    // Always update his stats
     this.updateHearts();
     this.updateScore();
   }
@@ -217,6 +255,8 @@ function Tommy(x, y, health) {
       return;
     } else {
       this.walkingLeft = true;
+      this.facingLeft = true;
+      this.facingRight = false;
       this.tommy.idle = false;
       this.tommy.changeAnimation("WalkingRight");
       this.angle -= this.speed;
@@ -234,6 +274,8 @@ function Tommy(x, y, health) {
       return;
     } else {
       this.walkingRight = true;
+      this.facingRight = true;
+      this.facingLeft = false;
       this.tommy.idle = false;
       this.tommy.changeAnimation("WalkingLeft");
       this.angle += this.speed;
@@ -304,6 +346,10 @@ function Tommy(x, y, health) {
     this.tommy.addAnimation("Death", deathAnim);
   }
 
+  this.setAttackAnimation = function(attackAnim) {
+    this.tommy.addAnimation("Attack", attackAnim);
+  }
+
   // Assign idle animation images
   this.setIdleImages = function(image1, image2) {
     this.tommy.addImage("IdleRight", image1);
@@ -332,6 +378,61 @@ function Tommy(x, y, health) {
     this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
     this.updateScore();
     this.updateHearts();
+  }
+
+  // Punch forward and damage any litterbugs in front
+  this.punch = function() {
+    if (this.tommy.dead) {
+      return;
+    }
+    if (this.punching == true || this.unpunching == true) {
+      // Do nothing
+    } else {
+      this.punching = true;
+      this.tommy.changeAnimation("Attack");
+    }
+  }
+
+  this.handleMelee = function() {
+    if (this.punching) {
+      if (this.facingRight) {
+        this.angle += 0.01;
+      } else if (this.facingLeft) {
+        this.angle -= 0.01;
+      }
+      this.punchDistance += 1;
+      this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
+      this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
+      if (this.punchDistance == 5) {
+        this.punching = false;
+        this.unpunching = true;
+      }
+      this.updateScore();
+      this.updateHearts();
+    }
+
+    // When max jumpheight is reached, start falling
+    if (this.unpunching) {
+      if (this.facingRight) {
+        this.angle -= 0.01;
+      } else if (this.facingLeft) {
+        this.angle += 0.01;
+      }
+      this.punchDistance -= 1;
+      this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
+      this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
+      if (this.punchDistance == 0) {
+        this.unpunching = false;
+        this.tommy.changeImage("IdleRight");
+      }
+      this.updateScore();
+      this.updateHearts();
+    }
+
+    // Stop moving when jumpheight is 0
+    if (this.punchDistance == 0) {
+      // this.falling = false
+    }
   }
 
   // Set tommy's correct orientation
