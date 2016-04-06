@@ -35,6 +35,9 @@ function KeyHandler() {
     }
 
     // Melee movement
+    if(keyWentDown("SPACE")){
+      tommy.punch();
+    }
 
     // Debug change level
     if(debug){

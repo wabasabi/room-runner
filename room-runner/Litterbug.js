@@ -13,6 +13,8 @@ function Litterbug(patrolStart, patrolEnd) {
   this.speed = 1 / (57.2958 * 2.75);
   this.spin = 0.4;
 
+  this.health = 2;
+
   // patrolling properties
   this.patrolStart = patrolStart;
   this.patrolEnd = patrolEnd;
@@ -83,6 +85,10 @@ function Litterbug(patrolStart, patrolEnd) {
 
   // Patrol - 0 is 6.27
   this.patrol = function() {
+
+    if(this.health <= 0){
+      return;
+    }
 
     if(this.angle <= this.patrolStart){
       this.MoveRight();

@@ -54,6 +54,20 @@ function preload() {
     "assets/TommyDie-02.png",
     "assets/TommyDie-01.png"
   );
+  attack1 = loadImage('assets/Attack-01.png');
+  attack2 = loadImage('assets/Attack-02.png');
+  attack3 = loadImage('assets/Attack-03.png');
+  attackAnimation = loadAnimation(
+    // First Image
+    'assets/Character_Attack-01.png',
+    'assets/Character_Attack-01.png',
+    // Second Image
+    'assets/Character_Attack-02.png',
+    'assets/Character_Attack-02.png',
+    // Third Image
+    'assets/Character_Attack-03.png',
+    'assets/Character_Attack-03.png'
+  )
 
 
   //Scoreboard assets
@@ -153,6 +167,7 @@ function setup() {
   tommy.setIdleImages(TT_IdleRight, TT_IdleLeft);
   tommy.setWalkingAnimations(RwalkingAnimation, LwalkingAnimation);
   tommy.setDeathAnimation(deathAnimation);
+  tommy.setAttackAnimation(attackAnimation);
 
   // Trash Test
   var angle3 = 2.25;
@@ -186,6 +201,8 @@ function draw() {
 
   // Handle keys
   keyHandler.handleKeyPress();
+
+  tommy.handleMelee();
 
   // Draw all sprites
   drawSprites();
