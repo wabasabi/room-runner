@@ -142,63 +142,71 @@ function Tommy(x, y, health) {
    * Update heart locations
    **/
   this.updateHearts = function() {
-    var angle1 = this.angle + 0.15;
-    var scalar1 = this.scalar - 100;
-    var angle2 = this.angle - 0;
-    var scalar2 = this.scalar - 100;
-    var angle3 = this.angle - 0.15;
-    var scalar3 = this.scalar - 100;
+      var angle1 = this.angle + 0.15;
+      var scalar1 = this.scalar - 100;
+      var angle2 = this.angle - 0;
+      var scalar2 = this.scalar - 100;
+      var angle3 = this.angle - 0.15;
+      var scalar3 = this.scalar - 100;
 
-    //Heart #1
-    this.hp1.position.x = round(this.centerX + cos(angle1) * scalar1);
-    this.hp1.position.y = round(this.centerY + sin(angle1) * scalar1);
-    this.hp1.rotation = this.tommy.rotation;
+      //Heart #1
+      this.hp1.position.x = round(this.centerX + cos(angle1) * scalar1);
+      this.hp1.position.y = round(this.centerY + sin(angle1) * scalar1);
+      this.hp1.rotation = this.tommy.rotation;
 
-    //Heart #2
-    this.hp2.position.x = round(this.centerX + cos(angle2) * scalar2);
-    this.hp2.position.y = round(this.centerY + sin(angle2) * scalar2);
-    this.hp2.rotation = this.tommy.rotation;
+      //Heart #2
+      this.hp2.position.x = round(this.centerX + cos(angle2) * scalar2);
+      this.hp2.position.y = round(this.centerY + sin(angle2) * scalar2);
+      this.hp2.rotation = this.tommy.rotation;
 
-    //Heart #3
-    this.hp3.position.x = round(this.centerX + cos(angle3) * scalar3);
-    this.hp3.position.y = round(this.centerY + sin(angle3) * scalar3);
-    this.hp3.rotation = this.tommy.rotation;
-  }
-  // Check for collisions against sprites
+      //Heart #3
+      this.hp3.position.x = round(this.centerX + cos(angle3) * scalar3);
+      this.hp3.position.y = round(this.centerY + sin(angle3) * scalar3);
+      this.hp3.rotation = this.tommy.rotation;
+    }
+    // Check for collisions against sprites
   this.checkCollisions = function(collider) {
+
+    // If debug is on, show the hitboxes
+    if (debug) {
+
+    }
 
     if (this.tommy.overlap(collider.litterbug) ||
       collider.litterbug.overlap(this.tommy)) {
-      // Remove health
-      if (this.health == 3) {
-        this.hp3.remove();
-        this.health -= 1;
-      } else if (this.health == 2) {
-        this.hp2.remove();
-        this.health -= 1;
-      } else if (this.health == 1) {
-        this.hp1.remove();
-        this.health -= 1;
-        // Play death stuff and remove movement
-        this.tommy.dead = true;
-        this.tommy.changeAnimation("Death");
-      }
+      if (!this.jumping && !this.falling) {
 
-      // Set knock-back
-      if (this.walkingLeft) {
-        this.angle += 0.275;
-      } else if (this.walkingRight) {
-        this.angle -= 0.275;
-      } else if (this.tommy.idle) {
-        if (collider.walkingLeft) {
-          this.angle -= 0.275;
-        } else if (collider.walkingRight) {
+        // Remove health
+        if (this.health == 3) {
+          this.hp3.remove();
+          this.health -= 1;
+        } else if (this.health == 2) {
+          this.hp2.remove();
+          this.health -= 1;
+        } else if (this.health == 1) {
+          this.hp1.remove();
+          this.health -= 1;
+          // Play death stuff and remove movement
+          this.tommy.dead = true;
+          this.tommy.changeAnimation("Death");
+        }
+
+        // Set knock-back
+        if (this.walkingLeft) {
           this.angle += 0.275;
+        } else if (this.walkingRight) {
+          this.angle -= 0.275;
+        } else if (this.tommy.idle) {
+          if (collider.walkingLeft) {
+            this.angle -= 0.275;
+          } else if (collider.walkingRight) {
+            this.angle += 0.275;
+          }
         }
       }
+      this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
+      this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
     }
-    this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
-    this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
     this.updateHearts();
     this.updateScore();
   }
