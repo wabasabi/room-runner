@@ -108,61 +108,11 @@ function preload() {
   fishBones = loadImage('assets/FishBones-01.png');
   glassBottle = loadImage('assets/GlassBottle-01.png');
   lightBulb = loadImage('assets/LightBulb-01.png');
-  trashBag = loadImage('assets/TrashBag-01.png'); >>> >>> > refs / remotes / origin / gh - pages
+  trashBag = loadImage('assets/TrashBag-01.png');
 }
 
 function setup() {
 
-  << << << < HEAD
-  // Initialization
-  var width = 0;
-  var height = 0;
-
-  // Boolean flags for setup
-  dome = true; // Set whether or desktop or dome
-  debug = true; // Set whether to show debug features(FPS, background, etc.)
-
-  // Display for dome or PC
-  if (dome) {
-    width = 1920;
-    height = 1200;
-  } else {
-    width = 960;
-    height = 600;
-  }
-
-  // General attributes
-  createCanvas(width, height);
-  frameRate(60);
-
-  // Create objects
-  background = new Background();
-  gameGround = new GameGround();
-
-  // Create structural components
-  keyHandler = new KeyHandler();
-
-  // Litterbug
-  litterbug = new Litterbug(3.12, 4.67);
-  litterbug.setIdleImages(LB_IdleRight, LB_IdleLeft);
-  litterbug.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
-
-  // Trashcan Tommy
-  var StartingX = width / 2 + height / 2;
-  var StartingY = height / 2;
-  tommy = new Tommy(StartingX, StartingY, 3);
-  tommy.setIdleImages(TT_IdleRight, TT_IdleLeft);
-  tommy.setWalkingAnimations(RwalkingAnimation, LwalkingAnimation);
-  tommy.setDeathAnimation(deathAnimation);
-
-  // Trash Test
-  var angle3 = 2.25;
-  trash = new Trash(angle3);
-  trash.setImage(appleCore);
-
-  var angle4 = 2.98;
-  trash2 = new Trash(angle4);
-  trash2.setImage(bananaPeel); === === =
   // Initialization
   var width = 0;
   var height = 0;
@@ -211,8 +161,7 @@ function setup() {
 
   var angle4 = 2.98;
   trash2 = new Trash(angle4);
-  trash2.setImage(bananaPeel); >>> >>> > refs / remotes / origin / gh - pages
-
+  trash2.setImage(bananaPeel); 
 }
 
 // Looping draw method, main runner for game
@@ -235,12 +184,8 @@ function draw() {
   //Litterbug function calls
   litterbug.patrol();
 
-  << << << < HEAD
   // Handle keys
-  keyHandler.handleKeyPress(); === === =
-
-  // Handle keys
-  keyHandler.handleKeyPress(); >>> >>> > refs / remotes / origin / gh - pages
+  keyHandler.handleKeyPress();
 
   // Draw all sprites
   drawSprites();
