@@ -33,8 +33,17 @@ function KeyHandler() {
     if (keyWentDown("UP_ARROW")) {
       tommy.jump();
     }
-    
+
     // Melee movement
 
+    // Debug change level
+    if(debug){
+      if(keyWentDown("ENTER")){
+        currentLevel = currentLevel + 1;
+        if(currentLevel == 3){
+          currentLevel = 0;
+        }
+      }
+    }
   }
 }

@@ -1,10 +1,10 @@
 function preload() {
-  // Debug assets
+  // Level assets
   domeDemoImage = loadImage('assets/DemoSizeBg.png');
   levelOne = loadImage('assets/Enironment1-01.png');
-
-  // Test assets
-  mushroomIMG = loadImage('assets/mushroom.png');
+  levelTwo = loadImage('assets/Environment2_small.png');
+  levelThree = loadImage('assets/Environment3-01.png');
+  currentLevel = 0;
 
   // Tommy assets
   TT_IdleRight = loadImage('assets/TT_idle-01.png');
@@ -75,7 +75,7 @@ function setup() {
 
   // Boolean flags for setup
   dome = true; // Set whether or desktop or dome
-  debug = false; // Set whether to show debug features(FPS, background, etc.)
+  debug = true; // Set whether to show debug features(FPS, background, etc.)
 
   // Display for dome or PC
   if (dome) {
@@ -140,7 +140,6 @@ function draw() {
 
   //Litterbug function calls
   litterbug.patrol();
-
 
   // Handle keys
   keyHandler.handleKeyPress();
