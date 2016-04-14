@@ -258,7 +258,7 @@ function draw() {
 
     keyHandler.endFadeScreen();
 
-  } else {
+  } else if (currentLevel == 1) {
 
     // Draw background to avoid shadows
     background.draw();
@@ -297,5 +297,22 @@ function draw() {
 
     // Draw all sprites
     drawSprites();
+  } else if (currentLevel == 2) {
+
+    // Draw background to avoid shadows
+    background.draw();
+
+    // Draw the game background
+    gameGround.draw();
+
+
+  } else if (currentLevel == 3) {
+
+    // Draw background to avoid shadows
+    background.draw();
+
+    // Draw the game background
+    gameGround.draw();
+
   }
 }
