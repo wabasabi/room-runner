@@ -225,6 +225,7 @@ function Tommy(x, y, health) {
           // Play death stuff and remove movement
           this.tommy.dead = true;
           this.tommy.changeAnimation("Death");
+          death.play();
         }
 
         // Set knock-back

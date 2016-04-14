@@ -29,6 +29,7 @@ function Trash(angle) {
         if (this.trash.overlap(tommy.tommy)){
             this.trash.remove();
             tommy.tommy.currentScore = tommy.tommy.currentScore + 1;
+            pickup.play();
         }
     }
 
