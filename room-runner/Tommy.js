@@ -347,8 +347,9 @@ function Tommy(x, y, health) {
     this.tommy.addAnimation("Death", deathAnim);
   }
 
-  this.setAttackAnimation = function(attackAnim) {
-    this.tommy.addAnimation("Attack", attackAnim);
+  this.setAttackAnimation = function(attackAnimRight, attackAnimLeft) {
+    this.tommy.addAnimation("AttackRight", attackAnimRight);
+    this.tommy.addAnimation("AttackLeft", attackAnimLeft)
   }
 
   // Assign idle animation images
@@ -390,7 +391,13 @@ function Tommy(x, y, health) {
       // Do nothing
     } else {
       this.punching = true;
-      this.tommy.changeAnimation("Attack");
+      if (this.facingLeft) {
+        print("Facing Left");
+        this.tommy.changeAnimation("AttackRight");
+      } else {
+        print("Facing Right");
+        this.tommy.changeAnimation("AttackLeft");
+      }
     }
   }
 
@@ -424,7 +431,11 @@ function Tommy(x, y, health) {
       this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
       if (this.punchDistance == 0) {
         this.unpunching = false;
-        this.tommy.changeImage("IdleRight");
+        if (this.facingLeft) {
+          this.tommy.changeImage("IdleRight");
+        } else {
+          this.tommy.changeImage("IdleLeft");
+        }
       }
       this.updateScore();
       this.updateHearts();
