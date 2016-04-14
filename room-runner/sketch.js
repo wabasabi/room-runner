@@ -283,7 +283,9 @@ function draw() {
 
     // Check against collisions and draw times
     tommy.handleJumping();
-    tommy.checkCollisions(litterbug);
+    if (litterbug.health > 0){
+      tommy.checkCollisions(litterbug);
+    }
 
     //Trash function calls
     trash.checkCollisions(tommy);
