@@ -205,7 +205,13 @@ function setup() {
 
   // city audio
   cityDay.setVolume(1);
-  cityNight.setVolume(.35);
+  cityNight.setVolume(1);
+  punch.setVolume(1);
+  pickup.setVolume(1);
+  jump.setVolume(1);
+  changeLevel.setVolume(1);
+  death.setVolume(1);
+  litterbugDeath.setVolume(1);
   counter = 1;
 }
 
@@ -226,7 +232,11 @@ function draw() {
     background.draw();
 
     // Reset fade value
-    fadeValue = 0;
+    if (debug) {
+      fadeValue = 255;
+    } else {
+      fadeValue = 0;
+    }
 
     // Draw Logo
     rotate(-1.55);
@@ -278,9 +288,6 @@ function draw() {
     //Trash function calls
     trash.checkCollisions(tommy);
     trash2.checkCollisions(tommy);
-
-    //Litterbug function calls
-    litterbug.patrol();
 
     // Handle keys
     keyHandler.handleKeyPress();
