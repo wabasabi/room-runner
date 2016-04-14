@@ -12,7 +12,7 @@ function Litterbug(patrolStart, patrolEnd) {
   this.scalar = height / 2 - (this.litterbugXYDIM / 2) - 10;
   this.speed = 1 / (57.2958 * 2.75);
   this.spin = 0.4;
-
+  this.dead = 0;
   this.health = 2;
 
   // patrolling properties
@@ -86,17 +86,32 @@ function Litterbug(patrolStart, patrolEnd) {
   // Patrol - 0 is 6.27
   this.patrol = function() {
 
-    if(this.health <= 0){
+    if (this.health <= 0) {
+      this.dead = 1;
+    }
+
+    if (this.dead == 1){
+      if (litterbugDeath.isPlaying() == false){
+        litterbugDeath.play();
+      }
+      else if (litterbugDeath.isPlaying() == true) {
+
+      }
+      this.dead = 2;
+    }
+
+    if (this.dead == 2){
+      this.dead = 3;
       return;
     }
 
-    if(this.angle <= this.patrolStart){
+    if (this.angle <= this.patrolStart) {
       this.MoveRight();
     }
 
-    if(this.angle > this.patrolStart && this.angle < this.patrolEnd){
+    if (this.angle > this.patrolStart && this.angle < this.patrolEnd) {
       // Keep moving
-      if(this.walkingLeft){
+      if (this.walkingLeft) {
         this.MoveLeft();
       } else {
         this.MoveRight();
@@ -104,10 +119,11 @@ function Litterbug(patrolStart, patrolEnd) {
     }
 
     // Switch to walking toward start
-    if(this.angle >= this.patrolEnd){
+    if (this.angle >= this.patrolEnd) {
       this.MoveLeft();
     }
   }
+
 
   this.resetRotation = function() {
     var x = this.litterbug.position.x;

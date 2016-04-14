@@ -135,6 +135,16 @@ function preload() {
   glassBottle = loadImage('assets/GlassBottle-01.png');
   lightBulb = loadImage('assets/LightBulb-01.png');
   trashBag = loadImage('assets/TrashBag-01.png');
+
+  // Sound assets
+  punch = loadSound('assets/punch.mp3');
+  pickup = loadSound('assets/pickup.mp3');
+  jump = loadSound('assets/jump.mp3');
+  changeLevel = loadSound('assets/level-change.mp3');
+  death = loadSound('assets/death.mp3');
+  cityNight = loadSound('assets/city-noise.mp3');
+  cityDay = loadSound('assets/city-background.mp3');
+  litterbugDeath = loadSound('assets/litterbug-death.mp3');
 }
 
 function setup() {
@@ -192,13 +202,18 @@ function setup() {
 
   // Load screen elements
   fadeValue = 0;
+
+  // city audio
+  cityDay.setVolume(1);
+  cityNight.setVolume(.35);
+  counter = 1;
 }
 
 // Looping draw method, main runner for game
 function draw() {
 
   // Game is over
-  if(currentLevel == 4){
+  if (currentLevel == 4) {
     background.draw();
     // Spacebar refresh page IDEA
     return;
@@ -207,6 +222,7 @@ function draw() {
   if (currentLevel == 0) {
     // Show splash screen
     keyHandler.endSplashScreen();
+
     background.draw();
 
     // Reset fade value
@@ -237,8 +253,23 @@ function draw() {
     // Draw background to avoid shadows
     background.draw();
 
+    if (cityNight.isPlaying() == false) {
+      cityNight.play();
+    }
+
     // Draw the game background
     gameGround.draw();
+
+    //Litterbug function calls
+    if (litterbug.health != 0) {
+      litterbug.patrol();
+    } else if (litterbug.health == 0) {
+      counter++;
+    }
+    if (counter == 2) {
+      litterbugDeath.play();
+      counter++;
+    }
 
     // Check against collisions and draw times
     tommy.handleJumping();
@@ -254,6 +285,7 @@ function draw() {
     // Handle keys
     keyHandler.handleKeyPress();
 
+    // handle Melee
     tommy.handleMelee();
 
     // Draw all sprites

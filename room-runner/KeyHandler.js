@@ -47,11 +47,13 @@ function KeyHandler() {
     // Jump movement
     if (keyWentDown("UP_ARROW")) {
       tommy.jump();
+      jump.play();
     }
 
     // Melee movement
     if (keyWentDown("SPACE")) {
       tommy.punch();
+      punch.play();
     }
 
     // Debug change level
