@@ -392,10 +392,8 @@ function Tommy(x, y, health) {
     } else {
       this.punching = true;
       if (this.facingLeft) {
-        print("Facing Left");
         this.tommy.changeAnimation("AttackRight");
       } else {
-        print("Facing Right");
         this.tommy.changeAnimation("AttackLeft");
       }
     }

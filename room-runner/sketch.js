@@ -1,6 +1,7 @@
 function preload() {
   // Level assets
   domeDemoImage = loadImage('assets/DemoSizeBg.png');
+  loadingScreen = loadImage('assets/Logo-01.png');
   levelOne = loadImage('assets/Enironment1-01.png');
   levelTwo = loadImage('assets/Environment2_small.png');
   levelThree = loadImage('assets/Environment3-01.png');
@@ -188,34 +189,74 @@ function setup() {
   var angle4 = 2.98;
   trash2 = new Trash(angle4);
   trash2.setImage(bananaPeel);
+
+  // Load screen elements
+  fadeValue = 0;
 }
 
 // Looping draw method, main runner for game
 function draw() {
 
-  // Draw background to avoid shadows
-  background.draw();
+  // Game is over
+  if(currentLevel == 4){
+    background.draw();
+    // Spacebar refresh page IDEA
+    return;
+  }
 
-  // Draw the game background
-  gameGround.draw();
+  if (currentLevel == 0) {
+    // Show splash screen
+    keyHandler.endSplashScreen();
+    background.draw();
 
-  // Check against collisions and draw times
-  tommy.handleJumping();
-  tommy.checkCollisions(litterbug);
+    // Reset fade value
+    fadeValue = 0;
 
-  //Trash function calls
-  trash.checkCollisions(tommy);
-  trash2.checkCollisions(tommy);
+    // Draw Logo
+    rotate(-1.55);
+    image(loadingScreen,
+      width / 2 - 1800,
+      height / 2 + 500,
+      600, 300);
+    rotate(1.55);
 
-  //Litterbug function calls
-  litterbug.patrol();
+  } else if (currentLevel == 0.5) {
 
-  // Handle keys
-  keyHandler.handleKeyPress();
+    // Draw background to avoid shadows
+    background.draw();
 
-  tommy.handleMelee();
+    // Draw first level image
+    tint(255, fadeValue);
+    image(levelOne, (width / 2) - (height / 2), 0, height, height);
+    fadeValue++;
 
-  // Draw all sprites
-  drawSprites();
+    keyHandler.endFadeScreen();
 
+  } else {
+
+    // Draw background to avoid shadows
+    background.draw();
+
+    // Draw the game background
+    gameGround.draw();
+
+    // Check against collisions and draw times
+    tommy.handleJumping();
+    tommy.checkCollisions(litterbug);
+
+    //Trash function calls
+    trash.checkCollisions(tommy);
+    trash2.checkCollisions(tommy);
+
+    //Litterbug function calls
+    litterbug.patrol();
+
+    // Handle keys
+    keyHandler.handleKeyPress();
+
+    tommy.handleMelee();
+
+    // Draw all sprites
+    drawSprites();
+  }
 }

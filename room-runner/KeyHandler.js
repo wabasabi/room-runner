@@ -6,6 +6,21 @@
 function KeyHandler() {
 
   /**
+   * This method will end the splash screen if the correct key is pressed.
+   **/
+  this.endSplashScreen = function() {
+    if (keyWentDown("SPACE")) {
+      currentLevel = 0.5;
+    }
+  }
+
+  this.endFadeScreen = function() {
+    if (fadeValue >= 255) {
+      currentLevel = 1;
+    }
+  }
+
+  /**
    * The only useful method in the KeyHandler
    * will check which key was pressed in this frame.
    **/
@@ -35,17 +50,14 @@ function KeyHandler() {
     }
 
     // Melee movement
-    if(keyWentDown("SPACE")){
+    if (keyWentDown("SPACE")) {
       tommy.punch();
     }
 
     // Debug change level
-    if(debug){
-      if(keyWentDown("ENTER")){
+    if (debug) {
+      if (keyWentDown("ENTER")) {
         currentLevel = currentLevel + 1;
-        if(currentLevel == 3){
-          currentLevel = 0;
-        }
       }
     }
   }
