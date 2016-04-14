@@ -57,7 +57,7 @@ function preload() {
   attack1 = loadImage('assets/Attack-01.png');
   attack2 = loadImage('assets/Attack-02.png');
   attack3 = loadImage('assets/Attack-03.png');
-  attackAnimation = loadAnimation(
+  attackAnimation1 = loadAnimation(
     // First Image
     'assets/Character_Attack-01.png',
     'assets/Character_Attack-01.png',
@@ -67,6 +67,17 @@ function preload() {
     // Third Image
     'assets/Character_Attack-03.png',
     'assets/Character_Attack-03.png'
+  )
+  attackAnimation2 = loadAnimation(
+    // First Image
+    'assets/Character_Attack-04.png',
+    'assets/Character_Attack-04.png',
+    // Second Image
+    'assets/Character_Attack-05.png',
+    'assets/Character_Attack-05.png',
+    // Third Image
+    'assets/Character_Attack-06.png',
+    'assets/Character_Attack-06.png'
   )
 
 
@@ -167,7 +178,7 @@ function setup() {
   tommy.setIdleImages(TT_IdleRight, TT_IdleLeft);
   tommy.setWalkingAnimations(RwalkingAnimation, LwalkingAnimation);
   tommy.setDeathAnimation(deathAnimation);
-  tommy.setAttackAnimation(attackAnimation);
+  tommy.setAttackAnimation(attackAnimation1, attackAnimation2);
 
   // Trash Test
   var angle3 = 2.25;
