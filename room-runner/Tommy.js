@@ -72,21 +72,21 @@ function Tommy(x, y, health) {
 
     //Scoreboard positioning
     this.scoreboardSymbol.addImage("Scoreboard", scoreboardImage);
-    this.scoreboardSymbol.scale = (0.80);
+    this.scoreboardSymbol.scale = (0.725);
     this.scoreboardSymbol.position.x = round(this.centerX + cos(angleScore) * scalarScore);
     this.scoreboardSymbol.position.y = round(this.centerY + sin(angleScore) * scalarScore);
     this.scoreboardSymbol.rotation = 270;
 
     //Recycle symbol positioning
     this.scoreSymbol.addImage("Recycle", recycleImage);
-    this.scoreSymbol.scale = (0.180);
+    this.scoreSymbol.scale = (0.090);
     this.scoreSymbol.position.x = round(this.centerX + cos(angleScore) * scalarScore);
     this.scoreSymbol.position.y = round(this.centerY + sin(angleScore) * scalarScore);
     this.scoreSymbol.rotation = 270;
 
     //Equals sign positioning
     this.equalsSymbol.addImage("Equals", equalsImage);
-    this.equalsSymbol.scale = (0.180);
+    this.equalsSymbol.scale = (0.090);
     this.equalsSymbol.position.x = round(this.centerX + cos(angleScore2) * scalarScore2);
     this.equalsSymbol.position.y = round(this.centerY + sin(angleScore2) * scalarScore2);
     this.equalsSymbol.rotation = 270;
@@ -96,15 +96,15 @@ function Tommy(x, y, health) {
    * Update score location
    **/
   this.updateScore = function() {
-    var angle1 = this.angle + 0.15;
-    var scalar1 = this.scalar - 175;
-    var angle2 = this.angle + 0;
-    var scalar2 = this.scalar - 175;
+    var angle1 = this.angle + 0.20;
+    var scalar1 = this.scalar - 100;
+    var angle2 = this.angle + .125;
+    var scalar2 = this.scalar - 100;
     var angle3 = this.angle - 0.15;
     var scalar3 = this.scalar - 175;
 
     var scoreboardAngle = this.angle;
-    var scoreboardScalar = this.scalar - 135;
+    var scoreboardScalar = this.scalar - 105;
 
     this.scoreboardSymbol.position.x = round(this.centerX + cos(scoreboardAngle) * scoreboardScalar);
     this.scoreboardSymbol.position.y = round(this.centerY + sin(scoreboardAngle) * scoreboardScalar);
@@ -116,6 +116,7 @@ function Tommy(x, y, health) {
     this.equalsSymbol.position.x = round(this.centerX + cos(angle2) * scalar2);
     this.equalsSymbol.position.y = round(this.centerY + sin(angle2) * scalar2);
     this.equalsSymbol.rotation = this.tommy.rotation;
+
   }
 
   // Initial Heart positions
@@ -127,17 +128,17 @@ function Tommy(x, y, health) {
     var angle3 = this.angle - 0.15;
     var scalar3 = this.scalar - 100;
     this.hp1.addImage("Heart1", healthImage);
-    this.hp1.scale = (0.180);
+    this.hp1.scale = (0.090);
     this.hp1.position.x = round(this.centerX + cos(angle1) * scalar1);
     this.hp1.position.y = round(this.centerY + sin(angle1) * scalar1);
     this.hp1.rotation = 270;
     this.hp2.addImage("Heart2", healthImage);
-    this.hp2.scale = (0.180);
+    this.hp2.scale = (0.090);
     this.hp2.position.x = round(this.centerX + cos(angle2) * scalar2);
     this.hp2.position.y = round(this.centerY + sin(angle2) * scalar2);
     this.hp2.rotation = 270;
     this.hp3.addImage("Heart3", healthImage);
-    this.hp3.scale = (0.180);
+    this.hp3.scale = (0.090);
     this.hp3.position.x = round(this.centerX + cos(angle3) * scalar3);
     this.hp3.position.y = round(this.centerY + sin(angle3) * scalar3);
     this.hp3.rotation = 270;
@@ -147,11 +148,11 @@ function Tommy(x, y, health) {
    * Update heart locations
    **/
   this.updateHearts = function() {
-      var angle1 = this.angle + 0.15;
-      var scalar1 = this.scalar - 100;
-      var angle2 = this.angle - 0;
+      var angle1 = this.angle - 0.05;
+      var scalar1 = this.scalar - 110;
+      var angle2 = this.angle - 0.125;
       var scalar2 = this.scalar - 100;
-      var angle3 = this.angle - 0.15;
+      var angle3 = this.angle - 0.20;
       var scalar3 = this.scalar - 100;
 
       //Heart #1
@@ -347,8 +348,9 @@ function Tommy(x, y, health) {
     this.tommy.addAnimation("Death", deathAnim);
   }
 
-  this.setAttackAnimation = function(attackAnim) {
-    this.tommy.addAnimation("Attack", attackAnim);
+  this.setAttackAnimation = function(attackAnimRight, attackAnimLeft) {
+    this.tommy.addAnimation("AttackRight", attackAnimRight);
+    this.tommy.addAnimation("AttackLeft", attackAnimLeft)
   }
 
   // Assign idle animation images
@@ -390,7 +392,13 @@ function Tommy(x, y, health) {
       // Do nothing
     } else {
       this.punching = true;
-      this.tommy.changeAnimation("Attack");
+      if (this.facingLeft) {
+        print("Facing Left");
+        this.tommy.changeAnimation("AttackRight");
+      } else {
+        print("Facing Right");
+        this.tommy.changeAnimation("AttackLeft");
+      }
     }
   }
 
@@ -424,7 +432,11 @@ function Tommy(x, y, health) {
       this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
       if (this.punchDistance == 0) {
         this.unpunching = false;
-        this.tommy.changeImage("IdleRight");
+        if (this.facingLeft) {
+          this.tommy.changeImage("IdleRight");
+        } else {
+          this.tommy.changeImage("IdleLeft");
+        }
       }
       this.updateScore();
       this.updateHearts();
