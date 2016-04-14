@@ -116,6 +116,7 @@ function Tommy(x, y, health) {
     this.equalsSymbol.position.x = round(this.centerX + cos(angle2) * scalar2);
     this.equalsSymbol.position.y = round(this.centerY + sin(angle2) * scalar2);
     this.equalsSymbol.rotation = this.tommy.rotation;
+
   }
 
   // Initial Heart positions
