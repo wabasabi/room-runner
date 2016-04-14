@@ -47,9 +47,7 @@ function KeyHandler() {
     // Jump movement
     if (keyWentDown("UP_ARROW")) {
       tommy.jump();
-      if (!tommy.jumping) {
-        jump.play();
-      }
+      jump.play();
     }
 
     // Melee movement
