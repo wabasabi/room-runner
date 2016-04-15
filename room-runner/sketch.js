@@ -284,8 +284,8 @@ function draw() {
 
   } else if (currentLevel == 1) {
     /**
-    * This is the start of level 1 draw frames
-    **/
+     * This is the start of level 1 draw frames
+     **/
 
     // Draw background to avoid shadows
     background.draw();
@@ -331,11 +331,11 @@ function draw() {
     // Draw all sprites
     drawSprites();
   } else if (currentLevel == 2) {
-    if (init == 1){
+    if (init == 1) {
 
       /**
-      * Level 2 re-setup for level 2
-      **/
+       * Level 2 re-setup for level 2
+       **/
 
       // Remove sprites
       trash.trash.remove();
@@ -375,6 +375,15 @@ function draw() {
       litterbug3.setIdleImages(LB_IdleRight, LB_IdleLeft);
       litterbug3.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
 
+      // Try re-initializing only tommy's Sprite
+      tommy.tommy.remove();
+      tommy.tommy = createSprite(width / 2 + height / 2,
+        tommy.tommyXYDIM, tommy.tommyXYDIM);
+      tommy.setIdleImages(TT_IdleRight, TT_IdleLeft);
+      tommy.setWalkingAnimations(RwalkingAnimation, LwalkingAnimation);
+      tommy.setDeathAnimation(deathAnimation);
+      tommy.setAttackAnimation(attackAnimation1, attackAnimation2);
+
       print(litterbug2);
       print(litterbug3);
 
@@ -382,8 +391,8 @@ function draw() {
     }
 
     /**
-    * This is the start of level 2 draw frames
-    **/
+     * This is the start of level 2 draw frames
+     **/
 
     // Draw background to avoid shadows
     background.draw();
@@ -446,11 +455,11 @@ function draw() {
 
   } else if (currentLevel == 3) {
 
-    if (init == 2){
+    if (init == 2) {
 
       /**
-      * Level 3 re-setup for level 3
-      **/
+       * Level 3 re-setup for level 3
+       **/
 
       // Remove sprites
       trash.trash.remove();
@@ -513,8 +522,8 @@ function draw() {
     }
 
     /**
-    * This is the start of level 3 draw frames
-    **/
+     * This is the start of level 3 draw frames
+     **/
 
     // Draw background to avoid shadows
     background.draw();
