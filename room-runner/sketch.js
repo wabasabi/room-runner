@@ -374,6 +374,9 @@ function draw() {
       litterbug3.setIdleImages(LB_IdleRight, LB_IdleLeft);
       litterbug3.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
 
+      print(litterbug2);
+      print(litterbug3);
+
       init++;
     }
 
@@ -449,11 +452,143 @@ function draw() {
 
   } else if (currentLevel == 3) {
 
+    if (init == 2){
+
+      /**
+      * Level 3 re-setup for level 3
+      **/
+
+      // Remove sprites
+      trash.trash.remove();
+      trash2.trash.remove();
+      trash3.trash.remove();
+      trash4.trash.remove();
+      trashcanL1.trash.remove();
+      heart1.trash.remove();
+      litterbug2.litterbug.remove();
+      litterbug3.litterbug.remove();
+
+      trash = new Trash(4.25);
+      trash.setImage(lightBulb);
+
+      trash2 = new Trash(3.33);
+      trash2.setImage(fishBones);
+
+      trash3 = new Trash(2.24);
+      trash3.setImage(glassBottle);
+
+      trash4 = new Trash(1.11);
+      trash4.setImage(can);
+
+      trash5 = new Trash(1.2);
+      trash5.setImage(appleCore);
+
+      trash6 = new Trash(1.3);
+      trash6.setImage(bananaPeel);
+
+      trash7 = new Trash(1.4);
+      trash7.setImage(glassBottle);
+
+      trash8 = new Trash(1.5);
+      trash8.setImage(trashBag);
+
+      trashcanL1 = new Trashcan(6.2, 0);
+      trashcanL1.setImage(trashcanImage);
+
+      heart1 = new Heart(6.2, 0);
+      heart1.setImage(healthImage);
+
+      // Litterbug
+      litterbug4 = new Litterbug(0.50, 2.60);
+      litterbug4.setIdleImages(LB_IdleRight, LB_IdleLeft);
+      litterbug4.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
+
+      // Litterbug 2
+      litterbug5 = new Litterbug(3.5, 5.00);
+      litterbug5.setIdleImages(LB_IdleRight, LB_IdleLeft);
+      litterbug5.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
+
+      // Litterbug 3
+
+
+      // Litterbug 4
+
+      init++;
+    }
+
+    /**
+    * This is the start of level 3 draw frames
+    **/
+
     // Draw background to avoid shadows
     background.draw();
 
+    if (cityDay.isPlaying() == false) {
+      cityDay.play();
+    }
+
     // Draw the game background
     gameGround.draw();
+
+    if (litterbug4.health > 0) {
+      tommy.checkCollisions(litterbug4);
+    }
+
+    if (litterbug5.health > 0) {
+      tommy.checkCollisions(litterbug5);
+    }
+
+    //Litterbug function calls
+    if (litterbug4.health != 0) {
+      litterbug4.patrol();
+    } else if (litterbug4.health == 0) {
+      counter++;
+    }
+    if (counter == 2) {
+      litterbugDeath.play();
+      counter--;
+    }
+
+    //Litterbug2 function calls
+    if (litterbug5.health != 0) {
+      litterbug5.patrol();
+    } else if (litterbug5.health == 0) {
+      counter++;
+    }
+    if (counter == 2) {
+      litterbugDeath.play();
+      counter--;
+    }
+
+    // Check against collisions and draw times
+    tommy.handleJumping();
+    if (litterbug4.health > 0) {
+      tommy.checkCollisions(litterbug4);
+    }
+    if (litterbug5.health > 0) {
+      tommy.checkCollisions(litterbug5);
+    }
+
+    //Trash function calls
+    trash.checkCollisions(tommy);
+    trash2.checkCollisions(tommy);
+    trash3.checkCollisions(tommy);
+    trash4.checkCollisions(tommy);
+    trash5.checkCollisions(tommy);
+    trash6.checkCollisions(tommy);
+    trash7.checkCollisions(tommy);
+    trash8.checkCollisions(tommy);
+    trashcanL1.checkCollisions(tommy);
+    heart1.checkCollisions(tommy);
+
+    // Handle keys
+    keyHandler.handleKeyPress();
+
+    // handle Melee
+    tommy.handleMelee();
+
+    // Draw all sprites
+    drawSprites();
 
   }
 }

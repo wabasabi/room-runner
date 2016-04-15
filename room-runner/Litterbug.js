@@ -86,6 +86,10 @@ function Litterbug(patrolStart, patrolEnd) {
   // Patrol - 0 is 6.27
   this.patrol = function() {
 
+    print(this.health);
+    print(this.angle);
+    print(this.patrolStart);
+    
     if (this.health <= 0) {
       this.dead = 1;
     }
