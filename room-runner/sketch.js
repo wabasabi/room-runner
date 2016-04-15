@@ -283,7 +283,9 @@ function draw() {
     keyHandler.endFadeScreen();
 
   } else if (currentLevel == 1) {
-
+    /**
+    * This is the start of level 1 draw frames
+    **/
 
     // Draw background to avoid shadows
     background.draw();
@@ -331,6 +333,7 @@ function draw() {
   } else if (currentLevel == 2) {
     if (init == 1){
 
+      // Remove sprites
       trash.trash.remove();
       trash2.trash.remove();
       trash3.trash.remove();

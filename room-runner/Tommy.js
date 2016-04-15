@@ -210,7 +210,6 @@ function Tommy(x, y, health) {
 
     if (this.tommy.overlap(collider.litterbug) ||
       collider.litterbug.overlap(this.tommy)) {
-
       if (!this.jumping && !this.falling && collider.health > 0) {
         // If attempting to jump over, don't injure tommy
         // Remove health
