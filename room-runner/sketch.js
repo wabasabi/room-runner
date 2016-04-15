@@ -345,6 +345,7 @@ function draw() {
       trashcanL1.trash.remove();
       heart1.trash.remove();
       litterbug.litterbug.remove();
+      litterbug = null;
 
       trash = new Trash(4.25);
       trash.setImage(lightBulb);
@@ -468,6 +469,8 @@ function draw() {
       heart1.trash.remove();
       litterbug2.litterbug.remove();
       litterbug3.litterbug.remove();
+      litterbug2 = null;
+      litterbug3 = null;
 
       trash = new Trash(4.25);
       trash.setImage(lightBulb);
