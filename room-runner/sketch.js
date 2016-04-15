@@ -333,6 +333,10 @@ function draw() {
   } else if (currentLevel == 2) {
     if (init == 1){
 
+      /**
+      * Level 2 re-setup for level 2
+      **/
+
       // Remove sprites
       trash.trash.remove();
       trash2.trash.remove();
@@ -354,10 +358,10 @@ function draw() {
       trash4 = new Trash(1.11);
       trash4.setImage(can);
 
-      trashcanL1 = new Trashcan(2.79, 180);
+      trashcanL1 = new Trashcan(2.79, 65);
       trashcanL1.setImage(trashcanImage);
 
-      heart1 = new Heart(2.79, 180);
+      heart1 = new Heart(2.79, 65);
       heart1.setImage(healthImage);
 
       // Litterbug
@@ -372,6 +376,11 @@ function draw() {
 
       init++;
     }
+
+    /**
+    * This is the start of level 2 draw frames
+    **/
+
     // Draw background to avoid shadows
     background.draw();
 
