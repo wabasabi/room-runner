@@ -169,6 +169,9 @@ function setup() {
     height = 600;
   }
 
+  //handles level changes
+  init = 0;
+
   // General attributes
   createCanvas(width, height);
   frameRate(60);
@@ -207,6 +210,14 @@ function setup() {
   var angle5 = 4.01;
   trashcanL1 = new Trashcan(angle5, 270);
   trashcanL1.setImage(trashcanImage);
+
+  var angle6 = 3.55;
+  trash3 = new Trash(angle6);
+  trash3.setImage(glassBottle);
+
+  var angle7 = 5.89;
+  trash4 = new Trash(angle7);
+  trash4.setImage(fishBones);
 
   // Load screen elements
   fadeValue = 0;
@@ -298,6 +309,8 @@ function draw() {
     //Trash function calls
     trash.checkCollisions(tommy);
     trash2.checkCollisions(tommy);
+    trash3.checkCollisions(tommy);
+    trash4.checkCollisions(tommy);
 
     // Handle keys
     keyHandler.handleKeyPress();
@@ -311,6 +324,10 @@ function draw() {
 
     // Draw background to avoid shadows
     background.draw();
+
+    if (cityDay.isPlaying() == false) {
+      cityDay.play();
+    }
 
     // Draw the game background
     gameGround.draw();
