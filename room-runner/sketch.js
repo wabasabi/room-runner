@@ -362,7 +362,7 @@ function draw() {
       litterbug2.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
 
       // Litterbug
-      litterbug3 = new Litterbug(5, 6.00);
+      litterbug3 = new Litterbug(4, 6.00);
       litterbug3.setIdleImages(LB_IdleRight, LB_IdleLeft);
       litterbug3.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
 
