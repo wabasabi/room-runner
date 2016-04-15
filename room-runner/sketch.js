@@ -170,7 +170,7 @@ function setup() {
   }
 
   //handles level changes
-  init = 0;
+  init = 1;
 
   // General attributes
   createCanvas(width, height);
@@ -182,6 +182,16 @@ function setup() {
 
   // Create structural components
   keyHandler = new KeyHandler();
+
+  // Trashcan Test
+  var angle5 = 4.11;
+  trashcanL1 = new Trashcan(angle5, 140);
+  trashcanL1.setImage(trashcanImage);
+
+  // Heart Level 1
+  var angle6 = 5.12;
+  heart1 = new Heart(angle5, 140);
+  heart1.setImage(healthImage);
 
   // Litterbug
   litterbug = new Litterbug(3.12, 4.67);
@@ -197,7 +207,7 @@ function setup() {
   tommy.setDeathAnimation(deathAnimation);
   tommy.setAttackAnimation(attackAnimation1, attackAnimation2);
 
-  // Trash Test
+  // Trash Tests
   var angle3 = 2.25;
   trash = new Trash(angle3);
   trash.setImage(appleCore);
@@ -205,11 +215,6 @@ function setup() {
   var angle4 = 2.98;
   trash2 = new Trash(angle4);
   trash2.setImage(bananaPeel);
-
-  // Trashcan Test
-  var angle5 = 4.01;
-  trashcanL1 = new Trashcan(angle5, 270);
-  trashcanL1.setImage(trashcanImage);
 
   var angle6 = 3.55;
   trash3 = new Trash(angle6);
@@ -302,7 +307,7 @@ function draw() {
 
     // Check against collisions and draw times
     tommy.handleJumping();
-    if (litterbug.health > 0){
+    if (litterbug.health > 0) {
       tommy.checkCollisions(litterbug);
     }
 
@@ -311,6 +316,8 @@ function draw() {
     trash2.checkCollisions(tommy);
     trash3.checkCollisions(tommy);
     trash4.checkCollisions(tommy);
+    trashcanL1.checkCollisions(tommy);
+    heart1.checkCollisions(tommy);
 
     // Handle keys
     keyHandler.handleKeyPress();
@@ -321,7 +328,48 @@ function draw() {
     // Draw all sprites
     drawSprites();
   } else if (currentLevel == 2) {
+    if (init == 1){
 
+      trash.trash.remove();
+      trash2.trash.remove();
+      trash3.trash.remove();
+      trash4.trash.remove();
+      trashcanL1.trash.remove();
+      heart1.trash.remove();
+      litterbug.litterbug.remove();
+
+      trash = new Trash(4.25);
+      trash.setImage(lightBulb);
+
+      trash2 = new Trash(3.33);
+      trash2.setImage(fishBones);
+
+      trash3 = new Trash(2.24);
+      trash3.setImage(glassBottle);
+
+      trash4 = new Trash(1.11);
+      trash4.setImage(can);
+
+      trashcanL1 = new Trashcan(2.79, 180);
+      trashcanL1.setImage(trashcanImage);
+
+      heart1 = new Heart(2.79, 180);
+      heart1.setImage(healthImage);
+
+      // Litterbug
+      litterbug2 = new Litterbug(0.50, 2.60);
+      litterbug2.setIdleImages(LB_IdleRight, LB_IdleLeft);
+      litterbug2.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
+
+      // Litterbug
+      litterbug3 = new Litterbug(5, 6.00);
+      litterbug3.setIdleImages(LB_IdleRight, LB_IdleLeft);
+      litterbug3.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
+
+      init++;
+      print(litterbug2);
+      print(tommy);
+    }
     // Draw background to avoid shadows
     background.draw();
 
@@ -332,6 +380,53 @@ function draw() {
     // Draw the game background
     gameGround.draw();
 
+    //Litterbug function calls
+    if (litterbug2.health != 0) {
+      litterbug2.patrol();
+    } else if (litterbug2.health == 0) {
+      counter++;
+    }
+    if (counter == 2) {
+      litterbugDeath.play();
+      counter--;
+    }
+
+    //Litterbug2 function calls
+    if (litterbug3.health != 0) {
+      litterbug3.patrol();
+    } else if (litterbug3.health == 0) {
+      counter++;
+    }
+    if (counter == 2) {
+      litterbugDeath.play();
+      counter--;
+    }
+
+    // Check against collisions and draw times
+    tommy.handleJumping();
+    if (litterbug.health > 0) {
+      tommy.checkCollisions(litterbug2);
+    }
+    if (litterbug2.health > 0) {
+      tommy.checkCollisions(litterbug3);
+    }
+
+    //Trash function calls
+    trash.checkCollisions(tommy);
+    trash2.checkCollisions(tommy);
+    trash3.checkCollisions(tommy);
+    trash4.checkCollisions(tommy);
+    trashcanL1.checkCollisions(tommy);
+    heart1.checkCollisions(tommy);
+
+    // Handle keys
+    keyHandler.handleKeyPress();
+
+    // handle Melee
+    tommy.handleMelee();
+
+    // Draw all sprites
+    drawSprites();
 
   } else if (currentLevel == 3) {
 
