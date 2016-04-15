@@ -136,6 +136,9 @@ function preload() {
   lightBulb = loadImage('assets/LightBulb-01.png');
   trashBag = loadImage('assets/TrashBag-01.png');
 
+  // Trashcan Assets
+  trashcanImage = loadImage('assets/TrashCan.png');
+
   // Sound assets
   punch = loadSound('assets/punch.mp3');
   pickup = loadSound('assets/pickup.mp3');
@@ -199,6 +202,11 @@ function setup() {
   var angle4 = 2.98;
   trash2 = new Trash(angle4);
   trash2.setImage(bananaPeel);
+
+  // Trashcan Test
+  var angle5 = 4.01;
+  trashcanL1 = new Trashcan(angle5, 270);
+  trashcanL1.setImage(trashcanImage);
 
   // Load screen elements
   fadeValue = 0;

@@ -2,13 +2,13 @@
  * Trashcan level traversal object
  */
 
-function Trash(angle) {
+function Trashcan(angle, rotation) {
     // litterbug's other attributes
     this.trashXYDIM = 25;
     this.centerX = width / 2;
     this.centerY = height / 2;
     this.angle = angle;
-    this.scalar = height / 2 - (this.trashXYDIM / 2) - 15;
+    this.scalar = height / 2 - (this.trashXYDIM / 2) - 50;
 
     // Sprite attribute generation
     this.trash = createSprite(angle,
@@ -18,7 +18,7 @@ function Trash(angle) {
     this.trash.position.x = round(this.centerX + cos(this.angle) * this.scalar);
     this.trash.position.y = round(this.centerY + sin(this.angle) * this.scalar);
     this.trash.rotation = 90;
-    this.trash.scale = 0.20;
+    this.trash.scale = 1;
 
     /**
     *Detects collisions between Tommy and trash throughout level
@@ -27,9 +27,9 @@ function Trash(angle) {
     */
     this.checkCollisions = function (tommy) {
         if (this.trash.overlap(tommy.tommy)){
-            this.trash.remove();
-            tommy.currentScore = tommy.currentScore + 1;
-            pickup.play();
+          if(tommy.punching){
+            print("Move to next level");
+          }
         }
     }
 
