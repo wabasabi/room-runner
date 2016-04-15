@@ -180,6 +180,16 @@ function setup() {
   // Create structural components
   keyHandler = new KeyHandler();
 
+  // Trashcan Test
+  var angle5 = 4.11;
+  trashcanL1 = new Trashcan(angle5, 140);
+  trashcanL1.setImage(trashcanImage);
+
+  // Heart Level 1
+  var angle6 = 5.12;
+  heart1 = new Heart(angle5, 140);
+  heart1.setImage(healthImage);
+
   // Litterbug
   litterbug = new Litterbug(3.12, 4.67);
   litterbug.setIdleImages(LB_IdleRight, LB_IdleLeft);
@@ -202,11 +212,6 @@ function setup() {
   var angle4 = 2.98;
   trash2 = new Trash(angle4);
   trash2.setImage(bananaPeel);
-
-  // Trashcan Test
-  var angle5 = 4.01;
-  trashcanL1 = new Trashcan(angle5, 270);
-  trashcanL1.setImage(trashcanImage);
 
   // Load screen elements
   fadeValue = 0;
@@ -291,13 +296,14 @@ function draw() {
 
     // Check against collisions and draw times
     tommy.handleJumping();
-    if (litterbug.health > 0){
+    if (litterbug.health > 0) {
       tommy.checkCollisions(litterbug);
     }
 
     //Trash function calls
     trash.checkCollisions(tommy);
     trash2.checkCollisions(tommy);
+    trashcanL1.checkCollisions(tommy);
 
     // Handle keys
     keyHandler.handleKeyPress();
