@@ -396,14 +396,6 @@ function draw() {
     // Draw the game background
     gameGround.draw();
 
-    if (litterbug2.health > 0) {
-      tommy.checkCollisions(litterbug2);
-    }
-
-    if (litterbug3.health > 0) {
-      tommy.checkCollisions(litterbug3);
-    }
-
     //Litterbug function calls
     if (litterbug2.health != 0) {
       litterbug2.patrol();
