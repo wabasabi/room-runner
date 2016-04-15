@@ -86,8 +86,12 @@ function Litterbug(patrolStart, patrolEnd) {
   // Patrol - 0 is 6.27
   this.patrol = function() {
 
-    if(this.angle <= this.patrolStart || this.angle >= this.patrolEnd){
-      print("Out of range, Litterbug has stopped...");
+    if(this.angle < this.patrolStart || this.angle > this.patrolEnd){
+      // Set the angle to the patrolStart
+      this.angle = this.patrolStart + 0.1;
+      print(this.patrolStart);
+      print(this.angle);
+      print(this.patrolEnd);
     }
 
     if (this.health <= 0) {
