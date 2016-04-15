@@ -266,6 +266,7 @@ function Tommy(x, y, health) {
       this.tommy.rotation -= this.spin;
       this.resetRotation();
       this.updateHearts();
+      this.updateScore();
     }
   }
 
