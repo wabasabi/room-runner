@@ -27,7 +27,7 @@ function Trashcan(angle, rotation) {
     */
     this.checkCollisions = function (tommy) {
         if (this.trash.overlap(tommy.tommy)){
-          if(keyWentDown('SPACE')){
+          if(keyWentDown('DOWN_ARROW')){
             currentLevel++;
             changeLevel.play();
           }

@@ -237,6 +237,9 @@ function setup() {
   death.setVolume(1);
   litterbugDeath.setVolume(1);
   counter = 1;
+
+  // Bugfix audio, reset litterbug health once per level
+  hotfix = 1;
 }
 
 // Looping draw method, main runner for game
@@ -314,6 +317,12 @@ function draw() {
       tommy.checkCollisions(litterbug);
     }
 
+    // Handle keys
+    keyHandler.handleKeyPress();
+
+    // handle Melee
+    tommy.handleMelee();
+
     //Trash function calls
     trash.checkCollisions(tommy);
     trash2.checkCollisions(tommy);
@@ -322,14 +331,9 @@ function draw() {
     trashcanL1.checkCollisions(tommy);
     heart1.checkCollisions(tommy);
 
-    // Handle keys
-    keyHandler.handleKeyPress();
-
-    // handle Melee
-    tommy.handleMelee();
-
     // Draw all sprites
     drawSprites();
+
   } else if (currentLevel == 2) {
     if (init == 1) {
 
@@ -377,8 +381,10 @@ function draw() {
 
       // Try re-initializing only tommy's Sprite
       var oldRotation = tommy.tommy.rotation;
+      var oldx = tommy.tommy.position.x;
+      var oldy = tommy.tommy.position.y;
       tommy.tommy.remove();
-      tommy.tommy = createSprite(width / 2 + height / 2,
+      tommy.tommy = createSprite(oldx, oldy,
         tommy.tommyXYDIM, tommy.tommyXYDIM);
       tommy.tommy.rotation = oldRotation;
       tommy.setIdleImages(TT_IdleRight, TT_IdleLeft);
@@ -390,6 +396,7 @@ function draw() {
       print(litterbug3);
 
       init++;
+      return;
     }
 
     /**
@@ -408,6 +415,13 @@ function draw() {
     gameGround.draw();
 
     //Litterbug function calls
+    if (litterbug2.health > 0) {
+      litterbug2.patrol();
+    }
+    if (litterbug3.health > 0) {
+      litterbug3.patrol();
+    }
+    /**
     if (litterbug2.health != 0) {
       litterbug2.patrol();
     } else if (litterbug2.health == 0) {
@@ -417,17 +431,7 @@ function draw() {
       litterbugDeath.play();
       counter--;
     }
-
-    //Litterbug2 function calls
-    if (litterbug3.health != 0) {
-      litterbug3.patrol();
-    } else if (litterbug3.health == 0) {
-      counter++;
-    }
-    if (counter == 2) {
-      litterbugDeath.play();
-      counter--;
-    }
+**/
 
     // Check against collisions and draw times
     tommy.handleJumping();
@@ -438,6 +442,12 @@ function draw() {
       tommy.checkCollisions(litterbug3);
     }
 
+    // Handle keys
+    keyHandler.handleKeyPress();
+
+    // handle Melee
+    tommy.handleMelee();
+
     //Trash function calls
     trash.checkCollisions(tommy);
     trash2.checkCollisions(tommy);
@@ -445,12 +455,6 @@ function draw() {
     trash4.checkCollisions(tommy);
     trashcanL1.checkCollisions(tommy);
     heart1.checkCollisions(tommy);
-
-    // Handle keys
-    keyHandler.handleKeyPress();
-
-    // handle Melee
-    tommy.handleMelee();
 
     // Draw all sprites
     drawSprites();

@@ -19,8 +19,10 @@ function Litterbug(patrolStart, patrolEnd) {
   this.patrolStart = patrolStart;
   this.patrolEnd = patrolEnd;
 
+  var x = round(this.centerX + cos(this.angle) * this.scalar);
+  var y = round(this.centerY + sin(this.angle) * this.scalar);
   // Sprite attribute generation
-  this.litterbug = createSprite(this.angle,
+  this.litterbug = createSprite(x, y,
     this.litterbugXYDIM, this.litterbugXYDIM);
 
   // Sprite animations, initialized in method
@@ -86,31 +88,6 @@ function Litterbug(patrolStart, patrolEnd) {
   // Patrol - 0 is 6.27
   this.patrol = function() {
 
-    if (this.angle < this.patrolStart || this.angle > this.patrolEnd) {
-      // Set the angle to the patrolStart only to fix initialization glitch
-      //this.angle = this.patrolStart + 0.1;
-      print(this.patrolStart);
-      print(this.angle);
-      print(this.patrolEnd);
-
-      // Reset their health
-      this.health = 2;
-    }
-    /**
-        if (this.health <= 0) {
-          this.dead = 1;
-        }
-
-
-        if (this.dead == 1) {
-          if (litterbugDeath.isPlaying() == false) {
-            litterbugDeath.play();
-          } else if (litterbugDeath.isPlaying() == true) {
-
-          }
-          this.dead = 2;
-        }
-    **/
     if (this.angle <= this.patrolStart) {
       this.MoveRight();
     }
