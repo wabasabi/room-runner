@@ -368,8 +368,6 @@ function draw() {
       litterbug3.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
 
       init++;
-      print(litterbug2);
-      print(tommy);
     }
     // Draw background to avoid shadows
     background.draw();
@@ -382,11 +380,11 @@ function draw() {
     gameGround.draw();
 
     if (litterbug2.health > 0) {
-      tommy.checkCollisions(litterbug);
+      tommy.checkCollisions(litterbug2);
     }
 
     if (litterbug3.health > 0) {
-      tommy.checkCollisions(litterbug);
+      tommy.checkCollisions(litterbug3);
     }
 
     //Litterbug function calls
