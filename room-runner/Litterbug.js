@@ -8,7 +8,7 @@ function Litterbug(patrolStart, patrolEnd) {
   this.litterbugXYDIM = 150;
   this.centerX = width / 2;
   this.centerY = height / 2;
-  this.angle = patrolStart;
+  this.angle = patrolEnd - (patrolStart / 2);
   this.scalar = height / 2 - (this.litterbugXYDIM / 2) - 10;
   this.speed = 1 / (57.2958 * 2.75);
   this.spin = 0.4;
@@ -86,33 +86,31 @@ function Litterbug(patrolStart, patrolEnd) {
   // Patrol - 0 is 6.27
   this.patrol = function() {
 
-    if(this.angle < this.patrolStart || this.angle > this.patrolEnd){
-      // Set the angle to the patrolStart
-      this.angle = this.patrolStart + 0.1;
+    if (this.angle < this.patrolStart || this.angle > this.patrolEnd) {
+      // Set the angle to the patrolStart only to fix initialization glitch
+      //this.angle = this.patrolStart + 0.1;
       print(this.patrolStart);
       print(this.angle);
       print(this.patrolEnd);
+
+      // Reset their health
+      this.health = 2;
     }
+    /**
+        if (this.health <= 0) {
+          this.dead = 1;
+        }
 
-    if (this.health <= 0) {
-      this.dead = 1;
-    }
 
-    if (this.dead == 1){
-      if (litterbugDeath.isPlaying() == false){
-        litterbugDeath.play();
-      }
-      else if (litterbugDeath.isPlaying() == true) {
+        if (this.dead == 1) {
+          if (litterbugDeath.isPlaying() == false) {
+            litterbugDeath.play();
+          } else if (litterbugDeath.isPlaying() == true) {
 
-      }
-      this.dead = 2;
-    }
-
-    if (this.dead == 2){
-      this.dead = 3;
-      return;
-    }
-
+          }
+          this.dead = 2;
+        }
+    **/
     if (this.angle <= this.patrolStart) {
       this.MoveRight();
     }

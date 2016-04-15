@@ -366,19 +366,21 @@ function draw() {
       heart1.setImage(healthImage);
 
       // Litterbug
-      litterbug2 = new Litterbug(2.60, 3.60);
+      litterbug2 = new Litterbug(1.60, 2.60);
       litterbug2.setIdleImages(LB_IdleRight, LB_IdleLeft);
       litterbug2.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
 
       // Litterbug
-      litterbug3 = new Litterbug(3.5, 5.00);
+      litterbug3 = new Litterbug(2.5, 4.00);
       litterbug3.setIdleImages(LB_IdleRight, LB_IdleLeft);
       litterbug3.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
 
       // Try re-initializing only tommy's Sprite
+      var oldRotation = tommy.tommy.rotation;
       tommy.tommy.remove();
       tommy.tommy = createSprite(width / 2 + height / 2,
         tommy.tommyXYDIM, tommy.tommyXYDIM);
+      tommy.tommy.rotation = oldRotation;
       tommy.setIdleImages(TT_IdleRight, TT_IdleLeft);
       tommy.setWalkingAnimations(RwalkingAnimation, LwalkingAnimation);
       tommy.setDeathAnimation(deathAnimation);
