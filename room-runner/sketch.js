@@ -284,8 +284,6 @@ function draw() {
 
   } else if (currentLevel == 1) {
 
-    //TODO DEBUG DONT LEAVE THIS
-    currentLevel = 2;
 
     // Draw background to avoid shadows
     background.draw();
@@ -407,10 +405,10 @@ function draw() {
 
     // Check against collisions and draw times
     tommy.handleJumping();
-    if (litterbug.health > 0) {
+    if (litterbug2.health > 0) {
       tommy.checkCollisions(litterbug2);
     }
-    if (litterbug2.health > 0) {
+    if (litterbug3.health > 0) {
       tommy.checkCollisions(litterbug3);
     }
 
