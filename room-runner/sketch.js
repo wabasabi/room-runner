@@ -366,7 +366,7 @@ function draw() {
       heart1.setImage(healthImage);
 
       // Litterbug
-      litterbug2 = new Litterbug(0.50, 2.60);
+      litterbug2 = new Litterbug(2.60, 3.60);
       litterbug2.setIdleImages(LB_IdleRight, LB_IdleLeft);
       litterbug2.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
 

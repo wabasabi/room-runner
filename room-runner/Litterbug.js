@@ -8,7 +8,7 @@ function Litterbug(patrolStart, patrolEnd) {
   this.litterbugXYDIM = 150;
   this.centerX = width / 2;
   this.centerY = height / 2;
-  this.angle = patrolEnd - (patrolStart/2);
+  this.angle = patrolStart;
   this.scalar = height / 2 - (this.litterbugXYDIM / 2) - 10;
   this.speed = 1 / (57.2958 * 2.75);
   this.spin = 0.4;
@@ -86,9 +86,9 @@ function Litterbug(patrolStart, patrolEnd) {
   // Patrol - 0 is 6.27
   this.patrol = function() {
 
-    print("Patrol Start: " + this.patrolStart);
-    print("Current Loc: " + this.angle);
-    print("Patrol End: " + this.patrolEnd);
+    if(this.angle <= this.patrolStart || this.angle >= this.patrolEnd){
+      print("Out of range, Litterbug has stopped...");
+    }
 
     if (this.health <= 0) {
       this.dead = 1;
