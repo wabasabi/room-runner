@@ -8,7 +8,7 @@ function Litterbug(patrolStart, patrolEnd) {
   this.litterbugXYDIM = 150;
   this.centerX = width / 2;
   this.centerY = height / 2;
-  this.angle = patrolStart;
+  this.angle = patrolEnd - (patrolStart/2);
   this.scalar = height / 2 - (this.litterbugXYDIM / 2) - 10;
   this.speed = 1 / (57.2958 * 2.75);
   this.spin = 0.4;
@@ -89,7 +89,7 @@ function Litterbug(patrolStart, patrolEnd) {
     print(this.health);
     print(this.angle);
     print(this.patrolStart);
-    
+
     if (this.health <= 0) {
       this.dead = 1;
     }

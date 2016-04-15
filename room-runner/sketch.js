@@ -388,6 +388,7 @@ function draw() {
     background.draw();
 
     if (cityDay.isPlaying() == false) {
+      cityNight.pause();
       cityDay.play();
     }
 
