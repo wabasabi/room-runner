@@ -210,7 +210,7 @@ function setup() {
   blam1 = new Blam();
   blam1.setImage(attack1, attack2, attack3);
 
-  // Trash Tests
+  // Trash for level 1
   var angle3 = 2.25;
   trash = new Trash(angle3);
   trash.setImage(appleCore);
@@ -226,6 +226,14 @@ function setup() {
   var angle7 = 5.89;
   trash4 = new Trash(angle7);
   trash4.setImage(fishBones);
+
+  var angle8 = 4.55;
+  trash5 = new Trash(angle8);
+  trash5.setImage(trashBag);
+
+  var angle9 = 1.00;
+  trash6 = new Trash(angle9);
+  trash6.setImage(lightBulb);
 
   // Load screen elements
   fadeValue = 0;
@@ -331,6 +339,8 @@ function draw() {
     trash2.checkCollisions(tommy);
     trash3.checkCollisions(tommy);
     trash4.checkCollisions(tommy);
+    trash5.checkCollisions(tommy);
+    trash6.checkCollisions(tommy);
     trashcanL1.checkCollisions(tommy);
     heart1.checkCollisions(tommy);
 
@@ -349,6 +359,8 @@ function draw() {
       trash2.trash.remove();
       trash3.trash.remove();
       trash4.trash.remove();
+      trash5.trash.remove();
+      trash6.trash.remove();
       trashcanL1.trash.remove();
       heart1.trash.remove();
       litterbug.litterbug.remove();
@@ -363,8 +375,23 @@ function draw() {
       trash3 = new Trash(2.24);
       trash3.setImage(glassBottle);
 
-      trash4 = new Trash(1.11);
+      trash4 = new Trash(0.68);
       trash4.setImage(can);
+
+      trash5 = new Trash(3.79);
+      trash5.setImage(appleCore);
+
+      trash6 = new Trash(5.21);
+      trash6.setImage(bananaPeel);
+
+      trash7 = new Trash(5.99);
+      trash7.setImage(trashBag);
+
+      trash8 = new Trash(5.70);
+      trash8.setImage(trashBag);
+
+      trash9 = new Trash(1.11);
+      trash9.setImage(trashBag);
 
       trashcanL1 = new Trashcan(2.79, 65);
       trashcanL1.setImage(trashcanImage);
@@ -453,6 +480,11 @@ function draw() {
     trash2.checkCollisions(tommy);
     trash3.checkCollisions(tommy);
     trash4.checkCollisions(tommy);
+    trash5.checkCollisions(tommy);
+    trash6.checkCollisions(tommy);
+    trash7.checkCollisions(tommy);
+    trash8.checkCollisions(tommy);
+    trash9.checkCollisions(tommy);
     trashcanL1.checkCollisions(tommy);
     heart1.checkCollisions(tommy);
 
@@ -472,6 +504,11 @@ function draw() {
       trash2.trash.remove();
       trash3.trash.remove();
       trash4.trash.remove();
+      trash5.trash.remove();
+      trash6.trash.remove();
+      trash7.trash.remove();
+      trash8.trash.remove();
+      trash9.trash.remove();
       trashcanL1.trash.remove();
       heart1.trash.remove();
       litterbug2.litterbug.remove();
