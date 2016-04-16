@@ -29,6 +29,8 @@ function Tommy(x, y, health) {
     this.scoreboardSymbol = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
     this.scoreSymbol = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
     this.equalsSymbol = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
+    this.oneSymbol = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
+    this.tenSymbol = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
     this.hp1 = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
     this.hp2 = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
     this.hp3 = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
@@ -92,6 +94,34 @@ function Tommy(x, y, health) {
     this.equalsSymbol.position.x = round(this.centerX + cos(angleScore2) * scalarScore2);
     this.equalsSymbol.position.y = round(this.centerY + sin(angleScore2) * scalarScore2);
     this.equalsSymbol.rotation = 270;
+
+    // Set possible images for ones and tens column values
+    this.oneSymbol.addImage("one", oneImage);
+    this.oneSymbol.addImage("two", twoImage);
+    this.oneSymbol.addImage("three", threeImage);
+    this.oneSymbol.addImage("four", fourImage);
+    this.oneSymbol.addImage("five", fiveImage);
+    this.oneSymbol.addImage("six", sixImage);
+    this.oneSymbol.addImage("seven", sevenImage);
+    this.oneSymbol.addImage("eight", eightImage);
+    this.oneSymbol.addImage("nine", nineImage);
+    this.oneSymbol.addImage("zero", zeroImage);
+    this.oneSymbol.scale = (0.090);
+
+    this.tenSymbol.addImage("one", oneImage);
+    this.tenSymbol.addImage("two", twoImage);
+    this.tenSymbol.addImage("three", threeImage);
+    this.tenSymbol.addImage("four", fourImage);
+    this.tenSymbol.addImage("six", sixImage);
+    this.tenSymbol.addImage("seven", sevenImage);
+    this.tenSymbol.addImage("eight", eightImage);
+    this.tenSymbol.addImage("nine", nineImage);
+    this.tenSymbol.addImage("zero", zeroImage);
+    this.tenSymbol.scale = (0.090);
+
+    // Set to 0 to initialize
+    this.oneSymbol.changeImage("zero");
+    this.tenSymbol.changeImage("zero");
   }
 
   /**
@@ -102,8 +132,11 @@ function Tommy(x, y, health) {
     var scalar1 = this.scalar - 100;
     var angle2 = this.angle + .125;
     var scalar2 = this.scalar - 100;
-    var angle3 = this.angle - 0.15;
-    var scalar3 = this.scalar - 175;
+
+    var angle3 = this.angle + 0.02;
+    var scalar3 = this.scalar - 105;
+    var angle4 = this.angle + 0.065;
+    var scalar4 = this.scalar - 105;
 
     var scoreboardAngle = this.angle;
     var scoreboardScalar = this.scalar - 105;
@@ -119,6 +152,112 @@ function Tommy(x, y, health) {
     this.equalsSymbol.position.y = round(this.centerY + sin(angle2) * scalar2);
     this.equalsSymbol.rotation = this.tommy.rotation;
 
+    this.oneSymbol.position.x = round(this.centerX + cos(angle3) * scalar3);
+    this.oneSymbol.position.y = round(this.centerY + sin(angle3) * scalar3);
+    this.oneSymbol.rotation = this.tommy.rotation;
+
+    this.tenSymbol.position.x = round(this.centerX + cos(angle4) * scalar4);
+    this.tenSymbol.position.y = round(this.centerY + sin(angle4) * scalar4);
+    this.tenSymbol.rotation = this.tommy.rotation;
+
+    // Set the ones and tens based on score
+    {
+      // If the score is less than 10, the tens column will be invisible
+      if (this.currentScore < 10) {
+        this.tenSymbol.visible = false;
+      } else {
+        this.tenSymbol.visible = true;
+      }
+
+      // Set the ones for each trash picked up
+      if(this.currentScore == 1){
+        this.oneSymbol.changeImage("one");
+      } else if(this.currentScore == 2){
+        this.oneSymbol.changeImage("two");
+      } else if(this.currentScore == 3){
+        this.oneSymbol.changeImage("three");
+      } else if(this.currentScore == 4){
+        this.oneSymbol.changeImage("four");
+      } else if(this.currentScore == 5){
+        this.oneSymbol.changeImage("five");
+      } else if(this.currentScore == 6){
+        this.oneSymbol.changeImage("six");
+      } else if(this.currentScore == 7){
+        this.oneSymbol.changeImage("seven");
+      } else if(this.currentScore == 8){
+        this.oneSymbol.changeImage("eight");
+      } else if(this.currentScore == 9){
+        this.oneSymbol.changeImage("nine");
+      } else if(this.currentScore == 0){
+        this.oneSymbol.changeImage("zero");
+      }
+
+      // Set ones and tens for 10-19
+      if(this.currentScore == 11){
+        this.tenSymbol.changeImage("one");
+        this.oneSymbol.changeImage("one");
+      } else if(this.currentScore == 12){
+        this.tenSymbol.changeImage("one");
+        this.oneSymbol.changeImage("two");
+      } else if(this.currentScore == 13){
+        this.tenSymbol.changeImage("one");
+        this.oneSymbol.changeImage("three");
+      } else if(this.currentScore == 14){
+        this.tenSymbol.changeImage("one");
+        this.oneSymbol.changeImage("four");
+      } else if(this.currentScore == 15){
+        this.tenSymbol.changeImage("one");
+        this.oneSymbol.changeImage("five");
+      } else if(this.currentScore == 16){
+        this.tenSymbol.changeImage("one");
+        this.oneSymbol.changeImage("six");
+      } else if(this.currentScore == 17){
+        this.tenSymbol.changeImage("one");
+        this.oneSymbol.changeImage("seven");
+      } else if(this.currentScore == 18){
+        this.tenSymbol.changeImage("one");
+        this.oneSymbol.changeImage("eight");
+      } else if(this.currentScore == 19){
+        this.tenSymbol.changeImage("one");
+        this.oneSymbol.changeImage("nine");
+      } else if(this.currentScore == 10){
+        this.tenSymbol.changeImage("one");
+        this.oneSymbol.changeImage("zero");
+      }
+
+      // Set ones and tens for 10-19
+      if(this.currentScore == 21){
+        this.tenSymbol.changeImage("two");
+        this.oneSymbol.changeImage("one");
+      } else if(this.currentScore == 22){
+        this.tenSymbol.changeImage("two");
+        this.oneSymbol.changeImage("two");
+      } else if(this.currentScore == 23){
+        this.tenSymbol.changeImage("two");
+        this.oneSymbol.changeImage("three");
+      } else if(this.currentScore == 24){
+        this.tenSymbol.changeImage("two");
+        this.oneSymbol.changeImage("four");
+      } else if(this.currentScore == 25){
+        this.tenSymbol.changeImage("two");
+        this.oneSymbol.changeImage("five");
+      } else if(this.currentScore == 26){
+        this.tenSymbol.changeImage("two");
+        this.oneSymbol.changeImage("six");
+      } else if(this.currentScore == 27){
+        this.tenSymbol.changeImage("two");
+        this.oneSymbol.changeImage("seven");
+      } else if(this.currentScore == 28){
+        this.tenSymbol.changeImage("two");
+        this.oneSymbol.changeImage("eight");
+      } else if(this.currentScore == 29){
+        this.tenSymbol.changeImage("two");
+        this.oneSymbol.changeImage("nine");
+      } else if(this.currentScore == 20){
+        this.tenSymbol.changeImage("two");
+        this.oneSymbol.changeImage("zero");
+      }
+    }
   }
 
   // Initial Heart positions

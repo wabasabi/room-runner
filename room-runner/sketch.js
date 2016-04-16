@@ -87,6 +87,16 @@ function preload() {
   healthImage = loadImage('assets/Lives-01.png');
   recycleImage = loadImage('assets/RecycleCollects-01.png');
   equalsImage = loadImage('assets/equals.png');
+  oneImage = loadImage('assets/one.png');
+  twoImage = loadImage('assets/two.png');
+  threeImage = loadImage('assets/three.png');
+  fourImage = loadImage('assets/four.png');
+  fiveImage = loadImage('assets/five.png');
+  sixImage = loadImage('assets/six.png');
+  sevenImage = loadImage('assets/seven.png');
+  eightImage = loadImage('assets/eight.png');
+  nineImage = loadImage('assets/nine.png');
+  zeroImage = loadImage('assets/zero.png');
 
   // Litterbug assets
   LB_IdleRight = loadImage('assets/LB_Idle.png');
