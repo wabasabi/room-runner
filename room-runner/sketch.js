@@ -88,7 +88,6 @@ function preload() {
   recycleImage = loadImage('assets/RecycleCollects-01.png');
   equalsImage = loadImage('assets/equals.png');
 
-
   // Litterbug assets
   LB_IdleRight = loadImage('assets/LB_Idle.png');
   LB_IdleLeft = loadImage('assets/LB_Idle.png');
@@ -206,6 +205,10 @@ function setup() {
   tommy.setWalkingAnimations(RwalkingAnimation, LwalkingAnimation);
   tommy.setDeathAnimation(deathAnimation);
   tommy.setAttackAnimation(attackAnimation1, attackAnimation2);
+
+  // Blam sprites are drawn based on tommy
+  blam1 = new Blam();
+  blam1.setImage(attack1);
 
   // Trash Tests
   var angle3 = 2.25;

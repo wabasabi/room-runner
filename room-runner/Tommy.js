@@ -20,8 +20,10 @@ function Tommy(x, y, health) {
       this.tommyXYDIM, this.tommyXYDIM);
 
     // Health information
-
     this.healthList = [];
+
+    // Display Blam variable
+    displayBlam = false;
 
     // Sprite generation for scoreboard.
     this.scoreboardSymbol = createSprite(x, y, this.tommyXYDIM / 3, this.tommyXYDIM / 3);
@@ -183,10 +185,13 @@ function Tommy(x, y, health) {
           if (collider.walkingRight) {
             collider.angle -= 0.20;
             collider.health -= 1;
+            // draw blam image
+            blam1.blam.visible = true;
           } else if (collider.walkingLeft) {
             collider.angle += 0.20;
             collider.health -= 1;
             // draw blam image
+            blam1.blam.visible = true;
           }
         }
       } else if (this.angle < 0) {
@@ -198,10 +203,12 @@ function Tommy(x, y, health) {
             collider.angle -= 0.20;
             collider.health -= 1;
             // draw blam image
+            blam1.blam.visible = true;
           } else if (collider.walkingLeft) {
             collider.angle += 0.20;
             collider.health -= 1;
             // draw blam image
+            blam1.blam.visible = true;
           }
         }
       }
@@ -415,6 +422,7 @@ function Tommy(x, y, health) {
       }
       this.updateScore();
       this.updateHearts();
+      blam1.update();
     }
 
     // When max jumpheight is reached, start falling
@@ -428,6 +436,7 @@ function Tommy(x, y, health) {
       this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
       this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
       if (this.punchDistance == 0) {
+        blam1.blam.visible = false;
         this.unpunching = false;
         if (this.facingLeft) {
           this.tommy.changeImage("IdleRight");
