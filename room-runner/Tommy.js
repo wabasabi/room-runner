@@ -436,7 +436,10 @@ function Tommy(x, y, health) {
       this.tommy.position.x = round(this.centerX + cos(this.angle) * this.scalar);
       this.tommy.position.y = round(this.centerY + sin(this.angle) * this.scalar);
       if (this.punchDistance == 0) {
+        // Re-hide blam and change blamImage
         blam1.blam.visible = false;
+        blam1.updateBlamImage();
+
         this.unpunching = false;
         if (this.facingLeft) {
           this.tommy.changeImage("IdleRight");

@@ -208,7 +208,7 @@ function setup() {
 
   // Blam sprites are drawn based on tommy
   blam1 = new Blam();
-  blam1.setImage(attack1);
+  blam1.setImage(attack1, attack2, attack3);
 
   // Trash Tests
   var angle3 = 2.25;
@@ -394,9 +394,6 @@ function draw() {
       tommy.setWalkingAnimations(RwalkingAnimation, LwalkingAnimation);
       tommy.setDeathAnimation(deathAnimation);
       tommy.setAttackAnimation(attackAnimation1, attackAnimation2);
-
-      print(litterbug2);
-      print(litterbug3);
 
       init++;
       return;
