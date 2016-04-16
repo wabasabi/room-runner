@@ -175,27 +175,17 @@ function Tommy(x, y, health) {
 
     // If attacking, don't damage tommy
     if (this.punching || this.unpunching) {
-    print("Tommy punched!");
       // Try to reach litterbug programatically
       if (this.angle >= 0) {
         // Positive
         if (this.angle + 0.4 > collider.angle && this.angle - 0.4 < collider.angle) {
           // Knock litterbug back
           if (collider.walkingRight) {
-            print("Litterbug hit at " + collider.angle);
-            print("because " + (this.angle + 0.4));
-            print("is greater than " + collider.angle);
-            print("and it is less than " + (this.angle - 0.4));
             collider.angle -= 0.20;
             collider.health -= 1;
-            print(collider.angle);
           } else if (collider.walkingLeft) {
-            print("Litterbug hit at " + collider.angle);
-            print("because " + (this.angle + 0.4));
-            print("is greater than " + collider.angle);
             collider.angle += 0.20;
             collider.health -= 1;
-            print(collider.angle);
             // draw blam image
           }
         }
@@ -219,7 +209,6 @@ function Tommy(x, y, health) {
 
     if (this.tommy.overlap(collider.litterbug) ||
       collider.litterbug.overlap(this.tommy)) {
-        print("Tommy and litterbug overlapped");
       if (!this.jumping && !this.falling && collider.health > 0) {
         // If attempting to jump over, don't injure tommy
         // Remove health
