@@ -156,6 +156,7 @@ function preload() {
   death = loadSound('assets/death.mp3');
   cityNight = loadSound('assets/city-noise.mp3');
   cityDay = loadSound('assets/city-background.mp3');
+  farmLand = loadSound('assets/farm.mp3');
   litterbugDeath = loadSound('assets/litterbug-death.mp3');
 }
 
@@ -535,34 +536,34 @@ function draw() {
       trash3 = new Trash(2.24);
       trash3.setImage(glassBottle);
 
-      trash4 = new Trash(1.11);
+      trash4 = new Trash(2.11);
       trash4.setImage(can);
 
-      trash5 = new Trash(1.2);
+      trash5 = new Trash(5.2);
       trash5.setImage(appleCore);
 
-      trash6 = new Trash(1.3);
+      trash6 = new Trash(6.12);
       trash6.setImage(bananaPeel);
 
-      trash7 = new Trash(1.4);
+      trash7 = new Trash(0.4);
       trash7.setImage(glassBottle);
 
-      trash8 = new Trash(1.5);
+      trash8 = new Trash(0.95);
       trash8.setImage(trashBag);
 
-      trashcanL1 = new Trashcan(6.2, 0);
+      trashcanL1 = new Trashcan(6.2, 270);
       trashcanL1.setImage(trashcanImage);
 
       heart1 = new Heart(6.2, 0);
       heart1.setImage(healthImage);
 
       // Litterbug
-      litterbug4 = new Litterbug(0.50, 2.60);
+      litterbug4 = new Litterbug(2.50, 4.60);
       litterbug4.setIdleImages(LB_IdleRight, LB_IdleLeft);
       litterbug4.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
 
       // Litterbug 2
-      litterbug5 = new Litterbug(3.5, 5.00);
+      litterbug5 = new Litterbug(4.5, 6.00);
       litterbug5.setIdleImages(LB_IdleRight, LB_IdleLeft);
       litterbug5.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
 
@@ -581,8 +582,8 @@ function draw() {
     // Draw background to avoid shadows
     background.draw();
 
-    if (cityDay.isPlaying() == false) {
-      cityDay.play();
+    if (farmLand.isPlaying() == false) {
+      farmLand.play();
     }
 
     // Draw the game background
