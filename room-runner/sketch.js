@@ -168,7 +168,7 @@ function setup() {
 
   // Boolean flags for setup
   dome = true; // Set whether or desktop or dome
-  debug = true; // Set whether to show debug features(FPS, background, etc.)
+  debug = false; // Set whether to show debug features(FPS, background, etc.)
 
   // Display for dome or PC
   if (dome) {
