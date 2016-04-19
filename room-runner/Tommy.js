@@ -170,90 +170,90 @@ function Tommy(x, y, health) {
       }
 
       // Set the ones for each trash picked up
-      if(this.currentScore == 1){
+      if (this.currentScore == 1) {
         this.oneSymbol.changeImage("one");
-      } else if(this.currentScore == 2){
+      } else if (this.currentScore == 2) {
         this.oneSymbol.changeImage("two");
-      } else if(this.currentScore == 3){
+      } else if (this.currentScore == 3) {
         this.oneSymbol.changeImage("three");
-      } else if(this.currentScore == 4){
+      } else if (this.currentScore == 4) {
         this.oneSymbol.changeImage("four");
-      } else if(this.currentScore == 5){
+      } else if (this.currentScore == 5) {
         this.oneSymbol.changeImage("five");
-      } else if(this.currentScore == 6){
+      } else if (this.currentScore == 6) {
         this.oneSymbol.changeImage("six");
-      } else if(this.currentScore == 7){
+      } else if (this.currentScore == 7) {
         this.oneSymbol.changeImage("seven");
-      } else if(this.currentScore == 8){
+      } else if (this.currentScore == 8) {
         this.oneSymbol.changeImage("eight");
-      } else if(this.currentScore == 9){
+      } else if (this.currentScore == 9) {
         this.oneSymbol.changeImage("nine");
-      } else if(this.currentScore == 0){
+      } else if (this.currentScore == 0) {
         this.oneSymbol.changeImage("zero");
       }
 
       // Set ones and tens for 10-19
-      if(this.currentScore == 11){
+      if (this.currentScore == 11) {
         this.tenSymbol.changeImage("one");
         this.oneSymbol.changeImage("one");
-      } else if(this.currentScore == 12){
+      } else if (this.currentScore == 12) {
         this.tenSymbol.changeImage("one");
         this.oneSymbol.changeImage("two");
-      } else if(this.currentScore == 13){
+      } else if (this.currentScore == 13) {
         this.tenSymbol.changeImage("one");
         this.oneSymbol.changeImage("three");
-      } else if(this.currentScore == 14){
+      } else if (this.currentScore == 14) {
         this.tenSymbol.changeImage("one");
         this.oneSymbol.changeImage("four");
-      } else if(this.currentScore == 15){
+      } else if (this.currentScore == 15) {
         this.tenSymbol.changeImage("one");
         this.oneSymbol.changeImage("five");
-      } else if(this.currentScore == 16){
+      } else if (this.currentScore == 16) {
         this.tenSymbol.changeImage("one");
         this.oneSymbol.changeImage("six");
-      } else if(this.currentScore == 17){
+      } else if (this.currentScore == 17) {
         this.tenSymbol.changeImage("one");
         this.oneSymbol.changeImage("seven");
-      } else if(this.currentScore == 18){
+      } else if (this.currentScore == 18) {
         this.tenSymbol.changeImage("one");
         this.oneSymbol.changeImage("eight");
-      } else if(this.currentScore == 19){
+      } else if (this.currentScore == 19) {
         this.tenSymbol.changeImage("one");
         this.oneSymbol.changeImage("nine");
-      } else if(this.currentScore == 10){
+      } else if (this.currentScore == 10) {
         this.tenSymbol.changeImage("one");
         this.oneSymbol.changeImage("zero");
       }
 
       // Set ones and tens for 10-19
-      if(this.currentScore == 21){
+      if (this.currentScore == 21) {
         this.tenSymbol.changeImage("two");
         this.oneSymbol.changeImage("one");
-      } else if(this.currentScore == 22){
+      } else if (this.currentScore == 22) {
         this.tenSymbol.changeImage("two");
         this.oneSymbol.changeImage("two");
-      } else if(this.currentScore == 23){
+      } else if (this.currentScore == 23) {
         this.tenSymbol.changeImage("two");
         this.oneSymbol.changeImage("three");
-      } else if(this.currentScore == 24){
+      } else if (this.currentScore == 24) {
         this.tenSymbol.changeImage("two");
         this.oneSymbol.changeImage("four");
-      } else if(this.currentScore == 25){
+      } else if (this.currentScore == 25) {
         this.tenSymbol.changeImage("two");
         this.oneSymbol.changeImage("five");
-      } else if(this.currentScore == 26){
+      } else if (this.currentScore == 26) {
         this.tenSymbol.changeImage("two");
         this.oneSymbol.changeImage("six");
-      } else if(this.currentScore == 27){
+      } else if (this.currentScore == 27) {
         this.tenSymbol.changeImage("two");
         this.oneSymbol.changeImage("seven");
-      } else if(this.currentScore == 28){
+      } else if (this.currentScore == 28) {
         this.tenSymbol.changeImage("two");
         this.oneSymbol.changeImage("eight");
-      } else if(this.currentScore == 29){
+      } else if (this.currentScore == 29) {
         this.tenSymbol.changeImage("two");
         this.oneSymbol.changeImage("nine");
-      } else if(this.currentScore == 20){
+      } else if (this.currentScore == 20) {
         this.tenSymbol.changeImage("two");
         this.oneSymbol.changeImage("zero");
       }
@@ -355,6 +355,11 @@ function Tommy(x, y, health) {
 
     if (this.tommy.overlap(collider.litterbug) ||
       collider.litterbug.overlap(this.tommy)) {
+
+      if (this.tommy.dead) {
+        return;
+      }
+
       if (!this.jumping && !this.falling && collider.health > 0) {
         // If attempting to jump over, don't injure tommy
         // Remove health
@@ -370,6 +375,17 @@ function Tommy(x, y, health) {
           // Play death stuff and remove movement
           this.tommy.dead = true;
           this.tommy.changeAnimation("Death");
+          this.tommy.animation.goToFrame(0);
+          deathAnimation = this.tommy.animation;
+          setTimeout(function() {
+            // Change to second frame after 1 second
+            deathAnimation.goToFrame(1);
+            tommy.scalar += 50;
+          }, 1000);
+          setTimeout(function() {
+            // Change to final frame after another second
+            deathAnimation.goToFrame(2);
+          }, 2000);
           death.play();
         }
 
@@ -531,6 +547,7 @@ function Tommy(x, y, health) {
   // Punch forward and damage any litterbugs in front
   this.punch = function() {
     if (this.tommy.dead) {
+      location.reload();
       return;
     }
     if (this.punching == true || this.unpunching == true) {
