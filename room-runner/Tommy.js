@@ -310,6 +310,24 @@ function Tommy(x, y, health) {
       this.hp3.position.x = round(this.centerX + cos(angle3) * scalar3);
       this.hp3.position.y = round(this.centerY + sin(angle3) * scalar3);
       this.hp3.rotation = this.tommy.rotation;
+
+      if (this.health == 1) {
+        this.hp1.visible = true;
+        this.hp2.visible = false;
+        this.hp3.visible = false;
+      } else if (this.health == 2) {
+        this.hp1.visible = true;
+        this.hp2.visible = true;
+        this.hp3.visible = false;
+      } else if (this.health == 3) {
+        this.hp1.visible = true;
+        this.hp2.visible = true;
+        this.hp3.visible = true;
+      } else if(this.health == 0){
+        this.hp1.visible = false;
+        this.hp2.visible = false;
+        this.hp3.visible = false;
+      }
     }
     // Check for collisions against sprites
   this.checkCollisions = function(collider) {
@@ -364,13 +382,10 @@ function Tommy(x, y, health) {
         // If attempting to jump over, don't injure tommy
         // Remove health
         if (this.health == 3) {
-          this.hp3.remove();
           this.health -= 1;
         } else if (this.health == 2) {
-          this.hp2.remove();
           this.health -= 1;
         } else if (this.health == 1) {
-          this.hp1.remove();
           this.health -= 1;
           // Play death stuff and remove movement
           this.tommy.dead = true;

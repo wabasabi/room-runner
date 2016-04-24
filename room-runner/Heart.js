@@ -31,6 +31,7 @@ function Heart(angle, rotation) {
       if (tommy.health < 3) {
         tommy.health++;
         this.trash.remove();
+
       } else {
         // Don't do anything, Tommy must be at full health
       }
