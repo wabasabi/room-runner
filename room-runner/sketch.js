@@ -135,6 +135,11 @@ function preload() {
     "assets/LB_Walk-06.png",
     "assets/LB_Walk-06.png"
   );
+  bugDeathAnimation = loadAnimation(
+    "assets/Litterbug2_Die-01.png",
+    "assets/Litterbug2_Die-02.png",
+    "assets/Litterbug2_Die-03.png"
+  );
 
   // Trash Assets
   appleCore = loadImage('assets/AppleCore-01.png');
@@ -207,6 +212,7 @@ function setup() {
   litterbug = new Litterbug(3.12, 4.67);
   litterbug.setIdleImages(LB_IdleRight, LB_IdleLeft);
   litterbug.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
+  litterbug.litterbug.addAnimation("death", bugDeathAnimation);
 
   // Trashcan Tommy
   var StartingX = width / 2 + height / 2;
@@ -330,6 +336,15 @@ function draw() {
     }
     if (counter == 2) {
       litterbugDeath.play();
+      litterbug.litterbug.changeAnimation("death");
+	  deathAnimation = litterbug.litterbug.animation;
+	  deathAnimation.goToFrame(0);
+      setTimeout(function() {
+		deathAnimation.goToFrame(1);
+      }, 1000);
+	  setTimeout(function() {
+		  deathAnimation.goToFrame(2);
+	  }, 2000);
       counter++;
     }
 
@@ -414,11 +429,13 @@ function draw() {
       litterbug2 = new Litterbug(1.60, 2.60);
       litterbug2.setIdleImages(LB_IdleRight, LB_IdleLeft);
       litterbug2.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
+      litterbug2.litterbug.addAnimation("death", bugDeathAnimation);
 
       // Litterbug
       litterbug3 = new Litterbug(2.5, 4.00);
       litterbug3.setIdleImages(LB_IdleRight, LB_IdleLeft);
       litterbug3.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
+      litterbug3.litterbug.addAnimation("death", bugDeathAnimation);
 
       // Try re-initializing only tommy's Sprite
       var oldRotation = tommy.tommy.rotation;
@@ -434,6 +451,7 @@ function draw() {
       tommy.setAttackAnimation(attackAnimation1, attackAnimation2);
 
       init++;
+	  counter = 0;
       return;
     }
 
@@ -459,17 +477,6 @@ function draw() {
     if (litterbug3.health > 0) {
       litterbug3.patrol();
     }
-    /**
-    if (litterbug2.health != 0) {
-      litterbug2.patrol();
-    } else if (litterbug2.health == 0) {
-      counter++;
-    }
-    if (counter == 2) {
-      litterbugDeath.play();
-      counter--;
-    }
-**/
 
     // Check against collisions and draw times
     tommy.handleJumping();
@@ -561,17 +568,19 @@ function draw() {
       litterbug4 = new Litterbug(2.50, 4.60);
       litterbug4.setIdleImages(LB_IdleRight, LB_IdleLeft);
       litterbug4.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
+      litterbug4.litterbug.addAnimation("death", bugDeathAnimation);
 
       // Litterbug 2
       litterbug5 = new Litterbug(4.5, 6.00);
       litterbug5.setIdleImages(LB_IdleRight, LB_IdleLeft);
       litterbug5.setWalkingAnimations(LB_RwalkingAnimation, LB_LwalkingAnimation);
+      litterbug5.litterbug.addAnimation("death", bugDeathAnimation);
 
       // Litterbug 3
 
 
       // Litterbug 4
-
+	  counter = 0;
       init++;
     }
 
